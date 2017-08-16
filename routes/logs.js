@@ -10,8 +10,9 @@ module.exports = (knex) => {
   router.get("/login", (req, res) => {
     // If not login, render login form
     if (!req.currentUser) {
-      // res.render("login", {user: ""})
-      res.render('login')
+
+      res.render("login", {user: ""})
+
     }
     // else redirect to root route
     else {
@@ -29,7 +30,7 @@ module.exports = (knex) => {
   router.get("/register", (req, res) => {
     // If not login, render register form
     if (!req.currentUser) {
-      res.render('register')
+      res.render('register', {user: ""})
     }
     // else redirect to root route
     else {

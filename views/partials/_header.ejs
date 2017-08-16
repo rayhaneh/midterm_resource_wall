@@ -1,38 +1,33 @@
 
-<div>
-
-  <center><h1>Tiny App</h1></center>
-<!-- Incomplete
-</div>
 
 
 
-  <% if (username) { %>
 
-   <center><p>You are logged in as: <%= username %> </p></center>
+  <% if (user) { %>
 
-   <center><form action="/logout" method="POST" style="margin:20px;">
-
-      <div style="padding: 20px"><button style="background-color: yellow; width: 80px;height:40px"><strong>Logout</strong></button></div>
-
-  </form></center>
+   <nav class="navbar navbar-light bg-light justify-content-between">
+      <img id="logo" src="/images/LR.png">
+       <a class="navbar-brand">Username</a>
+      <form class="form-inline">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+      </form>
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
+    </nav>
 
 
   <% }
 
   else{ %>
 
-  <center>
+   <nav class="navbar navbar-light bg-light justify-content-between">
+      <img id="logo" src="/images/LR.png">
 
-  <a style="padding: 20px" href="/login">Login Here</a>
-
-  <a style="padding: 20px" href="/register">Register Here</a>
-
-  </center>
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Register</button>
+    </nav>
 
   <% } %>
 
-</div>
--->
+
 
 
