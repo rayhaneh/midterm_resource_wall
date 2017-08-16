@@ -16,6 +16,17 @@ module.exports = function makeURLDataHelpers(knex) {
         .catch((err) => {
           return callback(err)
         })
+    },
+    getURLs: function(callback) {
+      knex
+        .select("*")
+        .from("URLs")
+        .then((urls) => {
+          return callback(null, urls)
+        })
+        .catch((err) => {
+          return callback(err)
+        })
     }
 
 
