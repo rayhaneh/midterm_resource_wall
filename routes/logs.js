@@ -7,7 +7,7 @@ const md5     = require('md5')
 
 
 
-module.exports = (knex) => {
+module.exports = (userDataHelpers) => {
 
   // Login
   router.get("/login", (req, res) => {
@@ -42,24 +42,38 @@ module.exports = (knex) => {
   })
   router.post("/register", (req, res) => {
     // check if the user email is already in the database
+    userDataHelpers.getUser('email', req.body.email, (err, user) => {
+      if (err) {
+        // fix this one later
+        return res.send('Error while connecting to the database.')
+      }
+      if (user.length !== 0) {
+        // fix this one later
+        console.log(user)
+        return res.send('The user has already registerd.')
+      }
+      let handle = req.body.email.split('@')[0]
+      const avatarUrlPrefix = `https://vanillicon.com/${md5(handle)}`
+      let newUser = {
+        // name     : req.body.name,
+        name     : 'testname',
+        email    : req.body.email,
+        password : bcrypt.hashSync(req.body.password,10),
+        avatar   : `${avatarUrlPrefix}.png`
+      }
 
-    const avatarUrlPrefix = `https://vanillicon.com/${md5('@test')}`
-    let user = {
-      name     : req.body.name,
-      email    : req.body.email,
-      password : bcrypt.hashSync(req.body.password,10),
-      avatar   : `${avatarUrlPrefix}.png`
-    }
-    // saveUser(user, (err) => {
-    //   if (err) {
-    //     // Fix this later
-    //     res.send('Error while connecting to the database.')
-    //   }
-    //   else {
-    //     req.session.email = req.body.email
-    //     res.redirect("/")
-    //   }
-    // })
+      userDataHelpers.saveUser(newUser, (err) => {
+        if (err) {
+          // Fix this later
+          return res.send('Error while connecting to the database.',err)
+        }
+        else {
+          req.session.email = req.body.email
+          return res.redirect("/")
+        }
+      })
+    })
+
 
   })
 
