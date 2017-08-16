@@ -1,7 +1,10 @@
 "use strict"
 
-const express        = require('express');
-const router         = express.Router();
+const express = require('express')
+const router  = express.Router()
+const bcrypt  = require('bcrypt')
+const md5     = require('md5')
+
 
 
 module.exports = (knex) => {
@@ -38,11 +41,26 @@ module.exports = (knex) => {
     }
   })
   router.post("/register", (req, res) => {
-    console.log(req.body.email, req.body.password)
-    // add the user to the database
-    // for now just log user in
-    req.session.email = req.body.email
-    res.redirect("/")
+    // check if the user email is already in the database
+
+    const avatarUrlPrefix = `https://vanillicon.com/${md5('@test')}`
+    let user = {
+      name     : req.body.name,
+      email    : req.body.email,
+      password : bcrypt.hashSync(req.body.password,10),
+      avatar   : `${avatarUrlPrefix}.png`
+    }
+    // saveUser(user, (err) => {
+    //   if (err) {
+    //     // Fix this later
+    //     res.send('Error while connecting to the database.')
+    //   }
+    //   else {
+    //     req.session.email = req.body.email
+    //     res.redirect("/")
+    //   }
+    // })
+
   })
 
   // Logout
