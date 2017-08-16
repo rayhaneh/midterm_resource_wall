@@ -38,6 +38,7 @@ module.exports = (knex) => {
     }
   })
   router.post("/register", (req, res) => {
+    console.log(req.body.email, req.body.password)
     // add the user to the database
     // for now just log user in
     req.session.email = req.body.email
