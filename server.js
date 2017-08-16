@@ -44,7 +44,6 @@ app.use(cookieSession({
 }))
 app.use(express.static("public"))
 
-const urlDataHelpers = require('./db/url_data_helpers.js')(knex)
 
 // USER AUTHENTICATION
 app.use((req, res, next) => {
@@ -52,6 +51,11 @@ app.use((req, res, next) => {
   req.currentUser   = currentUser
   next()
 })
+
+
+// Data Helper Functions
+const urlDataHelpers = require('./db/url_data_helpers.js')(knex)
+
 
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));

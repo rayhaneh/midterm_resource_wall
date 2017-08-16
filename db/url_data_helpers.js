@@ -8,8 +8,8 @@ module.exports = function makeURLDataHelpers(knex) {
     getURL: function(id, callback) {
       knex
         .select("*")
-        .from("urls")
-        .where('urls.id','=',id)
+        .from("URLs")
+        .where('id','=',id)
         .then((url) => {
           return callback(null, url)
         })

@@ -8,9 +8,10 @@ module.exports = (urlDataHelpers) => {
 
   //
   router.get('/:id', (req, res) => {
-    // urlDataHelpers.getURL(1, (err, url) => {
+    urlDataHelpers.getURL(1, (err, url) => {
+      console.log(url)
       res.send(req.params.id)
-    // })
+    })
   })
 
 
