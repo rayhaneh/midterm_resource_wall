@@ -11,6 +11,7 @@ module.exports = (knex) => {
     // If not login, render login form
     if (!req.currentUser) {
       // res.render("login", {user: ""})
+      currentUser = "hello";
       res.render('login')
     }
     // else redirect to root route
