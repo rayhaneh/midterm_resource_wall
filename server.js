@@ -8,6 +8,8 @@ const express     = require("express");
 const bodyParser  = require("body-parser");
 const sass        = require("node-sass-middleware");
 const app         = express();
+const cookieSession  = require('cookie-session')
+
 
 const knexConfig  = require("./knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
@@ -16,6 +18,7 @@ const knexLogger  = require('knex-logger');
 
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
+const logsRoutes  = require("./routes/logs");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -34,15 +37,32 @@ app.use("/styles", sass({
   outputStyle: 'expanded'
 }));
 app.use(express.static("public"));
+app.use(cookieSession({
+  name: 'session',
+  keys: ['abcdefghijklmnopqrstuvwxyz0123456789']
+}))
+app.use(express.static("public"))
+
+
+
+// USER AUTHENTICATION
+app.use((req, res, next) => {
+  const currentUser = req.session.email
+  req.currentUser   = currentUser
+  next()
+})
 
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
+app.use("/", logsRoutes(knex))
 
 // Home page
 app.get("/", (req, res) => {
   res.render("index");
-});
+})
+
+
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
-});
+})
