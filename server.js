@@ -60,7 +60,7 @@ const userDataHelpers = require('./db/data_helpers/user_data_helpers.js')(knex)
 
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
-app.use("/", logsRoutes(knex))
+app.use("/", logsRoutes(userDataHelpers))
 app.use("/urls", urlsRoutes(urlDataHelpers))
 
 // Home page
