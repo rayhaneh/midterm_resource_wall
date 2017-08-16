@@ -65,7 +65,11 @@ app.use("/urls", urlsRoutes(urlDataHelpers))
 
 // Home page
 app.get("/", (req, res) => {
-  res.render("index");
+  let user = {user: ""}
+  if (req.currentUser) {
+    user = {user: req.currentUser}
+  }
+  res.render("index", user);
 })
 
 
