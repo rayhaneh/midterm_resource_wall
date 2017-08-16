@@ -19,6 +19,7 @@ const knexLogger  = require('knex-logger');
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
 const logsRoutes  = require("./routes/logs");
+const urlsRoutes  = require("./routes/urls");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -44,7 +45,6 @@ app.use(cookieSession({
 app.use(express.static("public"))
 
 
-
 // USER AUTHENTICATION
 app.use((req, res, next) => {
   const currentUser = req.session.email
@@ -52,13 +52,24 @@ app.use((req, res, next) => {
   next()
 })
 
+
+// Data Helper Functions
+const urlDataHelpers  = require('./db/data_helpers/url_data_helpers.js')(knex)
+const userDataHelpers = require('./db/data_helpers/user_data_helpers.js')(knex)
+
+
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
 app.use("/", logsRoutes(knex))
+app.use("/urls", urlsRoutes(urlDataHelpers))
 
 // Home page
 app.get("/", (req, res) => {
-  res.render("index");
+  let user = {user: ""}
+  if (req.currentUser) {
+    user = {user: req.currentUser}
+  }
+  res.render("index", user);
 })
 
 
