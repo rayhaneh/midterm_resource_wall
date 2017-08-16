@@ -16,7 +16,7 @@ exports.seed = function(knex, Promise) {
 
     // then create users
     .then(function () {
-      return knex('users').insert({id: 1, name: 'Alice'})
+      return knex('users').insert({id: 1, name: 'Alice', email:'iphone@cool.com', password:'wooohoo'})
       // knex('users').insert({id: 2, name: 'Bob'}),
       // knex('users').insert({id: 3, name: 'Charlie'})
     })
