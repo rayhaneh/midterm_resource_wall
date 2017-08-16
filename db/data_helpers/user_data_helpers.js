@@ -14,6 +14,7 @@ module.exports = function makeUserDataHelpers(knex) {
           return callback(null, user)
         })
         .catch((err) => {
+          console.log('*******',err)
           return callback(err)
         })
     },

@@ -25,8 +25,9 @@ module.exports = (userDataHelpers) => {
   router.post("/login", (req, res) => {
     console.log(req.body.email, req.body.password)
     // for now donot check the credentials! Just login!
-    userDatahelpers.getUser('email',req.body.email,(err, user)=>{
+    userDataHelpers.getUser('email',req.body.email,(err, user)=>{
       if (err){
+        console.log(err)
         return res.send('database connection error')
       }
       if (user.length === 0){
