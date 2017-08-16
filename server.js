@@ -54,7 +54,8 @@ app.use((req, res, next) => {
 
 
 // Data Helper Functions
-const urlDataHelpers = require('./db/url_data_helpers.js')(knex)
+const urlDataHelpers  = require('./db/data_helpers/url_data_helpers.js')(knex)
+const userDataHelpers = require('./db/data_helpers/user_data_helpers.js')(knex)
 
 
 // Mount all resource routes
