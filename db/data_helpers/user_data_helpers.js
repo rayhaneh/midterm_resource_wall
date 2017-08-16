@@ -31,6 +31,9 @@ module.exports = function makeUserDataHelpers(knex) {
         })
     }
 // SAVEUSER user with object {name, avatar, email, pword} INSERT NOT SELECT
+    saveUser: function(user) {
+      knex("users").insert(user)
 
+    }
   }
 }
