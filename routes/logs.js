@@ -23,17 +23,17 @@ module.exports = (userDataHelpers) => {
     }
   })
   router.post("/login", (req, res) => {
-    console.log(req.body.email, req.body.password)
+
     // for now donot check the credentials! Just login!
     userDataHelpers.getUser('email',req.body.email,(err, user)=>{
       if (err){
-        console.log(err)
-        return res.send('database connection error')
+        return res.send('Database connection error.')
       }
       if (user.length === 0){
-        return res.send('email is not registered')
+        return res.send('Email is not registered.')
       }
-      else if (!bcrypt.compareSync(user.password, req.body.password)) {
+      // else if (!bcrypt.compareSync(user[0].password, req.body.password)) {
+      else if (user[0].password !== req.body.password) {
         return res.send('invalid password')
       } else {
         req.session.email = req.body.email
@@ -63,7 +63,6 @@ module.exports = (userDataHelpers) => {
       }
       if (user.length !== 0) {
         // fix this one later
-        console.log(user)
         return res.send('The user has already registerd.')
       }
       let handle = req.body.email.split('@')[0]
@@ -72,7 +71,8 @@ module.exports = (userDataHelpers) => {
         // name     : req.body.name,
         name     : 'testname',
         email    : req.body.email,
-        password : bcrypt.hashSync(req.body.password,10),
+        // password : bcrypt.hashSync(req.body.password,10),
+        password : req.body.password,
         avatar   : `${avatarUrlPrefix}.png`
       }
 
