@@ -1,22 +1,128 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title></title>
+  <title>Name: <%= user.name %></title>
+
+  <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- CSS layouts -->
+
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/navbar.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/profile.css" type="text/css" />
+
+  <link rel="stylesheet" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+
+
+ <!-- Scripts -->
+  <!-- Bootstrap CSS -->
+
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/profile.js"></script>
+
+
+
+
 </head>
+
+
 <body>
+    <header>
+        <% include partials/_header %>
+    </header>
+<div class="container">
+  <div class="jumbotron">
+     <img id="profilepicture" src="<%= user.avatar%>" class="rounded float-right">
+       <h1 class="display-3">
+         <p><%= user.name %></p>
+       </h1>
+       <p class="lead"><%= user.email %></p>
+       <button id="plus"><i class="fa fa-plus" aria-hidden="true"></i></button>
+       <button id="editprofile"><i class="fa fa-cog" aria-hidden="true"></i></button>
+  </div>
+</div>
 
-  <p>Name: <%= user.name %></p>
-  <p>Email: <%= user.email %></p>
-  <img src="<%= user.avatar%>">
 
+<div class="container">
+<form id="newForm">
+  <div class="form-group">
 
-  <%for (let i in urls) {%>
-    <div>
-      <h3><a href="<%= urls[i].URL %>"><%= urls[i].Title%></a></h3>
-      <p><%= urls[i].Desc%></p>
+    <label for="exampleFormControlTextarea1">URL</label>
+    <textarea name="url" class="form-control" id="exampleFormControlTextarea1" rows="1" placeholder="https//"></textarea>
+    <label for="exampleFormControlTextarea2">Title</label>
+    <textarea name="title" class="form-control" id="exampleFormControlTextarea1" rows="1" placeholder="Title"></textarea>
+    <div class="form-group">
+    <label for="exampleFormControlSelect1">Category</label>
+    <select name="selectvcategory" class="form-control" id="exampleFormControlSelect1">
+      <option value="1">Food</option>
+      <option value="2">Sports</option>
+      <option value="3">Entertainment</option>
+      <option value="4">Art</option>
+      <option value="5">Business</option>
+    </select>
     </div>
-  <%}%>
+    <label for="exampleFormControlTextarea2">Add New</label>
+    <textarea name="text" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="What's interesting?"></textarea>
 
 
+  </div>
+   <button id="addnew" type="submit" class="btn btn-info">Add New</button>
+
+ </form>
+</div>
+
+
+<div class="container">
+<form id="editinfo">
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">E-mail:</label>
+    <textarea name="url" class="form-control" id="exampleFormControlTextarea1" rows="1" placeholder="https//"></textarea>
+
+    <label for="exampleFormControlTextarea2">Password:</label>
+    <textarea name="title" class="form-control" id="exampleFormControlTextarea1" rows="1" placeholder="Title"></textarea>
+
+    <label for="exampleFormControlTextarea2">Name:</label>
+    <textarea name="text" class="form-control" id="exampleFormControlTextarea1" rows="1" Text="CHANGE ME"></textarea>
+
+  </div>
+
+  <button id="edit" type="submit" class="btn btn-info">Edit</button>
+
+ </form>
+</div>
+
+
+<div class="container">
+  <div class="row justify-content-center">
+    <%for (let row = 0; row<urls.length; row++){ %>
+        <div class="col-lg-3">
+            <header class="head">
+            <h5>
+            <a id="theTitle" href="/urls/<%= urls[row].id %>"><%= urls[row].Title%></a>
+            </h5>
+            </header>
+            <main class='textbox'>
+               <p><%= urls[row].Desc%></p>
+            </main>
+            <footer>
+              <div class="rating">
+                <% for (let i = 0; i < urls[row].overallRating; i++) {%>
+                 <span>&#9733;</span>
+                <%}%>
+                <% for (let i = 0; i < 5-urls[row].overallRating; i++) {%>
+                  <span>&#9734;</span>
+                <%}%>
+              </div>
+            </footer>
+        </div>
+    <%}%>
+  </div>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 </body>
 </html>

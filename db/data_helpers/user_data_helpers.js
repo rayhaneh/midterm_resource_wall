@@ -30,7 +30,7 @@ module.exports = function makeUserDataHelpers(knex) {
           return callback(err)
         })
     },
-    // SAVEUSER user with object {name, avatar, email, pword} INSERT NOT SELECT
+    // SAVE A NEW USER
     saveUser: function(user, callback) {
       knex("users")
       .returning('id')

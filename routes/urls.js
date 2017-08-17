@@ -6,7 +6,7 @@ const router         = express.Router()
 
 module.exports = (urlDataHelpers) => {
 
-
+  // SHOW ALL URLS
   router.get('/', (req, res) => {
     urlDataHelpers.getURLs((err, urls) => {
       if (err) {
@@ -16,6 +16,22 @@ module.exports = (urlDataHelpers) => {
     })
   })
 
+  // ADD A NEW URL
+  router.post('/', (req, res) => {
+    let newURL     = req.body.newURL
+    newURL.user_id = req.currentUser
+    newURL.cat_id  = Number(newURL.cat_id)
+    urlDataHelpers.saveURL(newURL, (err) => {
+      if (err) {
+        return res.status(500).send('Error while connecting to the database.')
+      }
+      else {
+        return res.status(200).send('New URL has been added to the database.')
+      }
+    })
+  })
+
+  // SHOW ONE SPECIFIC URL
   router.get('/:id', (req, res) => {
     urlDataHelpers.getURL(req.params.id, (err, url) => {
       if (err) {
@@ -35,8 +51,10 @@ module.exports = (urlDataHelpers) => {
       }
     })
 
-  });
+  })
 
 
-  return router;
+
+
+  return router
 }

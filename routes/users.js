@@ -5,6 +5,7 @@ const router  = express.Router();
 
 module.exports = (userDataHelpers) => {
 
+  // SHOW A SPECIFIC USER
   router.get('/:id', (req, res) => {
     userDataHelpers.getUser('id', req.params.id, (err, user) => {
       if (err) {

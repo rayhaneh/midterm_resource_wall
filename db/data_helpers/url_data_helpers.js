@@ -32,6 +32,23 @@ module.exports = function makeURLDataHelpers(knex) {
         })
     },
 
+
+    // ADD A NEW URL
+    saveURL: function(url, callback) {
+      console.log('inside save')
+      console.log(url)
+      knex("URLs")
+      .returning('id')
+      .insert(url)
+      .then((id) => {
+        return callback(null, id)
+      })
+      .catch((err) => {
+        return callback(err)
+      })
+    },
+
+
     // --- FUNCTIONS THAT WE NEED:
     // GET ALL RATINGS FOR A URL AND RETURNS THE OVERAL RATING
     getOveralRating: function(id, callback) {
