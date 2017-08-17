@@ -47,8 +47,12 @@ exports.seed = function(knex, Promise) {
     })
     .then(function(){
       // then create comments
-      return knex('categories').insert(
-        {id: 1, name: 'BACON'}
-      )
+      return Promise.all([
+        knex('categories').insert({id: 1, name: 'Food'}),
+        knex('categories').insert({id: 2, name: 'Sports'}),
+        knex('categories').insert({id: 3, name: 'Entertainment'}),
+        knex('categories').insert({id: 4, name: 'Art'}),
+        knex('categories').insert({id: 5, name: 'Business'})
+      ])
     })
 };
