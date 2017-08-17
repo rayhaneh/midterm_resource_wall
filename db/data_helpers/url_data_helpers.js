@@ -35,9 +35,18 @@ module.exports = function makeURLDataHelpers(knex) {
     // --- FUNCTIONS THAT WE NEED:
     // GET ALL RATINGS FOR A URL AND RETURNS THE OVERAL RATING
     getOveralRating: function(id, callback) {
+      // --- FINISH THIS FUNCTION LATER ---
       // knex
       // .select('rating')
-      // .from('')
+      // .from('comments')
+      // .where('url_id', '=', id)
+      // .then((ratings) => {
+      //   console.log(ratings)
+      //   return callback(null, 3)
+      // })
+      // .cathc((err) => {
+      //   return callback(err)
+      // })
     },
 
     // GET ALL COMMENTS FOR ONE URL
