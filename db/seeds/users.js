@@ -25,9 +25,11 @@ exports.seed = function(knex, Promise) {
     // wait for users to be inserted into the database so they will get ids
     // then create urls
     .then(function () {
+      let lorem1 = 'Lorem ipsum dolor sit amet, et virtute complectitur quo. Ea sed mentitum disputationi delicatissimi, saepe quaestio ocurreret pro te. Erat meis moderatius duo an. Eius voluptatum no has. At duo libris inimicus maluisset. Enim pericula te nam, eum duis aliquid eu, te ocurreret persequeris vim.'
+      let lorem2 = 'Sonet atomorum ea ius, perfecto consequuntur et mea. Ex malis accumsan eum, eum et discere cotidieque, nam fugit evertitur an. Usu possim aperiam deserunt te, an est sonet pericula. Ferri reprimique omittantur in eum, sint eius accusamus ad eos, usu augue quaestio ei. Ea ius labore everti incorrupte, quis omnes sed in, nec ex delicata recteque disputationi.'
       return Promise.all([
-        knex('URLs').insert({id: 1, Desc: 'this is it', URL: 'http://google.com', cat_id: 1, Title: 'Google', user_id: 1, overallRating: 4}),
-        knex('URLs').insert({id: 2, Desc: 'this is it', URL: 'http://facebook.com', cat_id: 1, Title: 'Facebook', user_id: 1, overallRating: 3}),
+        knex('URLs').insert({id: 1, Desc: lorem1, URL: 'http://google.com', cat_id: 1, Title: 'Google', user_id: 1, overallRating: 4}),
+        knex('URLs').insert({id: 2, Desc: lorem2, URL: 'http://facebook.com', cat_id: 1, Title: 'Facebook', user_id: 1, overallRating: 3}),
       ])
     })
     // wait for urls to be inserted into the database so they will get ids
