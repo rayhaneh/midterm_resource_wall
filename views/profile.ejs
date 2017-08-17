@@ -28,14 +28,6 @@
   <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 >>>>>>> cd084e86303c26898bc5924eee4488c242e2e6f1
 
-<script>
-$(document).ready(function() {
-  $('#newForm').hide(); //Initially form wil be hidden.
-  $('#plus').click(function() {
-    $('#newForm').toggle();//Form toggles on button click
-  });
-});
-</script>
 
 </head>
 
@@ -46,12 +38,13 @@ $(document).ready(function() {
     </header>
 <div class="container">
   <div class="jumbotron">
-     <img src="<%= user.avatar%>" class="rounded float-right">
+     <img id="profilepicture" src="<%= user.avatar%>" class="rounded float-right">
        <h1 class="display-3">
          <p><%= user.name %></p>
        </h1>
        <p class="lead"><%= user.email %></p>
        <button id="plus"><i class="fa fa-plus" aria-hidden="true"></i></button>
+       <button id="editprofile"><i class="fa fa-cog" aria-hidden="true"></i></button>
   </div>
 </div>
 
@@ -80,6 +73,27 @@ $(document).ready(function() {
 
   </div>
    <button id="addnew" type="submit" class="btn btn-info">Add New</button>
+
+ </form>
+</div>
+
+
+<div class="container">
+<form id="editinfo">
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">E-mail:</label>
+    <textarea name="url" class="form-control" id="exampleFormControlTextarea1" rows="1" placeholder="https//"></textarea>
+
+    <label for="exampleFormControlTextarea2">Password:</label>
+    <textarea name="title" class="form-control" id="exampleFormControlTextarea1" rows="1" placeholder="Title"></textarea>
+
+    <label for="exampleFormControlTextarea2">Name:</label>
+    <textarea name="text" class="form-control" id="exampleFormControlTextarea1" rows="1" Text="CHANGE ME"></textarea>
+
+  </div>
+
+  <button id="edit" type="submit" class="btn btn-info">Edit</button>
+
  </form>
 </div>
 
