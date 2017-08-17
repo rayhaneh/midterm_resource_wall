@@ -59,7 +59,8 @@ const userDataHelpers = require('./db/data_helpers/user_data_helpers.js')(knex)
 
 
 // Mount all resource routes
-app.use("/api/users", usersRoutes(knex));
+// app.use("/api/users", usersRoutes(knex));
+app.use("/users", usersRoutes(userDataHelpers));
 app.use("/", logsRoutes(userDataHelpers))
 app.use("/urls", urlsRoutes(urlDataHelpers))
 
@@ -69,11 +70,11 @@ app.get("/", (req, res) => {
   if (req.currentUser) {
     user = {user: req.currentUser}
   }
-  res.render("index", user);
+  res.render('index', user);
 })
 
 
 
 app.listen(PORT, () => {
-  console.log("Example app listening on port " + PORT);
+  console.log('Example app listening on port'  + PORT);
 })
