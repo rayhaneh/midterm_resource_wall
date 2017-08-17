@@ -16,11 +16,13 @@ module.exports = (urlDataHelpers) => {
     })
   })
 
-  //
+
   router.get('/:id', (req, res) => {
-    urlDataHelpers.getURL(1, (err, url) => {
-      console.log(url)
-      res.send(req.params.id)
+    urlDataHelpers.getURL(req.params.id, (err, url) => {
+      if (err) {
+        return res.send('Error while connecting to the database.')
+      }
+      res.render('show_url',{'url': url[0]})
     })
   })
 
