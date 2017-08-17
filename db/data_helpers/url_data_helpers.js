@@ -57,6 +57,19 @@ module.exports = function makeURLDataHelpers(knex) {
 
     search: function(text, callback) {
 
+      /*knex
+        .select("Title")
+        .from("URLs")
+        .where('Title','=',text)*/
+      knex.raw
+      ('select * from URLs where URL = ?', [text])
+        .then((url) => {
+          return callback(null, url)
+        })
+        .catch((err) => {
+          return callback(err)
+        })
+
     }
 
 
