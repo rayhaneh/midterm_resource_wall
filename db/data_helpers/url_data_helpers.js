@@ -22,6 +22,7 @@ module.exports = function makeURLDataHelpers(knex) {
         .select("*")
         .from("URLs")
         .then((urls) => {
+          // foreach
           return callback(null, urls)
         })
         .catch((err) => {
@@ -29,6 +30,7 @@ module.exports = function makeURLDataHelpers(knex) {
         })
     }
 
-
+    // getRating
+    // getComment
   }
 }
