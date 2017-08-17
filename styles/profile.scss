@@ -31,3 +31,16 @@ h5 a {
 h5 a:hover {
   color: black;
 }
+#plus {
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  background-color: #328F8F;
+  border: 1px solid #146060;
+  color: #FFF;
+}
+#plus:hover {
+  background-color: #146060;
+  border: 1px solid #BE6876;
+  color: #FFF;
+}
