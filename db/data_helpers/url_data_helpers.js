@@ -4,7 +4,7 @@
 module.exports = function makeURLDataHelpers(knex) {
   return {
 
-    // SAVE A SINGLE TWEET
+    // GET A SINGLE URL
     getURL: function(id, callback) {
       knex
         .select("*")
@@ -16,7 +16,33 @@ module.exports = function makeURLDataHelpers(knex) {
         .catch((err) => {
           return callback(err)
         })
-    }
+    },
+
+    // GET ALL THE URLS
+    getURLs: function(callback) {
+      knex
+        .select("*")
+        .from("URLs")
+        .then((urls) => {
+          // foreach
+          return callback(null, urls)
+        })
+        .catch((err) => {
+          return callback(err)
+        })
+    },
+
+    // --- FUNCTIONS THAT WE NEED:
+    // GET ALL RATINGS FOR A URL AND RETURNS THE OVERAL RATING
+    getOveralRating: function(id, callback) {
+
+    },
+
+    // GET ALL COMMENTS FOR ONE URL
+    getComments: function(id , callback) {
+
+    },
+
 
 
   }

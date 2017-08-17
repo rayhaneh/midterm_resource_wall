@@ -1,10 +1,13 @@
 "use strict"
 
-const express        = require('express');
-const router         = express.Router();
+const express = require('express')
+const router  = express.Router()
+const bcrypt  = require('bcrypt')
+const md5     = require('md5')
 
 
-module.exports = (knex) => {
+
+module.exports = (userDataHelpers) => {
 
   // Login
   router.get("/login", (req, res) => {
@@ -20,10 +23,24 @@ module.exports = (knex) => {
     }
   })
   router.post("/login", (req, res) => {
-    console.log(req.body.email, req.body.password)
+
     // for now donot check the credentials! Just login!
-    req.session.email = req.body.email
-    res.redirect("/")
+    userDataHelpers.getUser('email',req.body.email,(err, user)=>{
+      if (err){
+        return res.send('Database connection error.')
+      }
+      if (user.length === 0){
+        return res.send('Email is not registered.')
+      }
+      // else if (!bcrypt.compareSync(user[0].password, req.body.password)) {
+      else if (user[0].password !== req.body.password) {
+        return res.send('invalid password')
+      } else {
+        req.session.email = req.body.email
+        res.redirect("/")
+      }
+    })
+
   })
 
   // Registration
@@ -38,10 +55,40 @@ module.exports = (knex) => {
     }
   })
   router.post("/register", (req, res) => {
-    // add the user to the database
-    // for now just log user in
-    req.session.email = req.body.email
-    res.redirect("/")
+    // check if the user email is already in the database
+    userDataHelpers.getUser('email', req.body.email, (err, user) => {
+      if (err) {
+        // fix this one later
+        return res.send('Error while connecting to the database.')
+      }
+      if (user.length !== 0) {
+        // fix this one later
+        return res.send('The user has already registerd.')
+      }
+      let handle = req.body.email.split('@')[0]
+      const avatarUrlPrefix = `https://vanillicon.com/${md5(handle)}`
+      let newUser = {
+        // name     : req.body.name,
+        name     : 'testname',
+        email    : req.body.email,
+        // password : bcrypt.hashSync(req.body.password,10),
+        password : req.body.password,
+        avatar   : `${avatarUrlPrefix}.png`
+      }
+
+      userDataHelpers.saveUser(newUser, (err) => {
+        if (err) {
+          // Fix this later
+          return res.send('Error while connecting to the database.',err)
+        }
+        else {
+          req.session.email = req.body.email
+          return res.redirect("/")
+        }
+      })
+    })
+
+
   })
 
   // Logout
