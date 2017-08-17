@@ -17,7 +17,7 @@ module.exports = function makeUserDataHelpers(knex) {
           return callback(err)
         })
     },
-  // GET USERS INFO FROM DB. RETURN FULL
+    // GET USERS INFO FROM DB. RETURN FULL
     getUserURLs: function(id, callback) {
       knex
         .select("*")
@@ -30,7 +30,7 @@ module.exports = function makeUserDataHelpers(knex) {
           return callback(err)
         })
     },
-// SAVEUSER user with object {name, avatar, email, pword} INSERT NOT SELECT
+    // SAVEUSER user with object {name, avatar, email, pword} INSERT NOT SELECT
     saveUser: function(user, callback) {
       knex("users")
       .returning('id')
