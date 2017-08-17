@@ -35,6 +35,8 @@ module.exports = function makeURLDataHelpers(knex) {
 
     // ADD A NEW URL
     saveURL: function(url, callback) {
+      console.log('inside save')
+      console.log(url)
       knex("URLs")
       .returning('id')
       .insert(url)
