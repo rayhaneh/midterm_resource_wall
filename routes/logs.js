@@ -55,6 +55,7 @@ module.exports = (userDataHelpers) => {
     }
   })
   router.post("/register", (req, res) => {
+    console.log('in here')
     // check if the user email is already in the database
     userDataHelpers.getUser('email', req.body.email, (err, user) => {
       if (err) {
@@ -65,11 +66,12 @@ module.exports = (userDataHelpers) => {
         // fix this one later
         return res.send('The user has already registerd.')
       }
+      console.log('here ....')
+      console.log(req.body.email)
       let handle = req.body.email.split('@')[0]
       const avatarUrlPrefix = `https://vanillicon.com/${md5(handle)}`
       let newUser = {
-        // name     : req.body.name,
-        name     : 'testname',
+        name     : req.body.name,
         email    : req.body.email,
         // password : bcrypt.hashSync(req.body.password,10),
         password : req.body.password,

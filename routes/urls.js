@@ -16,13 +16,26 @@ module.exports = (urlDataHelpers) => {
     })
   })
 
-  //
   router.get('/:id', (req, res) => {
-    urlDataHelpers.getURL(1, (err, url) => {
-      console.log(url)
-      res.send(req.params.id)
+    urlDataHelpers.getURL(req.params.id, (err, url) => {
+      if (err) {
+        return res.send('Error while connecting to the database.')
+      }
+      res.render('show_url',{'url': url[0]})
     })
-  })
+  }),
+
+  router.get('/search/:text', (req, res) => {
+    urlDataHelpers.search(req.body.searchText, (err, urls) => {
+      if(err) {
+        return res.send('Error while connecting to the database.')
+      }
+      else {
+        res.render("results", {'urls': urls})
+      }
+    })
+
+  });
 
 
   return router;
