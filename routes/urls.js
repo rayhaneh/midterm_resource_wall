@@ -26,7 +26,7 @@ module.exports = (urlDataHelpers) => {
         return res.status(500).send('Error while connecting to the database.')
       }
       else {
-        return res.status(200).send('New URL has been added to the database.')
+        return res.status(201).send()
       }
     })
   })
