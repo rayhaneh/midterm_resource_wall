@@ -5,7 +5,11 @@ div.col-lg-3 {
   border-radius: 10px;
 }
 
-
+#profilepicture{
+  height:250px;
+  width:250px;
+  margin-top: -40px;
+}
 header.head {
   background-color: #9BD8D8;
   color: black;
@@ -40,6 +44,19 @@ h5 a:hover {
   color: #FFF;
 }
 #plus:hover {
+  background-color: #146060;
+  border: 1px solid #BE6876;
+  color: #FFF;
+}
+#editprofile {
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  background-color: #328F8F;
+  border: 1px solid #146060;
+  color: #FFF;
+}
+#editprofile:hover {
   background-color: #146060;
   border: 1px solid #BE6876;
   color: #FFF;
