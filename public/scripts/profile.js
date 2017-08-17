@@ -22,11 +22,16 @@ $(document).ready(function() {
       }
     })
   })
-  $('#newForm','#editinfo').hide(); //Initially form wil be hidden.
+
+  //Initially form wil be hidden.
+  $('#newForm','#editinfo').hide();
+
   $('#plus').click(function() {
     $('#newForm').toggle();//Form toggles on button clic
     //Initially form wil be hidden.
+  })
+
   $('#edit').click(function() {
     $('#editinfo').toggle();//Form toggles on button click
-  });
+  })
 })
