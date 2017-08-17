@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+
+  <% for (let i in urls) { %>
+    <div>
+    <a href="/urls/<%=urls[i].id%>"><%=urls[i].Title%></a>
+    <p><%= urls[i].Desc%></p>
+    </div>
+  <%}%>
+
+</body>
+</html>
