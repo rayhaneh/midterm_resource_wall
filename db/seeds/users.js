@@ -26,8 +26,8 @@ exports.seed = function(knex, Promise) {
     // then create urls
     .then(function () {
       return Promise.all([
-        knex('URLs').insert({id: 1, Desc: 'this is it', URL: 'http://google.com', cat_id: 1, Title: 'Google', user_id: 1}),
-        knex('URLs').insert({id: 2, Desc: 'this is it', URL: 'http://facebook.com', cat_id: 1, Title: 'Facebook', user_id: 1}),
+        knex('URLs').insert({id: 1, Desc: 'this is it', URL: 'http://google.com', cat_id: 1, Title: 'Google', user_id: 1, overallRating: 4}),
+        knex('URLs').insert({id: 2, Desc: 'this is it', URL: 'http://facebook.com', cat_id: 1, Title: 'Facebook', user_id: 1, overallRating: 3}),
       ])
     })
     // wait for urls to be inserted into the database so they will get ids
