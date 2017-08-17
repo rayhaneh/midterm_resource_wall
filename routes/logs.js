@@ -36,7 +36,7 @@ module.exports = (userDataHelpers) => {
       else if (user[0].password !== req.body.password) {
         return res.send('invalid password')
       } else {
-        req.session.email = req.body.email
+        req.session.user_id = user[0].id
         res.redirect("/")
       }
     })
@@ -55,7 +55,6 @@ module.exports = (userDataHelpers) => {
     }
   })
   router.post("/register", (req, res) => {
-    console.log('in here')
     // check if the user email is already in the database
     userDataHelpers.getUser('email', req.body.email, (err, user) => {
       if (err) {
@@ -66,7 +65,6 @@ module.exports = (userDataHelpers) => {
         // fix this one later
         return res.send('The user has already registerd.')
       }
-      console.log('here ....')
       console.log(req.body.email)
       let handle = req.body.email.split('@')[0]
       const avatarUrlPrefix = `https://vanillicon.com/${md5(handle)}`
@@ -78,13 +76,13 @@ module.exports = (userDataHelpers) => {
         avatar   : `${avatarUrlPrefix}.png`
       }
 
-      userDataHelpers.saveUser(newUser, (err) => {
+      userDataHelpers.saveUser(newUser, (err, id) => {
         if (err) {
           // Fix this later
           return res.send('Error while connecting to the database.',err)
         }
         else {
-          req.session.email = req.body.email
+          req.session.user_id = id
           return res.redirect("/")
         }
       })

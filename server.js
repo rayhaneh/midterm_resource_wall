@@ -47,7 +47,7 @@ app.use(express.static("public"))
 
 // USER AUTHENTICATION
 app.use((req, res, next) => {
-  const currentUser = req.session.email
+  const currentUser = req.session.user_id
   req.currentUser   = currentUser
   next()
 })

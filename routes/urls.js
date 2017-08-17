@@ -18,9 +18,12 @@ module.exports = (urlDataHelpers) => {
 
   // ADD A NEW URL
   router.post('/', (req, res) => {
-    urlDataHelpers.saveURL(req.body.newURL, (err) => {
+    let newURL     = req.body.newURL
+    newURL.user_id = req.currentUser
+    newURL.cat_id  = Number(newURL.cat_id)
+    urlDataHelpers.saveURL(newURL, (err) => {
       if (err) {
-        return res.send('Error while connecting to the database.',err)
+        return res.status(500).send('Error while connecting to the database.')
       }
       else {
         return res.status(200).send('New URL has been added to the database.')

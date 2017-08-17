@@ -4,7 +4,8 @@ $(document).ready(function() {
     let newURL = {
       URL           : $(this).serializeArray()[0].value,
       Title         : $(this).serializeArray()[1].value,
-      Desc          : $(this).serializeArray()[0].value,
+      cat_id        : $(this).serializeArray()[2].value,
+      Desc          : $(this).serializeArray()[3].value,
       overallRating : 0
     }
     event.preventDefault()
@@ -14,8 +15,10 @@ $(document).ready(function() {
       data  : {'newURL': newURL}
     }).then(function(err) {
       if(err) {
+        // Deal with this later
       }
       else {
+        // Deal with this later
       }
     })
   })
