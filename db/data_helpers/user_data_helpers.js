@@ -5,17 +5,19 @@ module.exports = function makeUserDataHelpers(knex) {
   return {
 
     // GET USERS INFO FROM DB. RETURN FULL
-    getUser: function(key, value, callback) {
-      knex
-        .select("*")
-        .from("users")
-        .where(key,'=',value)
-        .then((user) => {
-          return callback(null, user)
-        })
-        .catch((err) => {
-          return callback(err)
-        })
+    getUser: function(key, value) {
+      return new Promise( function(resolve, reject) {
+        knex
+          .select("*")
+          .from("users")
+          .where(key,'=',value)
+          .then((user) => {
+            return resolve(user)
+          })
+          .catch((err) => {
+            return reject(err)
+          })
+      })
     },
   // GET USERS INFO FROM DB. RETURN FULL
     getUserURLs: function(id, callback) {
