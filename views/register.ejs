@@ -3,18 +3,15 @@
 <html lang="en">
   <head>
 
-    <title>Registration Page</title>
-
+    <title>Registration</title>
     <%- include partials/_head.ejs%>
 
   </head>
 
   <body class="container">
+
     <header>
-      <nav class="navbar navbar-light bg-light justify-content-between">
-      <img id="logo" src="/images/LR.png">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
-    </nav>
+      <%- include partials/_header.ejs%>
     </header>
 
     <main>
@@ -41,14 +38,13 @@
       </form>
     </main>
 
-      <footer class="m-4 panel-footer">
+    <footer class="m-4 panel-footer">
       <div class="container">
         <span class="text-muted">&copy; RAS 2017</span>
       </div>
     </footer>
 
     <%- include partials/_foot.ejs%>
-
 
   </body>
 </html>
