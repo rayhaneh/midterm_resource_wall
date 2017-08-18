@@ -26,13 +26,13 @@
   float: right;
 }
 #comments {
-  border-radius: 50%;
-  height: 30px;
-  width: 30px;
+  border-radius: 10px;
   background-color: #328F8F;
   border: 1px solid #146060;
   color: #FFF;
   float: right;
+  margin-top:-55px;
+  margin-right:65px;
 }
 #comments:hover {
   background-color: #BE6876;
@@ -84,9 +84,24 @@ div.comment-box{
   margin-right: -5px;
 
 }
+#urlfull{
+  float:right;
+}
 
 
-
+#likes {
+  border-radius: 10px;
+  background-color: #328F8F;
+  border: 1px solid #146060;
+  color: #FFF;
+  float: right;
+  margin-top:-55px;
+}
+#likes:hover {
+  background-color: #BE6876;
+  border: 1px solid #BE6876;
+  color: #FFF;
+}
 
 
 

@@ -3,14 +3,7 @@
 
   <head>
      <% include partials/_head %>
-    <script>
-        $(document).ready(function() {
-          $('#newcomment').hide();
-          $('#comments').click(function() {
-            $('#newcomment').toggle();
-          })
-        })
-    </script>
+
     <link rel="stylesheet" href="/styles/star-rating.css" type="text/css" />
 
   </head>
@@ -24,7 +17,16 @@
     <main class="container" id="urlshow">
       <header id="urlheader">
         <h1 id="urlname"><p><%=url.Title %></p></h1>
+
         <h5 id="urlfull"><p><%=url.URL %></p></h5>
+        <div class="rating"><!--Want overallrating from URLs table-->
+            <%for (let i = 0; i < url.overallRating; i++) {%>
+              <span><i class="fa fa-2x fa-star" aria-hidden="true"></i></span>
+            <%}%>
+            <%for (let i = 0; i < 5 - url.overallRating; i++) {%>
+              <span><i class="fa fa-2x fa-star-o" aria-hidden="true"></i></span>
+            <%}%>
+          </div>
       </header>
         <p id="descriptions"><%=url.Desc %></p>
 
@@ -45,29 +47,16 @@
             <% if (url.cat_id === 5){%>
             <div>Buisness</div>
           <% } %>
+
         </div>
           <!-- make it a tag -->
-        <button id="comments">
-          <i class="fa fa-comment" aria-hidden="true"></i>
-        </button>
-
-
-
-         <div class="rating"><!--Want overallrating from URLs table-->
-            <%for (let i = 0; i < url.overallRating; i++) {%>
-              <span><i class="fa fa-2x fa-star" aria-hidden="true"></i></span>
-            <%}%>
-            <%for (let i = 0; i < 5 - url.overallRating; i++) {%>
-              <span><i class="fa fa-2x fa-star-o" aria-hidden="true"></i></span>
-            <%}%>
-          </div>
       </section>
 
       <section>
         <form id="newcomment" class="row justify-content-center" URLid='<%=url.id%>'>
           <div class="container" id="addcomment">
             <label for="exampleFormControlTextarea1">Comment:</label>
-            <textarea name="comment" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="....."></textarea>
+            <textarea maxlength="250" name="comment" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="....."></textarea>
             <div class="rating">
               <span class="star-cb-group">
                 <input type="radio" id="str5" name="rating" value="5" /><label for="rating-5">5</label>
@@ -78,7 +67,8 @@
                 <input type="radio" id="str0" name="rating" value="0" class="star-cb-clear" /><label for="rating-0">0</label>
               </span>
             </div>
-            <button type='submit'>Comment</button>
+            <button id="comments" type='submit'><i class="fa fa-comment" aria-hidden="true"></i> Comment</button>
+            <button id="likes" type='submit'><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Like</button>
           </div>
         </form>
       </section>
