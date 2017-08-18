@@ -15,7 +15,7 @@
       <%- include partials/_header.ejs%>
     </header>
 
-    <main>
+    <main class="container" id="logincontainer">
       <h3>Login to your account</h3>
       <form id="login-form" method="POST" action="/login">
         <div class="form-group">
@@ -26,7 +26,7 @@
           <label for="password">Password: </label>
           <input id="password" type="password" name="password" class="form-control">
         </div>
-        <button type="submit"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</button>
+        <button id="loginbut" type="submit"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</button>
       </form>
     </main>
 
