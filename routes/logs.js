@@ -9,19 +9,19 @@ const md5     = require('md5')
 
 module.exports = (userDataHelpers) => {
 
-  // Login
+  // LOGIN GET ROUTE
   router.get("/login", (req, res) => {
     // If not login, render login form
-    if (!req.currentUser) {
-
-      res.render("login", {user: ""})
-
+    if (!req.currentUser.id) {
+      res.render("login", {'currentUser': req.currentUser})
     }
     // else redirect to root route
     else {
       res.redirect("/")
     }
   })
+
+  // LOGIN POST ROUTE
   router.post("/login", (req, res) => {
 
     // for now donot check the credentials! Just login!
@@ -37,17 +37,17 @@ module.exports = (userDataHelpers) => {
         return res.send('invalid password')
       } else {
         req.session.user_id = user[0].id
-        res.redirect("/")
+        return res.status(200).send()
       }
     })
-
   })
 
-  // Registration
+
+  // REGISTRATION
   router.get("/register", (req, res) => {
     // If not login, render register form
-    if (!req.currentUser) {
-      res.render('register', {user: ""})
+    if (!req.currentUser.id) {
+      res.render('register', {'currentUser': req.currentUser})
     }
     // else redirect to root route
     else {
@@ -75,20 +75,17 @@ module.exports = (userDataHelpers) => {
         password : req.body.password,
         avatar   : `${avatarUrlPrefix}.png`
       }
-
       userDataHelpers.saveUser(newUser, (err, id) => {
         if (err) {
           // Fix this later
           return res.send('Error while connecting to the database.',err)
         }
         else {
-          req.session.user_id = id
-          return res.redirect("/")
+          req.session.user_id = id[0]
+          return res.status(200).send()
         }
       })
     })
-
-
   })
 
   // Logout

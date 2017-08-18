@@ -16,7 +16,7 @@ module.exports = (userDataHelpers) => {
           if (err) {
             return res.send('Error while connecting to the database.')
           }
-          res.render('profile', {'user': user[0], 'urls': urls})
+          res.render('profile', {'user': user[0], 'currentUser': req.currentUser})
         })
       }
     })
@@ -34,14 +34,6 @@ module.exports = (userDataHelpers) => {
     })
   })
 
-  // router.get('/', (req, res) => {
-  //   knex
-  //     .select('*')
-  //     .from("users")
-  //     .then((results) => {
-  //       res.json(results)
-  //   })
-  // })
 
   return router;
 }

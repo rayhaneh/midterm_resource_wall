@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>URLs</title>
-  <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <%- include partials/_head.ejs%>
+  <%- include partials/_head.ejs%>
 </head>
+
 <body>
 
 <header>
-
+<%- include partials/_header.ejs%>
 </header>
 
-<div class="container" id="border">
+<main class="container" id="border">
   <div class="row justify-content-center">
     <%for (let row = 0; row<urls.length; row++){ %>
         <div class="col-md-4">
@@ -21,9 +21,9 @@
             <a id="theTitle" href="/urls/<%= urls[row].id %>"><%= urls[row].Title%></a>
             </h5>
             </header>
-            <main class='textbox'>
+            <div class='textbox'>
                <p><%= urls[row].Desc%></p>
-            </main>
+            </div>
             <footer>
               <div class="rating">
                 <% for (let i = 0; i < urls[row].overallRating; i++) {%>
@@ -37,8 +37,14 @@
         </div>
     <%}%>
   </div>
-</div>
+</main>
 
-</body>
-<%- include partials/_foot.ejs%>
+
+
+    <footer class="m-4 panel-footer">
+      <%- include partials/_footer.ejs%>
+    </footer>
+
+  </body>
+  <%- include partials/_foot.ejs%>
 </html>
