@@ -24,14 +24,14 @@ $(document).ready(function() {
   })
 
   //Initially form wil be hidden.
-  $('#newForm','#editinfo').hide();
+  $('#newForm, #editinfo').hide();
 
   $('#plus').click(function() {
     $('#newForm').toggle();//Form toggles on button clic
     //Initially form wil be hidden.
   })
 
-  $('#edit').click(function() {
+  $('#editprofile').click(function() {
     $('#editinfo').toggle();//Form toggles on button click
   })
 })

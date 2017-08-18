@@ -1,0 +1,55 @@
+
+.container {
+  padding: 10px;
+  border: 1px solid #94CACC;
+  border-radius: 10px;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+#urlshow:hover{
+  padding: 10px;
+  border: 1px solid #146060;
+  border-radius: 10px;
+}
+#urlheader {
+  background-color: #9BD8D8;
+  color: black;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+}
+#username{
+  float: right;
+}
+#comments {
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  background-color: #328F8F;
+  border: 1px solid #146060;
+  color: #FFF;
+  float: right;
+}
+#comments:hover {
+  background-color: #146060;
+  border: 1px solid #BE6876;
+  color: #FFF;
+}
+#descriptions {
+  color: black;
+  padding: 10px;
+  margin: 10px;
+}
+#newcomment {
+  margin:10px;
+}
+#categoryofurl{
+  background-color: #BE6876;
+  height: 25px;
+  width: 60px;
+  border-radius: 5px;
+  border: 1px solid #FADCE1;
+  margin:10px;
+  text-align: center;
+  min-width: 60px
+}

@@ -22,12 +22,13 @@
 </div>
 
 
+<!-- ADD NEW -->
 <div class="container">
 <form id="newForm">
   <div class="form-group">
 
     <label for="exampleFormControlTextarea1">URL</label>
-    <textarea name="url" class="form-control" id="exampleFormControlTextarea1" rows="1" placeholder="https//"></textarea>
+    <textarea name="url" class="form-control" id="exampleFormControlTextarea1" rows="1" placeholder="https://"></textarea>
     <label for="exampleFormControlTextarea2">Title</label>
     <textarea name="title" class="form-control" id="exampleFormControlTextarea1" rows="1" placeholder="Title"></textarea>
     <div class="form-group">
@@ -50,18 +51,17 @@
  </form>
 </div>
 
-
+<!-- EDIT USER PROFILE -->
 <div class="container">
 <form id="editinfo">
   <div class="form-group">
-    <label for="exampleFormControlTextarea1">E-mail:</label>
-    <textarea name="url" class="form-control" id="exampleFormControlTextarea1" rows="1" placeholder="https//"></textarea>
-
-    <label for="exampleFormControlTextarea2">Password:</label>
-    <textarea name="title" class="form-control" id="exampleFormControlTextarea1" rows="1" placeholder="Title"></textarea>
 
     <label for="exampleFormControlTextarea2">Name:</label>
-    <textarea name="text" class="form-control" id="exampleFormControlTextarea1" rows="1" Text="CHANGE ME"></textarea>
+    <input type="text" name="text" class="form-control" id="exampleFormControlTextarea1" rows="1" value= "<%- user.name %>">
+
+    <label for="exampleFormControlTextarea1">E-mail:</label>
+    <input type="text" name="url" class="form-control" id="exampleFormControlTextarea1" rows="1" value= "<%- user.email %>"
+
 
   </div>
 
@@ -70,6 +70,7 @@
  </form>
 </div>
 
+<!-- containers and info inputed-->
 
 <div class="container">
   <div class="row justify-content-center">
