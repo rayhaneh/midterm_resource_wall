@@ -33,7 +33,7 @@ $checked-color: #328F8F;
       & + label:hover ~ label:before,
       & + label:hover:before {
       content: $checked-star;
-      color: #e52;
+      color: #328F8F;
       text-shadow: 0 0 1px #328F8F;
     }
   }
