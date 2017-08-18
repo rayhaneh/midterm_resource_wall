@@ -36,17 +36,21 @@ $(document).ready(function() {
 
   // Make an ajax call to the server when user edits their profile
   $('#editinfo').on('submit', function(event) {
-    // event.preventDefault()
-    console.log($(this).serializeArray()[0].value)
-    console.log($(this).serializeArray()[1].value)
+    event.preventDefault()
 
-    // $.ajax({
-    //   method: 'PUT',
-    //   url   : '/'
-    // })
-    // .then(function(err) {
+    let id    = $('#editinfo').attr('userid')
+    let url   = `/users/${id}`
+    let name  = $(this).serializeArray()[0].value
+    let email = $(this).serializeArray()[1].value
 
-    // })
+    $.ajax({
+      method: 'PUT',
+      url   : url,
+      data: {id: id, name: name, email: email}
+    })
+    .then(function(err) {
+      $(location).attr('href', url)
+    })
   })
 
 
