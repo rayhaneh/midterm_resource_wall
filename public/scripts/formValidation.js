@@ -1,13 +1,22 @@
-function validateRegisteration(data) {
+function validateRegisteration(name, email, password) {
   // to be added later
-  return true
+  let error = ''
+  return error
 }
 
 
 
-function validateLogin (data) {
-  // to be added later
-  return true
+function validateLogin (email, password) {
+  let error = ''
+  if (!email) {
+    error = 'Please provide an email address.'
+  }
+  else {
+    if (!password) {
+      error = 'Please provide a password.'
+    }
+  }
+  return error
 }
 
 
@@ -15,5 +24,6 @@ function validateLogin (data) {
 
 function validateNewURL (data) {
   // to be added later
-  return true
+  let error = ''
+  return error
 }

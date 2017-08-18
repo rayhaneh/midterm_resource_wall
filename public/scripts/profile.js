@@ -12,6 +12,7 @@ $(document).ready(function() {
       Desc          : $(this).serializeArray()[3].value,
       overallRating : 0
     }
+
     event.preventDefault()
     $.ajax({
       method: 'POST',

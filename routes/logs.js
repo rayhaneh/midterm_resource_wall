@@ -37,7 +37,7 @@ module.exports = (userDataHelpers) => {
         return res.send('invalid password')
       } else {
         req.session.user_id = user[0].id
-        res.redirect("/")
+        return res.status(200).send()
       }
     })
   })
@@ -82,7 +82,7 @@ module.exports = (userDataHelpers) => {
         }
         else {
           req.session.user_id = id[0]
-          return res.redirect("/")
+          return res.status(200).send()
         }
       })
     })
