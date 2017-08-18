@@ -7,15 +7,21 @@
   <% if (currentUser.id) { %>
 
 
-   <nav class="navbar navbar-light bg-light justify-content-between">
+   <nav id="navbar" class="navbar justify-content-between" rows="3">
       <img id="logo" src="/images/LR.png">
-       <a class="navbar-brand"><%= currentUser.email %></a>
-      <input name="searchText" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-      <button id = "searchURL" name="searchButton">Search</button>
+
+      <div id="parentdiv">
+        <input id="searchbox" name="searchText" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        <button id = "searchURL" name="searchButton"><i class="fa fa-search" aria-hidden="true"
+        ></i></button>
+      </div>
+
+      <div id="nameloggout"><%= currentUser.email %> <a id="logoutbutton" href="/logout">Logout</a>
+      </div>
 
       <form action="/logout" method="POST" style="margin:20px;">
-
-      <button class="btn btn-outline-success my-2 my-sm-0">Logout</button>
+      <div>
+      </div>
 
     </form>
     </nav>
@@ -25,11 +31,14 @@
 
   else{ %>
 
-   <nav class="navbar navbar-light bg-light justify-content-between">
-      <img id="logo" src="/images/LR.png">
+   <nav id="navbar" class="navbar  justify-content-between">
 
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Register</button>
+      <img id="logo" src="/images/LR.png">
+      <div>
+      <a id="loginbutton" class="btn btn-primary btn-sm" href="/login" role="button">Login</a>
+
+      <a id="registerbutton" class="btn btn-primary btn-sm" href="/register" role="button">Register</a>
+      </div>
     </nav>
 
   <% } %>
