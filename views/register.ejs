@@ -14,7 +14,7 @@
       <%- include partials/_header.ejs%>
     </header>
 
-    <main>
+    <main id="registercontainer" class="container">
       <h3>Create an account</h3>
       <form id="registration-form" method="POST" action="/register">
 
@@ -33,7 +33,7 @@
           <input id="password" type="password" name="password" class="form-control">
         </div>
 
-        <button type="submit"><i class="fa fa-user-plus" aria-hidden="true"></i> Register</button>
+        <button id="registerbut" type="submit"><i class="fa fa-user-plus" aria-hidden="true"></i> Register</button>
 
       </form>
     </main>
