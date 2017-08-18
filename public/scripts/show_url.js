@@ -94,7 +94,7 @@ function createCommentElement(comment) {
 
 
   let $comment = $('<div>').addClass('container').addClass('comment-box')
-                    .append($('<div>').append($('<img>').attr('src',comment.avatar)))
+                    .append($('<div>').append($('<img>').addClass('avatar-img').attr('src',comment.avatar)))
                     .append($('<div>').addClass('comment-name').append($('<p>').text(comment.name)))
                     .append($('<div>').addClass('comment-text').text(comment.content))
                     .append($ratingStars)

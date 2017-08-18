@@ -119,17 +119,19 @@ function createURLElement(url) {
     $ratingStars.append($('<span>').html('<i class="fa fa-star-o" aria-hidden="true"></i>'))
   }
 
-  let $url = $('<div>').addClass('col-lg-3')
-                .append($('<header>').addClass('head')
-                  .append($('<h5>')
-                    .append($('<a>').attr('class','theTitle').attr('href',`/urls/${url.id}`).text(url.Title))
-                    )
-                  )
-                .append($('<main>').addClass('textbox')
-                    .append($('<p>').text(url.Desc))
-                    )
-                .append($('<footer>')
-                    .append($ratingStars))
+  let $url = $('<a>').attr('href',`/urls/${url.id}`)
+      .append($('<div>').addClass('col-lg-3')
+        .append($('<header>').addClass('head')
+          .append($('<h5>')
+            .append($('<a>').attr('class','theTitle').text(url.Title))
+            )
+          )
+        .append($('<main>').addClass('textbox')
+            .append($('<p>').text(url.Desc))
+            )
+        .append($('<footer>')
+            .append($ratingStars))
+          )
 
   return $url
 }
