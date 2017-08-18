@@ -44,6 +44,16 @@ function validateComment (commentText, rating) {
 }
 
 
+function validateSearch (text) {
+  console.log('in validate search',text)
+  if (text) {
+    return true
+  }
+  else {
+    return false
+  }
+}
+
 
 
 

@@ -11,9 +11,11 @@
       <img id="logo" src="/images/LR.png">
 
       <div id="parentdiv">
+        <form id="search-form">
         <input id="searchbox" name="searchText" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
         <button id = "searchURL" name="searchButton"><i class="fa fa-search" aria-hidden="true"
         ></i></button>
+        </form>
       </div>
 
       <div id="nameloggout"><%= currentUser.email %> <a id="logoutbutton" href="/logout">Logout</a>

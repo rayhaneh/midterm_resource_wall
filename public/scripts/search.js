@@ -1,37 +1,22 @@
 
 $( document ).ready(function(){
 
-    function search () {
+  $('#search-form').on('submit',function () {
 
-      $('#searchURL').click(function () {
+    event.preventDefault()
 
-        event.preventDefault();
+    let searchInput = $(this).serialize()
 
-        let searchInput = $('input').val();
-
-        // if the search is empty
-        if ((searchInput === "") || (searchInput === null)) {
-          alert("Please enter a valid URL");
-          return;
-        }
-
-
-        else {
-          $.ajax({
-            url: 'urls/search/'+ searchInput,
-            method: 'GET'
-            //dataType: 'html',
-            //data: $(this).serialize()
-          }).done(function (url) {
-              console.log(url);
-              //getURL();
-            });
-
-        }
-
-
-      });
+    if (validateSearch(searchInput)){
+      $.ajax({
+        url: '/urls/search/'+ searchInput,
+        method: 'GET'
+      })
+      .then(function (url) {
+          console.log('*****',url);
+      })
     }
 
-    search();
+  })
+
 })

@@ -44,13 +44,12 @@ module.exports = (urlDataHelpers) => {
 
   // SEARCH IN THE DATABASE
   router.get('/search/:text', (req, res) => {
+
     urlDataHelpers.search(req.body.searchText, (err, urls) => {
       if(err) {
         return res.send('Error while connecting to the database.')
       }
       else {
-        let loggedin = false
-        if (req.currentUser.id) {loggedin = true}
         res.render("results", {'urls': urls, 'currentUser': req.currentUser})
       }
     })
