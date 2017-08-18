@@ -1,9 +1,14 @@
+<!-- If the user is logged in the followin information is available here:
+- currentUser.id
+- currentUser.email
+- currentUser.name
+-->
 
-  <% if (user) { %>
+  <% if (currentUser.id) { %>
 
    <nav class="navbar navbar-light bg-light justify-content-between">
       <img id="logo" src="/images/LR.png">
-       <a class="navbar-brand"><%= user %></a>
+       <a class="navbar-brand"><%= currentUser.email %></a>
       <input name="searchText" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
       <button id = "searchURL" name="searchButton">Search</button>
 

@@ -22,7 +22,6 @@ $(document).ready(function() {
       else {
         // Deal with this later
         // Reload the new URL
-        console.log('no error')
         console.log(err)
       }
     })

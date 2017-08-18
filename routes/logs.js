@@ -9,19 +9,19 @@ const md5     = require('md5')
 
 module.exports = (userDataHelpers) => {
 
-  // Login
+  // LOGIN GET ROUTE
   router.get("/login", (req, res) => {
     // If not login, render login form
-    if (!req.currentUser) {
-
-      res.render("login", {user: ""})
-
+    if (!req.currentUser.id) {
+      res.render("login", {'currentUser': req.currentUser})
     }
     // else redirect to root route
     else {
       res.redirect("/")
     }
   })
+
+  // LOGIN POST ROUTE
   router.post("/login", (req, res) => {
 
     // for now donot check the credentials! Just login!
@@ -40,14 +40,14 @@ module.exports = (userDataHelpers) => {
         res.redirect("/")
       }
     })
-
   })
 
-  // Registration
+
+  // REGISTRATION
   router.get("/register", (req, res) => {
     // If not login, render register form
-    if (!req.currentUser) {
-      res.render('register', {user: ""})
+    if (!req.currentUser.id) {
+      res.render('register', {'currentUser': req.currentUser})
     }
     // else redirect to root route
     else {
@@ -75,24 +75,23 @@ module.exports = (userDataHelpers) => {
         password : req.body.password,
         avatar   : `${avatarUrlPrefix}.png`
       }
-
+      console.log(newUser)
       userDataHelpers.saveUser(newUser, (err, id) => {
         if (err) {
           // Fix this later
           return res.send('Error while connecting to the database.',err)
         }
         else {
-          req.session.user_id = id
+          req.session.user_id = id[0]
           return res.redirect("/")
         }
       })
     })
-
-
   })
 
   // Logout
   router.post("/logout", (req, res) => {
+    console.log('in logout')
     req.session = null
     res.redirect("/login")
   })
