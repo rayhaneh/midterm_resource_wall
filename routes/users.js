@@ -16,7 +16,7 @@ module.exports = (userDataHelpers) => {
           if (err) {
             return res.send('Error while connecting to the database.')
           }
-          res.render('profile', {'user': user[0], 'currentUser': req.currentUser, 'urls': urls})
+          res.render('profile', {'user': user[0], 'currentUser': req.currentUser})
         })
       }
     })

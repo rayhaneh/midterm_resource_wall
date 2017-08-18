@@ -8,97 +8,70 @@
 </head>
 
 <body>
-    <header>
-        <% include partials/_header %>
-    </header>
-<div class="container">
-  <div class="jumbotron">
-     <img id="profilepicture" src="<%= user.avatar%>" class="rounded float-right">
-       <h1 class="display-3">
-         <p><%= user.name %></p>
-       </h1>
-       <p class="lead"><%= user.email %></p>
-       <button id="plus"><i class="fa fa-plus" aria-hidden="true"></i></button>
-       <button id="editprofile"><i class="fa fa-cog" aria-hidden="true"></i></button>
-  </div>
-</div>
-
-
-<!-- ADD NEW -->
-<div class="container">
-<form id="newForm">
-  <div class="form-group">
-
-    <label for="exampleFormControlTextarea1">URL</label>
-    <textarea name="url" class="form-control" id="exampleFormControlTextarea1" rows="1" placeholder="https://"></textarea>
-    <label for="exampleFormControlTextarea2">Title</label>
-    <textarea name="title" class="form-control" id="exampleFormControlTextarea1" rows="1" placeholder="Title"></textarea>
-    <div class="form-group">
-    <label for="exampleFormControlSelect1">Category</label>
-    <select name="selectvcategory" class="form-control" id="exampleFormControlSelect1">
-      <option value="1">Food</option>
-      <option value="2">Sports</option>
-      <option value="3">Entertainment</option>
-      <option value="4">Art</option>
-      <option value="5">Business</option>
-    </select>
+  <header>
+      <% include partials/_header %>
+  </header>
+  <div class="container">
+    <div class="jumbotron">
+       <img id="profilepicture" src="<%= user.avatar%>" class="rounded float-right">
+         <h1 class="display-3">
+           <p><%= user.name %></p>
+         </h1>
+         <p class="lead"><%= user.email %></p>
+         <button id="plus"><i class="fa fa-plus" aria-hidden="true"></i></button>
+         <button id="editprofile"><i class="fa fa-cog" aria-hidden="true"></i></button>
     </div>
-    <label for="exampleFormControlTextarea2">Add New</label>
-    <textarea name="text" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="What's interesting?"></textarea>
-
-
   </div>
-   <button id="addnew" type="submit" class="btn btn-info">Add New</button>
 
- </form>
-</div>
+
+  <!-- ADD NEW -->
+  <div class="container">
+    <form id="newForm">
+      <div class="form-group">
+
+        <label for="exampleFormControlTextarea1">URL</label>
+        <textarea name="url" class="form-control" id="exampleFormControlTextarea1" rows="1" placeholder="https://"></textarea>
+        <label for="exampleFormControlTextarea2">Title</label>
+        <textarea name="title" class="form-control" id="exampleFormControlTextarea1" rows="1" placeholder="Title"></textarea>
+        <div class="form-group">
+        <label for="exampleFormControlSelect1">Category</label>
+        <select name="selectvcategory" class="form-control" id="exampleFormControlSelect1">
+          <option value="1">Food</option>
+          <option value="2">Sports</option>
+          <option value="3">Entertainment</option>
+          <option value="4">Art</option>
+          <option value="5">Business</option>
+        </select>
+        </div>
+        <label for="exampleFormControlTextarea2">Add New</label>
+        <textarea name="text" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="What's interesting?"></textarea>
+
+
+      </div>
+      <button id="addnew" type="submit" class="btn btn-info">Add New</button>
+
+     </form>
+  </div>
 
 <!-- EDIT USER PROFILE -->
 <div class="container">
-<form id="editinfo">
-  <div class="form-group">
+  <form id="editinfo">
+    <div class="form-group">
 
-    <label for="exampleFormControlTextarea2">Name:</label>
-    <input type="text" name="text" class="form-control" id="exampleFormControlTextarea1" rows="1" value= "<%- user.name %>">
+      <label for="exampleFormControlTextarea2">Name:</label>
+      <input type="text" name="text" class="form-control" id="exampleFormControlTextarea1" rows="1" value= "<%- user.name %>">
 
-    <label for="exampleFormControlTextarea1">E-mail:</label>
-    <input type="text" name="url" class="form-control" id="exampleFormControlTextarea1" rows="1" value= "<%- user.email %>"
+      <label for="exampleFormControlTextarea1">E-mail:</label>
+      <input type="text" name="url" class="form-control" id="exampleFormControlTextarea1" rows="1" value= "<%- user.email %>">
+    </div>
 
-
-  </div>
-
-  <button id="edit" type="submit" class="btn btn-info">Edit</button>
-
- </form>
+    <button id="edit" type="submit" class="btn btn-info">Edit</button>
+  </form>
 </div>
 
-<!-- containers and info inputed-->
+<section id="urls-container" class="container">
 
-<div class="container">
-  <div class="row justify-content-center">
-    <%for (let row = 0; row<urls.length; row++){ %>
-        <div class="col-lg-3">
-            <header class="head">
-            <h5>
-            <a id="theTitle" href="/urls/<%= urls[row].id %>"><%= urls[row].Title%></a>
-            </h5>
-            </header>
-            <main class='textbox'>
-               <p><%= urls[row].Desc%></p>
-            </main>
-            <footer>
-              <div class="rating">
-                <% for (let i = 0; i < urls[row].overallRating; i++) {%>
-                 <span>&#9733;</span>
-                <%}%>
-                <% for (let i = 0; i < 5-urls[row].overallRating; i++) {%>
-                  <span>&#9734;</span>
-                <%}%>
-              </div>
-            </footer>
-        </div>
-    <%}%>
-  </div>
-</div>
+</section>
+
 
 <% include partials/_foot %>

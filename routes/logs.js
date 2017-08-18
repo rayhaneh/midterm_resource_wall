@@ -75,7 +75,6 @@ module.exports = (userDataHelpers) => {
         password : req.body.password,
         avatar   : `${avatarUrlPrefix}.png`
       }
-      console.log(newUser)
       userDataHelpers.saveUser(newUser, (err, id) => {
         if (err) {
           // Fix this later
@@ -91,7 +90,6 @@ module.exports = (userDataHelpers) => {
 
   // Logout
   router.post("/logout", (req, res) => {
-    console.log('in logout')
     req.session = null
     res.redirect("/login")
   })

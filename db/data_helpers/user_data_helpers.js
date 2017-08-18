@@ -11,7 +11,6 @@ module.exports = function makeUserDataHelpers(knex) {
         .from("users")
         .where(key,'=',value)
         .then((user) => {
-          console.log(user)
           return callback(null, user)
         })
         .catch((err) => {
