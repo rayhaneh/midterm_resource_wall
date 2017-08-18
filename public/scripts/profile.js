@@ -60,11 +60,13 @@ $(document).ready(function() {
 
   $('#plus').click(function() {
     $('#newForm').toggle();//Form toggles on button clic
+     $('#editinfo').hide();
     //Initially form wil be hidden.
   })
 
   $('#editprofile').click(function() {
     $('#editinfo').toggle();//Form toggles on button click
+      $('#newForm').hide();
   })
 
 })
