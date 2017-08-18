@@ -44,6 +44,7 @@ module.exports = (urlDataHelpers) => {
     })
   }),
 
+  // SEARCH IN THE DATABASE
   router.get('/search/:text', (req, res) => {
     urlDataHelpers.search(req.body.searchText, (err, urls) => {
       if(err) {
@@ -55,7 +56,16 @@ module.exports = (urlDataHelpers) => {
         res.render("results", {'urls': urls, 'currentUser': req.currentUser})
       }
     })
+  }),
 
+
+  router.get('/:id/comments', (req, res) => {
+    urlDataHelpers.getComments(req.params.id, (err, comments) => {
+      if (err) {
+        return res.status(500).send('Error while connecting to the database.')
+      }
+      return res.json(comments)
+    })
   })
 
 
