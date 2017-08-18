@@ -5,6 +5,8 @@ $(document).ready(function() {
 
   // Make an ajax call to the server to save the new URL
   $('#newForm').on('submit', function(event) {
+    event.preventDefault()
+
     let newURL = {
       URL           : $(this).serializeArray()[0].value,
       Title         : $(this).serializeArray()[1].value,
@@ -13,7 +15,6 @@ $(document).ready(function() {
       overallRating : 0
     }
 
-    event.preventDefault()
     $.ajax({
       method: 'POST',
       url   : '/urls',
@@ -31,6 +32,24 @@ $(document).ready(function() {
     })
     $(this).trigger('reset')
   })
+
+
+  // Make an ajax call to the server when user edits their profile
+  $('#editinfo').on('submit', function(event) {
+    // event.preventDefault()
+    console.log($(this).serializeArray()[0].value)
+    console.log($(this).serializeArray()[1].value)
+
+    // $.ajax({
+    //   method: 'PUT',
+    //   url   : '/'
+    // })
+    // .then(function(err) {
+
+    // })
+  })
+
+
 
   //Initially form wil be hidden.
   $('#newForm, #editinfo').hide();
@@ -52,13 +71,16 @@ $(document).ready(function() {
 
 
 function loadURLs () {
+  let id  = $('#urls-container').attr('userid')
+  let url = `/users/${id}/urls`
+
   $('#urls-container').html('')
   $('#urls-container').append($('<div>').addClass('row').addClass('justify-content-center'))
 
 
   $.ajax({
     method: 'GET',
-    url: '/users/1/urls',
+    url: url,
   }).then(function(response) {
       renderURLS(response)
   })
