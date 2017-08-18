@@ -44,18 +44,37 @@ app.use(cookieSession({
 }))
 app.use(express.static("public"))
 
-
-// USER AUTHENTICATION
-app.use((req, res, next) => {
-  const currentUser = req.session.user_id
-  req.currentUser   = currentUser
-  next()
-})
-
-
 // Data Helper Functions
 const urlDataHelpers  = require('./db/data_helpers/url_data_helpers.js')(knex)
 const userDataHelpers = require('./db/data_helpers/user_data_helpers.js')(knex)
+
+
+// USER AUTHENTICATION
+app.use((req, res, next) => {
+  // If there is a cookie attach the current user's info to the request object
+  if (req.session.user_id) {
+    userDataHelpers.getUser('id', req.session.user_id, (err, user) => {
+      if (err) {
+        return res.send('Error while connecting to the database.')
+        next()
+      }
+      else {
+        req.currentUser = {
+          'id'   : req.session.user_id,
+          'email': user[0].email,
+          'name' : user[0].name
+        }
+        next()
+      }
+    })
+  }
+  // else attach an empty object
+  else {
+    req.currentUser = {}
+    next()
+  }
+})
+
 
 
 // Mount all resource routes
@@ -66,20 +85,9 @@ app.use("/urls", urlsRoutes(urlDataHelpers))
 
 // Home page
 app.get("/", (req, res) => {
-  let user = {user: ""}
-  if (req.currentUser) {
-    user = {user: req.currentUser}
-  }
-  res.render('index', user);
+  res.render('index', {'currentUser': req.currentUser});
 })
 
-app.post("/logout", (req, res) => {
-
-  req.session = null;
-
-  res.redirect("/login");
-
-});
 
 
 app.listen(PORT, () => {
