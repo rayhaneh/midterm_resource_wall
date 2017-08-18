@@ -1,3 +1,5 @@
+// This file includes all the javascript code for the profile.ejs
+
 $(document).ready(function() {
 
   // Load all URLs first
