@@ -26,14 +26,12 @@ module.exports = (urlDataHelpers) => {
 
 
     newURL.overallRating  = Number(newURL.overallRating)
-    console.log(newURL)
     urlDataHelpers.saveURL(newURL, (err, id) => {
 
       if (err) {
         return res.status(500).send('Error while connecting to the database.')
       }
       else {
-        console.log('my id is', id)
         return res.status(201).send()
       }
     })

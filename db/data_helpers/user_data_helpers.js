@@ -11,7 +11,6 @@ module.exports = function makeUserDataHelpers(knex) {
         .from("users")
         .where(key,'=',value)
         .then((user) => {
-          console.log(user)
           return callback(null, user)
         })
         .catch((err) => {
@@ -43,6 +42,22 @@ module.exports = function makeUserDataHelpers(knex) {
       .catch((err) => {
         return callback(err)
       })
+    },
+    // UPDATE USER
+    updateUser: function(id, name, email, callback) {
+      knex('users')
+      .where('id', '=', id)
+      .update({
+        name  : name,
+        email : email
+      })
+      .then(() => {
+        return callback(null)
+      })
+      .catch((err) => {
+        return callback(err)
+      })
     }
+
   }
 }

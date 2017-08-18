@@ -6,8 +6,21 @@
 </head>
 <body>
 
-  <%= url %>
-  <%= url.length%>
+  <header>
+    <%- include partials/_header.ejs%>
+  </header>
+
+  <main>
+    <%= url %>
+    <%= url.length%>
+
+  </main>
+
+
+  <footer class="m-4 panel-footer">
+    <%- include partials/_footer.ejs%>
+  </footer>
+
 </body>
 <%- include partials/_foot.ejs%>
 </html>

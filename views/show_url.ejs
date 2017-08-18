@@ -1,72 +1,76 @@
 <!DOCTYPE html>
 <html>
-<head>
 
-   <% include partials/_head %>
-  <script>
-      $(document).ready(function() {
-        $('#newcomment').hide();
-        $('#comments').click(function() {
-          $('#newcomment').toggle();
+  <head>
+     <% include partials/_head %>
+    <script>
+        $(document).ready(function() {
+          $('#newcomment').hide();
+          $('#comments').click(function() {
+            $('#newcomment').toggle();
+          })
         })
-      })
-  </script>
-</head>
+    </script>
+  </head>
 
-<body>
+  <body>
 
-<div class="container" id="urlshow">
-  <header id="urlheader">
-    <h5 id="username"><p>USERname</p></h5>
-    <h1 id="urlname"><p><%=url.Title %></p></h1>
-    <h5 id="urlfull"><p><%=url.URL %></p></h5>
-  </header>
-    <p id="descriptions"><%=url.Desc %></p>
+    <header>
+      <%- include partials/_header.ejs%>
+    </header>
 
-  <footer>
-  <div id="categoryofurl">
-    <% if (url.cat_id === 1){%>
-    <div>Food</div>
-  <% } %>
-    <% if (url.cat_id === 2){%>
-    <div>Sports</div>
-  <% } %>
-    <% if (url.cat_id === 3){%>
-    <div>Entertainment</div>
-  <% } %>
-    <% if (url.cat_id === 4){%>
-    <div>Art</div>
-  <% } %>
-    <% if (url.cat_id === 5){%>
-    <div>Buisness</div>
-  <% } %>
+    <div class="container" id="urlshow">
+      <header id="urlheader">
+        <h5 id="username"><p>USERname</p></h5>
+        <h1 id="urlname"><p><%=url.Title %></p></h1>
+        <h5 id="urlfull"><p><%=url.URL %></p></h5>
+      </header>
+        <p id="descriptions"><%=url.Desc %></p>
 
-  </div>
-      <!-- make it a tag -->
-    <button id="comments">
-      <i class="fa fa-comment" aria-hidden="true"></i>
-    </button>
-       <div class="rating"><!--Want overallrating from URLs table-->
-          <span>&#9733;</span>
-          <span>&#9734;</span>
-          <span>&#9734;</span>
-          <span>&#9734;</span>
-          <span>&#9734;</span>
+      <main>
+      <div id="categoryofurl">
+        <% if (url.cat_id === 1){%>
+        <div>Food</div>
+      <% } %>
+        <% if (url.cat_id === 2){%>
+        <div>Sports</div>
+      <% } %>
+        <% if (url.cat_id === 3){%>
+        <div>Entertainment</div>
+      <% } %>
+        <% if (url.cat_id === 4){%>
+        <div>Art</div>
+      <% } %>
+        <% if (url.cat_id === 5){%>
+        <div>Buisness</div>
+      <% } %>
+
+      </div>
+          <!-- make it a tag -->
+        <button id="comments">
+          <i class="fa fa-comment" aria-hidden="true"></i>
+        </button>
+           <div class="rating"><!--Want overallrating from URLs table-->
+              <span>&#9733;</span>
+              <span>&#9734;</span>
+              <span>&#9734;</span>
+              <span>&#9734;</span>
+              <span>&#9734;</span>
+            </div>
+      </main>
+      <form id="newcomment" class="row justify-content-center">
+        <div class="container" id="addcomment">
+          <label for="exampleFormControlTextarea1">Comment:</label>
+          <textarea name="comment" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="....."></textarea>
         </div>
-  </footer>
-  <form id="newcomment" class="row justify-content-center">
-    <div class="container" id="addcomment">
-      <label for="exampleFormControlTextarea1">Comment:</label>
-      <textarea name="comment" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="....."></textarea>
+      </form>
     </div>
-  </form>
-</div>
-</div>
-</body>
-<!--
- <p><%=url.id %></p>
+    </div>
 
-  <p><%=url.user_id %></p>-->
+    <footer class="m-4 panel-footer">
+      <%- include partials/_footer.ejs%>
+    </footer>
 
+  </body>
 <%- include partials/_foot.ejs%>
 </html>

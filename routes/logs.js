@@ -37,7 +37,7 @@ module.exports = (userDataHelpers) => {
         return res.send('invalid password')
       } else {
         req.session.user_id = user[0].id
-        res.redirect("/")
+        return res.status(200).send()
       }
     })
   })
@@ -75,7 +75,6 @@ module.exports = (userDataHelpers) => {
         password : req.body.password,
         avatar   : `${avatarUrlPrefix}.png`
       }
-      console.log(newUser)
       userDataHelpers.saveUser(newUser, (err, id) => {
         if (err) {
           // Fix this later
@@ -83,7 +82,7 @@ module.exports = (userDataHelpers) => {
         }
         else {
           req.session.user_id = id[0]
-          return res.redirect("/")
+          return res.status(200).send()
         }
       })
     })
@@ -91,7 +90,6 @@ module.exports = (userDataHelpers) => {
 
   // Logout
   router.post("/logout", (req, res) => {
-    console.log('in logout')
     req.session = null
     res.redirect("/login")
   })

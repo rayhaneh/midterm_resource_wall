@@ -16,7 +16,7 @@ module.exports = (userDataHelpers) => {
           if (err) {
             return res.send('Error while connecting to the database.')
           }
-          res.render('profile', {'user': user[0], 'currentUser': req.currentUser, 'urls': urls})
+          res.render('profile', {'user': user[0], 'currentUser': req.currentUser})
         })
       }
     })
@@ -32,7 +32,26 @@ module.exports = (userDataHelpers) => {
       res.json(urls)
 
     })
+  }),
+
+
+
+  router.put('/:id', (req, res) => {
+    console.log('*****************I am in put', req.body.id)
+    userDataHelpers.updateUser(req.body.id, req.body.name, req.body.email, (err) => {
+      if (err) {
+        return res.status(500).send('Error while connecting to the database.')
+      }
+      return res.status(200).send()
+    })
   })
+
+
+
+
+
+
+
 
 
   return router;

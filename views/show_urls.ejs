@@ -1,24 +1,50 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title></title>
-  <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <%- include partials/_head.ejs%>
+  <title>URLs</title>
+  <%- include partials/_head.ejs%>
 </head>
+
 <body>
 
 <header>
-  <% include partials/_header %>
+<%- include partials/_header.ejs%>
 </header>
 
-  <% for (let i in urls) { %>
-    <div>
-    <a href="/urls/<%=urls[i].id%>"><%=urls[i].Title%></a>
-    <p><%= urls[i].Desc%></p>
-    </div>
-  <%}%>
+<main class="container" id="border">
+  <div class="row justify-content-center">
+    <%for (let row = 0; row<urls.length; row++){ %>
+        <div class="col-md-4">
+            <header class="head">
+            <h5>
+            <a id="theTitle" href="/urls/<%= urls[row].id %>"><%= urls[row].Title%></a>
+            </h5>
+            </header>
+            <div class='textbox'>
+               <p><%= urls[row].Desc%></p>
+            </div>
+            <footer>
+              <div class="rating">
+                <% for (let i = 0; i < urls[row].overallRating; i++) {%>
+                 <span>&#9733;</span>
+                <%}%>
+                <% for (let i = 0; i < 5-urls[row].overallRating; i++) {%>
+                  <span>&#9734;</span>
+                <%}%>
+              </div>
+            </footer>
+        </div>
+    <%}%>
+  </div>
+</main>
 
-</body>
-<%- include partials/_foot.ejs%>
+
+
+    <footer class="m-4 panel-footer">
+      <%- include partials/_footer.ejs%>
+    </footer>
+
+  </body>
+  <%- include partials/_foot.ejs%>
 </html>
