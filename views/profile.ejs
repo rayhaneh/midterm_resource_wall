@@ -54,7 +54,7 @@
 
     <!-- EDIT USER PROFILE -->
     <section class="container">
-      <form id="editinfo">
+      <form id="editinfo" userid="<%=user.id%>">
         <div class="form-group">
 
           <label for="exampleFormControlTextarea2">Name:</label>
@@ -69,7 +69,7 @@
     </section>
 
     <!-- URLs container. All URLs will be added to this section via AJAX -->
-    <section id="urls-container" class="container">
+    <section id="urls-container" class="container" userid="<%=user.id%>">
     </section>
 
     <footer>
