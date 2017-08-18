@@ -19,7 +19,7 @@
       <%- include partials/_header.ejs%>
     </header>
 
-    <div class="container" id="urlshow">
+    <main class="container" id="urlshow">
       <header id="urlheader">
         <h5 id="username"><p>USERname</p></h5>
         <h1 id="urlname"><p><%=url.Title %></p></h1>
@@ -27,45 +27,63 @@
       </header>
         <p id="descriptions"><%=url.Desc %></p>
 
-      <main>
-      <div id="categoryofurl">
-        <% if (url.cat_id === 1){%>
-        <div>Food</div>
-      <% } %>
-        <% if (url.cat_id === 2){%>
-        <div>Sports</div>
-      <% } %>
-        <% if (url.cat_id === 3){%>
-        <div>Entertainment</div>
-      <% } %>
-        <% if (url.cat_id === 4){%>
-        <div>Art</div>
-      <% } %>
-        <% if (url.cat_id === 5){%>
-        <div>Buisness</div>
-      <% } %>
-
-      </div>
+      <section>
+        <div id="categoryofurl">
+            <% if (url.cat_id === 1){%>
+            <div>Food</div>
+          <% } %>
+            <% if (url.cat_id === 2){%>
+            <div>Sports</div>
+          <% } %>
+            <% if (url.cat_id === 3){%>
+            <div>Entertainment</div>
+          <% } %>
+            <% if (url.cat_id === 4){%>
+            <div>Art</div>
+          <% } %>
+            <% if (url.cat_id === 5){%>
+            <div>Buisness</div>
+          <% } %>
+        </div>
           <!-- make it a tag -->
         <button id="comments">
           <i class="fa fa-comment" aria-hidden="true"></i>
         </button>
-           <div class="rating"><!--Want overallrating from URLs table-->
-              <span>&#9733;</span>
-              <span>&#9734;</span>
-              <span>&#9734;</span>
-              <span>&#9734;</span>
-              <span>&#9734;</span>
+
+
+
+         <div class="rating"><!--Want overallrating from URLs table-->
+            <%for (let i = 0; i < url.overallRating; i++) {%>
+              <span><i class="fa fa-2x fa-star" aria-hidden="true"></i></span>
+            <%}%>
+            <%for (let i = 0; i < 5 - url.overallRating; i++) {%>
+              <span><i class="fa fa-2x fa-star-o" aria-hidden="true"></i></span>
+            <%}%>
+          </div>
+      </section>
+
+      <section>
+        <form id="newcomment" class="row justify-content-center" URLid='<%=url.id%>'>
+          <div class="container" id="addcomment">
+            <label for="exampleFormControlTextarea1">Comment:</label>
+            <textarea name="comment" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="....."></textarea>
+            <div class="rating">
+              <input type="radio" name="rating" id="str5" value="5">
+              <input type="radio" name="rating" id="str4" value="4">
+              <input type="radio" name="rating" id="str3" value="3">
+              <input type="radio" name="rating" id="str2" value="2">
+              <input type="radio" name="rating" id="str1" value="1">
             </div>
-      </main>
-      <form id="newcomment" class="row justify-content-center">
-        <div class="container" id="addcomment">
-          <label for="exampleFormControlTextarea1">Comment:</label>
-          <textarea name="comment" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="....."></textarea>
-        </div>
-      </form>
-    </div>
-    </div>
+            <button type='submit'>Comment</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Comments will Be added here via AJAX -->
+      <section id="comments-container">
+      </section>
+
+    </main>
 
     <footer class="m-4 panel-footer">
       <%- include partials/_footer.ejs%>

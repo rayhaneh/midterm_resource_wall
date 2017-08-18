@@ -120,7 +120,7 @@ function createURLElement(url) {
   let $url = $('<div>').addClass('col-lg-3')
                 .append($('<header>').addClass('head')
                   .append($('<h5>')
-                    .append($('<a>').attr('id','theTitle').attr('href',`/urls/${url.id}`).text(url.Title))
+                    .append($('<a>').attr('class','theTitle').attr('href',`/urls/${url.id}`).text(url.Title))
                     )
                   )
                 .append($('<main>').addClass('textbox')
@@ -128,9 +128,6 @@ function createURLElement(url) {
                     )
                 .append($('<footer>')
                     .append($ratingStars))
-
-
-
 
   return $url
 }

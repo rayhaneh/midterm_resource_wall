@@ -27,3 +27,31 @@ function validateNewURL (data) {
   let error = ''
   return error
 }
+
+
+
+function validateComment (commentText, rating) {
+  let error = ''
+  if (!commentText) {
+    error = 'Please provide a comment.'
+  }
+  else {
+    if (!rating) {
+      error = 'Please provide a rating.'
+    }
+  }
+  return error
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
