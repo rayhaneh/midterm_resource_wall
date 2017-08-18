@@ -39,11 +39,15 @@ $(document).ready(function() {
       })
       $(this).trigger('reset')
       $('#newcomment .error').remove()
+      $('.star-cb-group input').removeAttr('checked')
     }
+  })
 
 
-
-
+  $('.star-cb-group label').on('click', function(event) {
+    $('.star-cb-group input').removeAttr('checked')
+    $(this).prev('input').attr('checked','checked')
+    console.log($(this).siblings('input'))
   })
 
 
