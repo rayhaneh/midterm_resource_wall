@@ -33,6 +33,7 @@ module.exports = function makeUserDataHelpers(knex) {
     },
     // SAVE A NEW USER
     saveUser: function(user, callback) {
+      //test for GIT
       knex("users")
       .returning('id')
       .insert(user)
