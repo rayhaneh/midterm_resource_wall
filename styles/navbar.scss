@@ -5,3 +5,51 @@
   width: 80px;
   border-radius: 10px
 }
+#navbar {
+  background-color: #9BD8D8;
+  border:1px solid #9BD8D8;
+  margin-bottom: 20px;
+  height: 120px;
+}
+#loginbutton{
+  float: right;
+  padding: 5px;
+  margin:5px;
+  background:#ED8C95;
+  border:1px solid #BE6876;
+  color:#FCF3F4;
+}
+#registerbutton{
+  float: right;
+  padding: 5px;
+  margin:5px;
+  background:#ED8C95;
+  border: 1px solid #BE6876;
+  color:#FCF3F4;
+}
+
+#searchbox{
+  width:100%;
+  border-radius: 50px;
+
+}
+#searchURL{
+  border-radius:50%;
+  border: 1px solid #BE6876;
+  background:#ED8C95;
+  color:#FCF3F4;
+  position: absolute;
+  top: 4px;
+  right: 4px;
+}
+#nameloggout{
+  font-size: 15px;
+}
+#logoutbutton{
+  color:#BE6876;
+  font-size: 15px;
+}
+#parentdiv {
+  width: 40%;
+  position: relative;
+}
