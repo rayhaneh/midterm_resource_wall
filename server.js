@@ -84,8 +84,11 @@ app.use("/", logsRoutes(userDataHelpers))
 app.use("/urls", urlsRoutes(urlDataHelpers))
 
 // Home page
+// app.get("/", (req, res) => {
+//   res.render('index', {'currentUser': req.currentUser});
+// })
 app.get("/", (req, res) => {
-  res.render('index', {'currentUser': req.currentUser});
+  res.redirect("/urls")
 })
 
 
