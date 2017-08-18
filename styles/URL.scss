@@ -55,7 +55,8 @@
   border: 1px solid #FADCE1;
   margin:10px;
   text-align: center;
-  min-width: 60px
+  min-width: 60px;
+  float: right;
 }
 
 div.comment-name{
@@ -89,15 +90,14 @@ div.comment-box{
 }
 
 
-#likes {
+#likebutton {
   border-radius: 10px;
   background-color: #328F8F;
   border: 1px solid #146060;
   color: #FFF;
-  float: right;
   margin-top:-55px;
 }
-#likes:hover {
+#likebutton:hover {
   background-color: #BE6876;
   border: 1px solid #BE6876;
   color: #FFF;

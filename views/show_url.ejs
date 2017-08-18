@@ -17,21 +17,9 @@
     <main class="container" id="urlshow">
       <header id="urlheader">
         <h1 id="urlname"><p><%=url.Title %></p></h1>
-
+        <div>
         <h5 id="urlfull"><p><%=url.URL %></p></h5>
-        <div class="rating"><!--Want overallrating from URLs table-->
-            <%for (let i = 0; i < url.overallRating; i++) {%>
-              <span><i class="fa fa-2x fa-star" aria-hidden="true"></i></span>
-            <%}%>
-            <%for (let i = 0; i < 5 - url.overallRating; i++) {%>
-              <span><i class="fa fa-2x fa-star-o" aria-hidden="true"></i></span>
-            <%}%>
-          </div>
-      </header>
-        <p id="descriptions"><%=url.Desc %></p>
-
-      <section>
-        <div id="categoryofurl">
+               <div id="categoryofurl">
             <% if (url.cat_id === 1){%>
             <div>Food</div>
           <% } %>
@@ -47,7 +35,24 @@
             <% if (url.cat_id === 5){%>
             <div>Buisness</div>
           <% } %>
+          </div>
+        </div>
+        <div class="rating"><!--Want overallrating from URLs table-->
+            <%for (let i = 0; i < url.overallRating; i++) {%>
+              <span><i class="fa fa-2x fa-star" aria-hidden="true"></i></span>
+            <%}%>
+            <%for (let i = 0; i < 5 - url.overallRating; i++) {%>
+              <span><i class="fa fa-2x fa-star-o" aria-hidden="true"></i></span>
+            <%}%>
+          </div>
+      </header>
+        <p id="descriptions"><%=url.Desc %></p>
 
+      <section>
+
+        <div>
+        <button id="likebutton" type='submit'><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Like</button>
+        <p id="counter"> 123</p>
         </div>
           <!-- make it a tag -->
       </section>
@@ -68,7 +73,7 @@
               </span>
             </div>
             <button id="comments" type='submit'><i class="fa fa-comment" aria-hidden="true"></i> Comment</button>
-            <button id="likes" type='submit'><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Like</button>
+
           </div>
         </form>
       </section>
