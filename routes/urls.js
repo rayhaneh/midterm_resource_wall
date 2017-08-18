@@ -21,13 +21,8 @@ module.exports = (urlDataHelpers) => {
     let newURL     = req.body.newURL
     newURL.user_id = req.currentUser.id
     newURL.cat_id  = Number(newURL.cat_id)
-
-    urlDataHelpers.saveURL(newURL, (err) => {
-
-
     newURL.overallRating  = Number(newURL.overallRating)
     urlDataHelpers.saveURL(newURL, (err, id) => {
-
       if (err) {
         return res.status(500).send('Error while connecting to the database.')
       }

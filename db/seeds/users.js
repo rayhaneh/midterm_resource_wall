@@ -28,8 +28,9 @@ exports.seed = function(knex, Promise) {
       let lorem1 = 'Lorem ipsum dolor sit amet, et virtute complectitur quo. Ea sed mentitum disputationi delicatissimi, saepe quaestio ocurreret pro te. Erat meis moderatius duo an. Eius voluptatum no has. At duo libris inimicus maluisset. Enim pericula te nam, eum duis aliquid eu, te ocurreret persequeris vim.'
       let lorem2 = 'Sonet atomorum ea ius, perfecto consequuntur et mea. Ex malis accumsan eum, eum et discere cotidieque, nam fugit evertitur an. Usu possim aperiam deserunt te, an est sonet pericula. Ferri reprimique omittantur in eum, sint eius accusamus ad eos, usu augue quaestio ei. Ea ius labore everti incorrupte, quis omnes sed in, nec ex delicata recteque disputationi.'
       return Promise.all([
-        knex('URLs').insert({id: 1, Desc: lorem1, URL: 'http://google.com', cat_id: 1, Title: 'Google', user_id: 1, overallRating: 4}),
-        knex('URLs').insert({id: 2, Desc: lorem2, URL: 'http://facebook.com', cat_id: 1, Title: 'Facebook', user_id: 1, overallRating: 3}),
+        knex('URLs').insert({id: 1, Desc: lorem1, URL: 'https://www.google.com', cat_id: 1, Title: 'Google', user_id: 1, overallRating: 4}),
+        knex('URLs').insert({id: 2, Desc: lorem2, URL: 'http://www.bestbuy.ca/', cat_id: 5, Title: 'Bestbuy', user_id: 1, overallRating: 3}),
+        knex('URLs').insert({id: 3, Desc: lorem1, URL: 'https://www.lighthouselabs.ca/', cat_id: 3, Title: 'Lighthouse', user_id: 1, overallRating: 5})
       ])
     })
     // wait for urls to be inserted into the database so they will get ids
@@ -46,7 +47,7 @@ exports.seed = function(knex, Promise) {
       )
     })
     .then(function(){
-      // then create comments
+      // then create categories
       return Promise.all([
         knex('categories').insert({id: 1, name: 'Food'}),
         knex('categories').insert({id: 2, name: 'Sports'}),
