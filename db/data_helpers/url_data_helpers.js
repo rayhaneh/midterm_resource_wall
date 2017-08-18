@@ -39,7 +39,7 @@ module.exports = function makeURLDataHelpers(knex) {
       .returning('id')
       .insert(url)
       .then((id) => {
-        return callback(null, id)
+        return id
       })
       .catch((err) => {
         return callback(err)

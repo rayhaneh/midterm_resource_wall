@@ -22,7 +22,7 @@ module.exports = function makeUserDataHelpers(knex) {
       knex
         .select("*")
         .from("URLs")
-        .where('user_id','=', id)
+        .where('user_id','=', 1)
         .then((urls) => {
           return callback(null, urls)
         })
