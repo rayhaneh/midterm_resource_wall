@@ -12,22 +12,28 @@ module.exports = (urlDataHelpers) => {
       if (err) {
         return res.send('Error while connecting to the database.')
       }
-      res.render('show_urls', {'urls': urls})
+      res.render('show_urls', {'urls': urls, 'currentUser': req.currentUser})
     })
   })
 
   // ADD A NEW URL
   router.post('/', (req, res) => {
     let newURL     = req.body.newURL
-    newURL.user_id = req.currentUser
+    newURL.user_id = req.currentUser.id
     newURL.cat_id  = Number(newURL.cat_id)
-    //console.log("I'm in post")
+
     urlDataHelpers.saveURL(newURL, (err) => {
-      //console.log("I'm in post", err)
+
+
+    newURL.overallRating  = Number(newURL.overallRating)
+    console.log(newURL)
+    urlDataHelpers.saveURL(newURL, (err, id) => {
+
       if (err) {
         return res.status(500).send('Error while connecting to the database.')
       }
       else {
+        console.log('my id is', id)
         return res.status(201).send()
       }
     })
@@ -39,7 +45,9 @@ module.exports = (urlDataHelpers) => {
       if (err) {
         return res.send('Error while connecting to the database.')
       }
-      res.render('show_url',{'url': url[0]})
+      let loggedin = false
+      if (req.currentUser) {loggedin = true}
+      res.render('show_url',{'url': url[0], 'currentUser': req.currentUser})
     })
   }),
 
@@ -49,7 +57,9 @@ module.exports = (urlDataHelpers) => {
         return res.send('Error while connecting to the database.')
       }
       else {
-        res.render("results", {'urls': urls})
+        let loggedin = false
+        if (req.currentUser.id) {loggedin = true}
+        res.render("results", {'urls': urls, 'currentUser': req.currentUser})
       }
     })
 

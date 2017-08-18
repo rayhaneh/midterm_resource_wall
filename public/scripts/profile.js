@@ -26,21 +26,24 @@ $(document).ready(function() {
       else {
         // Deal with this later
         // Reload the new URL
+
         loadURLs(newURL)
-        //console.log("I'm fine")
+
+        console.log(err)
+
       }
     })
   })
 
   //Initially form wil be hidden.
-  $('#newForm','#editinfo').hide();
+  $('#newForm, #editinfo').hide();
 
   $('#plus').click(function() {
     $('#newForm').toggle();//Form toggles on button clic
     //Initially form wil be hidden.
   })
 
-  $('#edit').click(function() {
+  $('#editprofile').click(function() {
     $('#editinfo').toggle();//Form toggles on button click
   })
 
@@ -67,7 +70,17 @@ function renderURLs(response) {
     $siteContainer.append(newArticle);
   });
 
-}
+
+// function loadURLs () {
+//   $('#').html('') // add the element
+//   $.ajax({
+//     method: 'GET',
+//     url: '/user/:id/URLS',
+//   }).then(function(response) {
+//       renderURLS(response)
+//   })
+// }
+
 
 
 
