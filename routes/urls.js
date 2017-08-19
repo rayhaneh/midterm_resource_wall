@@ -52,7 +52,7 @@ module.exports = (urlDataHelpers) => {
       else {
         let loggedin = false
         if (req.currentUser.id) {loggedin = true}
-        res.render("results", {'urls': urls, 'currentUser': req.currentUser})
+        res.send({'urls': urls, 'currentUser': req.currentUser})
       }
     })
 

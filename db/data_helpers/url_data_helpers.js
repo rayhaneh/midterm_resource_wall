@@ -5,13 +5,14 @@ module.exports = function makeURLDataHelpers(knex) {
   return {
 
     // GET A SINGLE URL
-    getURL: function(id, callback) {
+    getURL: function(URL, callback) {
       knex
         .select("*")
         .from("URLs")
-        .where('id','=',id)
-        .then((url) => {
-          return callback(null, url)
+        .where('Title', URL) //${'%' + URL + '%'}`)
+        .then((urls) => {
+
+          return callback(null, urls[0])
         })
         .catch((err) => {
           return callback(err)
