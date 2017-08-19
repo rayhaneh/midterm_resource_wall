@@ -88,29 +88,68 @@ module.exports = function makeURLDataHelpers(knex) {
     },
 
 
+    // GET LIKE COUNT
+    countLikes: function(url_id, callback) {
+      knex('likes')
+        .count('user_id as num')
+        .where('url_id', '=', url_id)
+      .then((result) =>{
+        callback(null,result[0].num)
+        })
+      .catch((err) => {
+        return callback(err)
+      })
+    },
+
+
+    // UPDATE (ADD/REMOVE) LIKES
+    updateLikes: function(like, callback) {
+      knex('likes')
+      .select('*')
+      .where(like)
+      .then((result) => {
+        if (result.length === 0) {
+          return knex('likes')
+          .insert(like)
+        }
+        else {
+          return knex('likes')
+          .where(like)
+          .del()
+        }
+      })
+      .then(() => {
+        knex('likes')
+          .count('user_id as num')
+          .where('url_id', '=', like.url_id)
+        .then((result) =>{
+          callback(null,result[0].num)
+          })
+      })
+      .catch((err) => {
+        return callback(err)
+      })
+    },
+
+
     // A new comment is saved in comments -> Update the overall rating in URLs table
     updateOverallRating: function (urlid, callback) {
-      console.log('URL ID:',urlid)
       knex('comments')
         .avg('rating as avg')
         .where('url_id', '=', urlid)
         .then((result) => {
-          console.log('AVG: ', result[0].avg)
           return knex('URLs')
             .where('id', '=', urlid)
             .update({
               overallRating  : Math.round(result[0].avg)
-            });
+            })
         })
-        .then((result2) => {
-          console.log("result2", result2);
-          // console.log('Math Floor AVG: ', Math.round(result2[0].avg))
-          callback(null);
+        .then(() => {
+          callback(null)
         })
         .catch((err) => {
-          callback(err);
+          callback(err)
         })
-
     },
 
 

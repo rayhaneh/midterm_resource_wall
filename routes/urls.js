@@ -42,6 +42,7 @@ module.exports = (urlDataHelpers) => {
     })
   }),
 
+
   // SEARCH IN THE DATABASE
   router.get('/search/:text', (req, res) => {
 
@@ -87,6 +88,35 @@ module.exports = (urlDataHelpers) => {
       })
     })
 
+  })
+
+
+  router.get('/:id/likes', (req, res) => {
+    urlDataHelpers.countLikes(Number(req.params.id), (err, count) => {
+      if (err) {
+        return res.status(500).send({'error':'Error while connecting to the database.'})
+      }
+      else {
+        return res.status(200).send({'likecount': count})
+      }
+    })
+  })
+
+
+
+  router.post('/:id/likes', (req, res) => {
+    let like = {
+      user_id : req.currentUser.id,
+      url_id  : Number(req.params.id),
+    }
+    urlDataHelpers.updateLikes(like, (err, count) => {
+      if (err) {
+        return res.status(500).send({'error':'Error while connecting to the database.'})
+      }
+      else {
+        return res.status(200).send({'likecount': count})
+      }
+    })
   })
 
 
