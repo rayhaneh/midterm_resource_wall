@@ -4,14 +4,26 @@
 module.exports = function makeURLDataHelpers(knex) {
   return {
 
+     // SEARCH A QUERY
+    search: function(text, callback) {
+      knex.raw
+      ('select * from URLs where Title = ?', [text])
+        .then((url) => {
+          return callback(null, url)
+        })
+        .catch((err) => {
+          return callback(err)
+        })
+    },
+
+
     // GET A SINGLE URL
     getURL: function(URL, callback) {
       knex
         .select("*")
         .from("URLs")
-        .where('Title', URL) //${'%' + URL + '%'}`)
+        .where('Something', '=', URL) //${'%' + URL + '%'}`)
         .then((urls) => {
-
           return callback(null, urls[0])
         })
         .catch((err) => {
@@ -100,19 +112,6 @@ module.exports = function makeURLDataHelpers(knex) {
           callback(err);
         })
 
-    },
-
-
-    // SEARCH A QUERY
-    search: function(text, callback) {
-      knex.raw
-      ('select * from URLs where URL = ?', [text])
-        .then((url) => {
-          return callback(null, url)
-        })
-        .catch((err) => {
-          return callback(err)
-        })
     }
 
 

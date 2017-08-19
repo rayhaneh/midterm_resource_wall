@@ -43,9 +43,8 @@ module.exports = (urlDataHelpers) => {
   }),
 
   // SEARCH IN THE DATABASE
-  router.get('/search/:text', (req, res) => {
-
-    urlDataHelpers.search(req.body.searchText, (err, urls) => {
+  router.get('/:id/search', (req, res) => {
+    urlDataHelpers.search(req.query.searchText, (err, urls) => {
       if(err) {
         return res.send('Error while connecting to the database.')
       }
