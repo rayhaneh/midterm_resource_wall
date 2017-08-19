@@ -45,7 +45,7 @@ function validateComment (commentText, rating) {
 
 
 function validateSearch (text) {
-  console.log('in validate search',text)
+  text = text.replace('searchText=','')
   if (text) {
     return true
   }
