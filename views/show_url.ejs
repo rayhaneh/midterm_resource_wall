@@ -4,7 +4,7 @@
   <head>
      <% include partials/_head %>
 
-    <link rel="stylesheet" href="/styles/star-rating.css" type="text/css" />
+    <script type="text/javascript" src="/scripts/show_url.js"></script>
 
   </head>
 
@@ -17,9 +17,7 @@
     <main class="container" id="urlshow">
       <header id="urlheader">
         <h1 id="urlname"><p><%=url.Title %></p></h1>
-        <div>
-        <h5 id="urlfull"><p><%=url.URL %></p></h5>
-               <div id="categoryofurl">
+        <div id="categoryofurl">
             <% if (url.cat_id === 1){%>
             <div>Food</div>
           <% } %>
@@ -36,6 +34,9 @@
             <div>Buisness</div>
           <% } %>
           </div>
+        <div>
+        <h5 id="urlfull"><p><%=url.URL %></p></h5>
+
         </div>
         <div class="rating"><!--Want overallrating from URLs table-->
             <%for (let i = 0; i < url.overallRating; i++) {%>
@@ -51,8 +52,8 @@
       <section>
 
         <div>
-        <button id="likebutton" type='submit'><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Like</button>
-        <p id="counter">0</p>
+          <button id="likebutton" type='submit' URLid="<%=url.id%>"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Like</button>
+          <p id="counter"></p>
         </div>
           <!-- make it a tag -->
       </section>

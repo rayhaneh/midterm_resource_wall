@@ -42,17 +42,17 @@ module.exports = (urlDataHelpers) => {
     })
   }),
 
+
   // SEARCH IN THE DATABASE
-  router.get('/:id/search', (req, res) => {
-    urlDataHelpers.search(req.query.searchText, (err, urls) => {
+  router.get('/search/:text', (req, res) => {
+    console.log(req.params.text)
+    urlDataHelpers.search(req.params.text, (err, urls) => {
       if(err) {
         return res.send('Error while connecting to the database.')
       }
       else {
-
-
-        res.send({'urls': urls, 'currentUser': req.currentUser})
-
+        console.log(urls)
+        res.send({'urls': urls})
       }
     })
   }),
@@ -92,6 +92,38 @@ module.exports = (urlDataHelpers) => {
   })
 
 
+  router.get('/:id/likes', (req, res) => {
+    urlDataHelpers.countLikes(Number(req.params.id), (err, count) => {
+      if (err) {
+        return res.status(500).send({'error':'Error while connecting to the database.'})
+      }
+      else {
+        return res.status(200).send({'likecount': count})
+      }
+    })
+  })
+
+
+
+  router.post('/:id/likes', (req, res) => {
+    let like = {
+      user_id : req.currentUser.id,
+      url_id  : Number(req.params.id),
+    }
+    urlDataHelpers.updateLikes(like, (err, count) => {
+      if (err) {
+        return res.status(500).send({'error':'Error while connecting to the database.'})
+      }
+      else {
+        return res.status(200).send({'likecount': count})
+      }
+    })
+  })
+
+
 
   return router
 }
+
+
+
