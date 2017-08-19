@@ -6,15 +6,24 @@
 
   <% if (currentUser.id) { %>
 
-
    <nav id="navbar" class="navbar justify-content-between" rows="3">
       <img id="logo" src="/images/LR.png">
 
+
       <div id="parentdiv">
+        <form id="search-form">
         <input id="searchbox" name="searchText" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
         <button id = "searchURL" name="searchButton"><i class="fa fa-search" aria-hidden="true"
         ></i></button>
+        </form>
       </div>
+
+      <div id="nameloggout"><%= currentUser.email %> <a id="logoutbutton" href="/logout">Logout</a>
+      </div>
+      <form action="/logout" method="POST" style="margin:20px;">
+      <div>
+      </div>
+
 
       <div id="nameloggout"><%= currentUser.email %> <a id="logoutbutton" href="/logout">Logout</a>
       </div>
@@ -25,14 +34,10 @@
 
     </form>
     </nav>
-
-
   <% }
-
   else{ %>
 
    <nav id="navbar" class="navbar  justify-content-between">
-
       <img id="logo" src="/images/LR.png">
       <div>
       <a id="loginbutton" class="btn btn-primary btn-sm" href="/login" role="button">Login</a>
@@ -40,7 +45,5 @@
       <a id="registerbutton" class="btn btn-primary btn-sm" href="/register" role="button">Register</a>
       </div>
     </nav>
-
   <% } %>
-
 

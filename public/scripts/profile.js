@@ -7,6 +7,7 @@ $(document).ready(function() {
 
   // Make an ajax call to the server to save the new URL
   $('#newForm').on('submit', function(event) {
+
     event.preventDefault()
 
     let newURL = {
@@ -24,12 +25,16 @@ $(document).ready(function() {
     }).then(function(err) {
       if(err) {
         // Deal with this later
+
       }
       else {
         // Deal with this later
         // Reload the new URL
+
+
         loadURLs()
         console.log(err)
+
       }
     })
     $(this).trigger('reset')
@@ -74,71 +79,116 @@ $(document).ready(function() {
 })
 
 
-
-
-
-
 function loadURLs () {
   let id  = $('#urls-container').attr('userid')
   let url = `/users/${id}/urls`
 
+  //console.log(url)
+
   $('#urls-container').html('')
   $('#urls-container').append($('<div>').addClass('row').addClass('justify-content-center'))
 
-
-  $.ajax({
-    method: 'GET',
-    url: url,
-  }).then(function(response) {
+    $.ajax({
+      method: 'GET',
+      url: url,
+    }).then(function(response) {
       renderURLS(response)
-  })
-}
+    })
+
+  }
 
 
 
-// Renders all the URLS in the database and adds them to the DOM (one by one)
+// Renders all the URLs in the database and adds them to the DOM (one by one)
 
-function renderURLS(urls) {
+function renderURLS(jSonResponse) {
+
+
   let urlsContainer = $('#urls-container div')
+  //let dataURL = `/users/${id}/urls`
 
-  urls.forEach(function(url) {
-    let urlElement = createURLElement(url)
-    urlsContainer.prepend(urlElement)
-  })
+    // changing ajax request to use linkpreview
+    jSonResponse.forEach(function(url) {
+      let urlElement = createURLElement(url)
+      urlsContainer.append(urlElement)
+    });
+
+    jSonResponse.forEach(function(url, index) {
+
+      $.ajax({
+
+        url: "http://api.linkpreview.net",
+        dataType: 'jsonp',
+        data: {q: url.URL, key: '5997560f6be6493a7f79074954ae858b60ed5be482161'},
+        success: function (response) {
+          //console.log(response);
+          console.log(response)
+          $($('.row .col-lg-3')[index])
+              .append($('<p>').text(response.url))
+              .append(`<img src="${response.image}">`)
+              .append($('<p>').text(response.description))
+        }
+      });
+
+    });
+
 
 }
 
+// function renderURLS(urls) {
+//   let urlsContainer = $('#urls-container div')
+
+//   urls.forEach(function(url) {
+//     let urlElement = createURLElement(url)
+//     urlsContainer.prepend(urlElement)
+//   })
+
+// }
 
 // Create a URL element (to be added to the DOM by renderURLS)
 function createURLElement(url) {
-  let $ratingStars = $('<div>').addClass('rating')
-  for (let i = 0; i < url.overallRating; i++) {
-    $ratingStars.append($('<span>').html('<i class="fa fa-star" aria-hidden="true"></i>'))
-  }
-  for (let i = 0; i < 5 - url.overallRating; i++) {
-    $ratingStars.append($('<span>').html('<i class="fa fa-star-o" aria-hidden="true"></i>'))
-  }
+  // let $ratingStars = $('<div>').addClass('rating')
+  // for (let i = 0; i < url.overallRating; i++) {
+  //   $ratingStars.append($('<span>').html('<i class="fa fa-star" aria-hidden="true"></i>'))
+  // }
+  // for (let i = 0; i < 5 - url.overallRating; i++) {
+  //   $ratingStars.append($('<span>').html('<i class="fa fa-star-o" aria-hidden="true"></i>'))
+  // }
 
-  let $url = $('<a>').attr('href',`/urls/${url.id}`)
-      .append($('<div>').addClass('col-lg-3')
-        .append($('<header>').addClass('head')
-          .append($('<h5>')
-            .append($('<a>').attr('class','theTitle').text(url.Title))
-            )
-          )
-        .append($('<main>').addClass('textbox')
-            .append($('<p>').text(url.Desc))
-            )
-        .append($('<footer>')
-            .append($ratingStars))
-          )
+  // let $url = $('<div>').addClass('col-lg-3')
+  //               .append($('<header>').addClass('head')
+  //                 .append($('<h5>')
+  //                   .append($('<a>').attr('id','theTitle').attr('href',`/urls/${url.id}`).text(url.Title))
+  //                   )
+  //                 )
+  //               .append($('<main>').addClass('textbox')
+  //                   .append($('<p>').text(url.Desc))
+  //                   )
+  //               .append($('<footer>')
+  //                   .append($ratingStars))
+
+  // let $url = $('<a>').attr('href',`/urls/${url.id}`)
+  //     .append($('<div>').addClass('col-lg-3')
+  //       .append($('<header>').addClass('head')
+  //         .append($('<h5>')
+  //           .append($('<a>').attr('class','theTitle').text(url.Title))
+  //           )
+  //         )
+  //       .append($('<main>').addClass('textbox')
+  //           .append($('<p>').text(url.Desc))
+  //           )
+  //       .append($('<footer>')
+  //           .append($ratingStars))
+  //         )
+
+
+  let $url = $('<div>').addClass('col-lg-3')
+                .append($('<p>').text(url.Title))
+                //.append($('<p>').text(url.Description))
+                //.append($('<img>').attr('src', `${url.image}`))
 
   return $url
 }
-
-
-
-
 
 
 

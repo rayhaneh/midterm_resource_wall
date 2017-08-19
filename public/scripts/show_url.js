@@ -1,7 +1,13 @@
 $(document).ready(function() {
 
+  // Load the number of all existing likes for this specific URL
+  loadLikeCount()
+
+  // Load all existing comments first
   loadComments()
 
+
+  // Add a new listener to new comment form and wait for new comment submission
   $('#newcomment').on('submit', function(event) {
     event.preventDefault()
 
@@ -44,6 +50,7 @@ $(document).ready(function() {
   })
 
 
+  // Add a listener to rating stars and wait for rating submission
   $('.star-cb-group label').on('click', function(event) {
     $('.star-cb-group input').removeAttr('checked')
     $(this).prev('input').attr('checked','checked')
@@ -51,10 +58,44 @@ $(document).ready(function() {
   })
 
 
+  // Add a listener to comments button
+  $('#likebutton').on('click', function(event) {
+
+    event.preventDefault()
+
+    let urlid = $('#likebutton').attr('URLid')
+    let url   = `/urls/${urlid}/likes`
+
+    $.ajax({
+      method: 'POST',
+      url   : url,
+    }).then(function(result) {
+      $('#counter').text(result.likecount)
+      })
+  })
 })
 
 
 
+
+// loadLikeCount
+function loadLikeCount() {
+
+  let urlid = $('#likebutton').attr('URLid')
+  let url   = `/urls/${urlid}/likes`
+
+  $.ajax({
+    method: 'GET',
+    url   : url,
+  }).then(function(result) {
+    $('#counter').text(result.likecount)
+    })
+}
+
+
+
+
+// Load all comments by calling the render comments function
 function loadComments() {
   let urlid = $('#newcomment').attr('URLid')
   let url   = `/urls/${urlid}/comments`
@@ -74,7 +115,7 @@ function loadComments() {
 
 
 
-
+// Render all comments by calling the createCommentElement
 function renderComments(comments) {
   let commentsContainer = $('#comments-container div')
   comments.forEach(function(comment) {
@@ -96,13 +137,11 @@ function createCommentElement(comment) {
   }
 
 
-
   let $comment = $('<div>').addClass('container').addClass('comment-box')
                     .append($('<div>').append($('<img>').addClass('avatar-img').attr('src',comment.avatar)))
                     .append($('<div>').addClass('comment-name').append($('<p>').text(comment.name)))
                     .append($('<div>').addClass('comment-text').text(comment.content))
                     .append($ratingStars)
-
   return $comment
 }
 

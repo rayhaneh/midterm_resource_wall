@@ -4,7 +4,7 @@
   <head>
      <% include partials/_head %>
 
-    <link rel="stylesheet" href="/styles/star-rating.css" type="text/css" />
+    <script type="text/javascript" src="/scripts/show_url.js"></script>
 
   </head>
 
@@ -52,8 +52,8 @@
       <section>
 
         <div>
-        <button id="likebutton" type='submit'><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Like</button>
-        <p id="counter"> 123</p>
+          <button id="likebutton" type='submit' URLid="<%=url.id%>"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Like</button>
+          <p id="counter"></p>
         </div>
           <!-- make it a tag -->
       </section>
