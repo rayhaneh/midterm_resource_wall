@@ -17,9 +17,7 @@
     <main class="container" id="urlshow">
       <header id="urlheader">
         <h1 id="urlname"><p><%=url.Title %></p></h1>
-        <div>
-        <h5 id="urlfull"><p><%=url.URL %></p></h5>
-               <div id="categoryofurl">
+        <div id="categoryofurl">
             <% if (url.cat_id === 1){%>
             <div>Food</div>
           <% } %>
@@ -36,6 +34,9 @@
             <div>Buisness</div>
           <% } %>
           </div>
+        <div>
+        <h5 id="urlfull"><p><%=url.URL %></p></h5>
+
         </div>
         <div class="rating"><!--Want overallrating from URLs table-->
             <%for (let i = 0; i < url.overallRating; i++) {%>

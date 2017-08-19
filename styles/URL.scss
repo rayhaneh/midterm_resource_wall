@@ -32,7 +32,7 @@
   color: #FFF;
   float: right;
   margin-top:-55px;
-  margin-right:65px;
+
 }
 #comments:hover {
   background-color: #BE6876;
@@ -50,10 +50,9 @@
 #categoryofurl{
   background-color: #BE6876;
   height: 25px;
-  width: 60px;
+  width: 40px;
   border-radius: 5px;
-  border: 1px solid #FADCE1;
-  margin:10px;
+  margin-top:-30px;
   text-align: center;
   min-width: 60px;
   float: right;
@@ -89,22 +88,19 @@ div.comment-box{
   float:right;
 }
 
-
 #likebutton {
   border-radius: 10px;
   background-color: #328F8F;
   border: 1px solid #146060;
   color: #FFF;
-  margin-top:-55px;
+  margin: 15px;
+
 }
 #likebutton:hover {
   background-color: #BE6876;
   border: 1px solid #BE6876;
   color: #FFF;
 }
-
-
-
 
 
 
