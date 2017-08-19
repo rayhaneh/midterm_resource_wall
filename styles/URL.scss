@@ -1,5 +1,5 @@
 
-.container {
+#urlshow{
   padding: 10px;
   border: 1px solid #94CACC;
   border-radius: 10px;
@@ -8,7 +8,11 @@
 }
 #urlshow:hover{
   padding: 10px;
-  border: 1px solid #BE6876;
+  box-shadow: 2px 2px 2px 2px #444;
+}
+#urlshow:hover #urlheader {
+
+  color: black;
   border-radius: 10px;
 }
 #urlheader {
@@ -22,13 +26,13 @@
   float: right;
 }
 #comments {
-  border-radius: 50%;
-  height: 30px;
-  width: 30px;
+  border-radius: 10px;
   background-color: #328F8F;
   border: 1px solid #146060;
   color: #FFF;
   float: right;
+  margin-top:-55px;
+  margin-right:65px;
 }
 #comments:hover {
   background-color: #BE6876;
@@ -51,5 +55,64 @@
   border: 1px solid #FADCE1;
   margin:10px;
   text-align: center;
-  min-width: 60px
+  min-width: 60px;
+  float: right;
 }
+
+div.comment-name{
+  font-size: 20px;
+   border-bottom: 2px solid #9BD8D8;
+   height:40px;
+}
+div.comment-text{
+  font-size: 15px;
+}
+div.comment-box{
+  border: 1px solid #9BD8D8;
+  border-radius: 10px;
+  margin:10px 10px;
+  padding: 10px;
+
+}
+
+.avatar-img {
+  border-radius: 10px;
+  float:right;
+  margin:5px;
+  height:40px;
+  width:40px;
+  margin-top:-5px;
+  margin-right: -5px;
+
+}
+#urlfull{
+  float:right;
+}
+
+
+#likebutton {
+  border-radius: 10px;
+  background-color: #328F8F;
+  border: 1px solid #146060;
+  color: #FFF;
+  margin-top:-55px;
+}
+#likebutton:hover {
+  background-color: #BE6876;
+  border: 1px solid #BE6876;
+  color: #FFF;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

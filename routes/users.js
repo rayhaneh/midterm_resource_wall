@@ -30,14 +30,12 @@ module.exports = (userDataHelpers) => {
         res.status(500).json({ error: err.message })
       }
       res.json(urls)
-
     })
   }),
 
 
 
   router.put('/:id', (req, res) => {
-    console.log('*****************I am in put', req.body.id)
     userDataHelpers.updateUser(req.body.id, req.body.name, req.body.email, (err) => {
       if (err) {
         return res.status(500).send('Error while connecting to the database.')

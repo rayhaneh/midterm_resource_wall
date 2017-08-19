@@ -47,29 +47,62 @@ module.exports = function makeURLDataHelpers(knex) {
     },
 
 
-    // --- FUNCTIONS THAT WE NEED:
-    // GET ALL RATINGS FOR A URL AND RETURNS THE OVERAL RATING
-    getOveralRating: function(id, callback) {
-      // --- FINISH THIS FUNCTION LATER ---
-      // knex
-      // .select('rating')
-      // .from('comments')
-      // .where('url_id', '=', id)
-      // .then((ratings) => {
-      //   console.log(ratings)
-      //   return callback(null, 3)
-      // })
-      // .cathc((err) => {
-      //   return callback(err)
-      // })
-    },
-
     // GET ALL COMMENTS FOR ONE URL
     getComments: function(id , callback) {
+      knex
+        .select("*")
+        .from('comments')
+        .innerJoin('users', 'comments.user_id', 'users.id')
+        .where('url_id', '=', id)
+        .then((comments) => {
+          return callback(null, comments)
+        })
+        .catch((err) => {
+          return callback(err)
+        })
+    },
+
+    // SAVE A NEW USER
+    saveComment: function(comment, callback) {
+      knex('comments')
+      .insert(comment)
+      .returning('id')
+      .then((id) => {
+        return callback(null, id)
+      })
+      .catch((err) => {
+        return callback(err)
+      })
+    },
+
+
+    // A new comment is saved in comments -> Update the overall rating in URLs table
+    updateOverallRating: function (urlid, callback) {
+      console.log('URL ID:',urlid)
+      knex('comments')
+        .avg('rating as avg')
+        .where('url_id', '=', urlid)
+        .then((result) => {
+          console.log('AVG: ', result[0].avg)
+          return knex('URLs')
+            .where('id', '=', urlid)
+            .update({
+              overallRating  : Math.round(result[0].avg)
+            });
+        })
+        .then((result2) => {
+          console.log("result2", result2);
+          // console.log('Math Floor AVG: ', Math.round(result2[0].avg))
+          callback(null);
+        })
+        .catch((err) => {
+          callback(err);
+        })
 
     },
 
 
+    // SEARCH A QUERY
     search: function(text, callback) {
       knex.raw
       ('select * from URLs where URL = ?', [text])

@@ -1,12 +1,39 @@
+#title{
+  text-align: center;
+  border-radius: 10px;
+  height: 100px;
+  line-height: 3;
+  background: linear-gradient(to right, #9BD8D8 , #ED8C95);
+
+}
+#theTitle {
+  text-decoration: none;
+  color:#1B4C4C;
+}
+
 div.col-md-4 {
   margin: 10px;
   padding: 10px;
-  border: 1px solid #94CACC;
+  border: 2px solid #94CACC;
   border-radius: 10px;
-}
 
+}
+div.col-md-4:hover {
+  margin: 10px;
+  padding: 10px;
+  border: 2px solid #BE6876;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px 2px #444;
+  text-decoration: none;
+
+}
 header.head {
   background-color: #9BD8D8;
+  color: black;
+  border-radius: 10px;
+}
+div.col-md-4:hover .head {
+  background-color: #ED8C95;
   color: black;
   border-radius: 10px;
 }
@@ -20,9 +47,7 @@ h5 a {
   text-transform: none;
   color: #1A3A3A;
 }
-h5 a:hover {
-  color: black;
-}
+
 #border {
   border: none;
 }

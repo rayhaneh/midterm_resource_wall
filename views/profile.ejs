@@ -3,6 +3,7 @@
   <head>
     <title>Name: <%= user.name %></title>
     <% include partials/_head %>
+    <script type="text/javascript" src="/scripts/profile.js"></script>
   </head>
 
   <body>
@@ -10,7 +11,8 @@
         <% include partials/_header %>
     </header>
 
-     <section id="profileconatiner" class="container">
+
+    <section id="profileconatiner" class="container">
       <div class="jumbotron">
          <img id="profilepicture" src="<%= user.avatar%>" class="rounded float-right">
            <h1 class="display-3">

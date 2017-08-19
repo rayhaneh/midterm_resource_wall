@@ -38,26 +38,56 @@ module.exports = (urlDataHelpers) => {
       if (err) {
         return res.send('Error while connecting to the database.')
       }
-      let loggedin = false
-      if (req.currentUser) {loggedin = true}
       res.render('show_url',{'url': url[0], 'currentUser': req.currentUser})
     })
   }),
 
+  // SEARCH IN THE DATABASE
   router.get('/search/:text', (req, res) => {
+
     urlDataHelpers.search(req.body.searchText, (err, urls) => {
       if(err) {
         return res.send('Error while connecting to the database.')
       }
       else {
-        let loggedin = false
-        if (req.currentUser.id) {loggedin = true}
         res.render("results", {'urls': urls, 'currentUser': req.currentUser})
       }
     })
+  }),
+
+
+  router.get('/:id/comments', (req, res) => {
+    urlDataHelpers.getComments(req.params.id, (err, comments) => {
+      if (err) {
+        return res.status(500).send('Error while connecting to the database.')
+      }
+      return res.json(comments)
+    })
+  }),
+
+
+  router.post('/:id/comments', (req, res) => {
+    let comment = {
+      content : req.body.content,
+      url_id  : Number(req.params.id),
+      user_id : req.currentUser.id,
+      rating  : Number(req.body.rating)
+    }
+
+    urlDataHelpers.saveComment(comment, (err, id) => {
+      if (err) {
+        return res.status(500).send('Error while connecting to the database.')
+      }
+      urlDataHelpers.updateOverallRating(Number(req.params.id), (err) => {
+
+        if (err) {
+          return res.status(500).send('Error while connecting to the database.')
+        }
+        return res.status(200).send()
+      })
+    })
 
   })
-
 
 
 

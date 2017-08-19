@@ -1,3 +1,5 @@
+// This file includes all the javascript code for the profile.ejs
+
 $(document).ready(function() {
 
   // Load all URLs first
@@ -65,11 +67,13 @@ $(document).ready(function() {
 
   $('#plus').click(function() {
     $('#newForm').toggle();//Form toggles on button clic
+     $('#editinfo').hide();
     //Initially form wil be hidden.
   })
 
   $('#editprofile').click(function() {
     $('#editinfo').toggle();//Form toggles on button click
+      $('#newForm').hide();
   })
 
 })
@@ -123,21 +127,23 @@ function renderURLS(jSonResponse) {
               .append($('<p>').text(response.url))
               .append(`<img src="${response.image}">`)
               .append($('<p>').text(response.description))
-          //$('img').attr('src', response.image);
-          // for (index = 0; index < url.length; index++){
-
-          //   //.append($('<img>').attr('src', `${response.image}`))
-          // }
         }
       });
 
     });
 
+
 }
 
+// function renderURLS(urls) {
+//   let urlsContainer = $('#urls-container div')
 
+//   urls.forEach(function(url) {
+//     let urlElement = createURLElement(url)
+//     urlsContainer.prepend(urlElement)
+//   })
 
-
+// }
 
 // Create a URL element (to be added to the DOM by renderURLS)
 function createURLElement(url) {
@@ -160,6 +166,20 @@ function createURLElement(url) {
   //                   )
   //               .append($('<footer>')
   //                   .append($ratingStars))
+
+  // let $url = $('<a>').attr('href',`/urls/${url.id}`)
+  //     .append($('<div>').addClass('col-lg-3')
+  //       .append($('<header>').addClass('head')
+  //         .append($('<h5>')
+  //           .append($('<a>').attr('class','theTitle').text(url.Title))
+  //           )
+  //         )
+  //       .append($('<main>').addClass('textbox')
+  //           .append($('<p>').text(url.Desc))
+  //           )
+  //       .append($('<footer>')
+  //           .append($ratingStars))
+  //         )
 
 
   let $url = $('<div>').addClass('col-lg-3')

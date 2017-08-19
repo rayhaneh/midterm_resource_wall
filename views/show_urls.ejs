@@ -11,14 +11,15 @@
 <header>
 <%- include partials/_header.ejs%>
 </header>
-
 <main class="container" id="border">
+<h2 id="title">What everyone's talking about</h2>
   <div class="row justify-content-center">
     <%for (let row = 0; row<urls.length; row++){ %>
         <div class="col-md-4">
+          <a id="theTitle" href="/urls/<%= urls[row].id %>">
             <header class="head">
             <h5>
-            <a id="theTitle" href="/urls/<%= urls[row].id %>"><%= urls[row].Title%></a>
+            <p><%= urls[row].Title%></p>
             </h5>
             </header>
             <div class='textbox'>
@@ -34,6 +35,7 @@
                 <%}%>
               </div>
             </footer>
+           </a>
         </div>
     <%}%>
   </div>

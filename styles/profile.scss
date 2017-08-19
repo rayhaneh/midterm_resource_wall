@@ -3,6 +3,21 @@ div.col-lg-3 {
   padding: 10px;
   border: 1px solid #94CACC;
   border-radius: 10px;
+  text-decoration: none;
+}
+div.col-lg-3:hover {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #BE6876;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px 2px;
+  text-decoration: none;
+}
+div.col-lg-3:hover .head {
+  background-color: #ED8C95;
+  color: black;
+  border-radius: 10px;
+
 }
 
 #profilepicture{
@@ -14,9 +29,11 @@ header.head {
   background-color: #9BD8D8;
   color: black;
   border-radius: 10px;
+
 }
 main.textbox{
   background-color: #FFF;
+
 }
 .jumbotron {
   margin-top: 20px;

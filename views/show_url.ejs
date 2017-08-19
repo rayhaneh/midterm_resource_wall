@@ -3,14 +3,9 @@
 
   <head>
      <% include partials/_head %>
-    <script>
-        $(document).ready(function() {
-          $('#newcomment').hide();
-          $('#comments').click(function() {
-            $('#newcomment').toggle();
-          })
-        })
-    </script>
+
+    <link rel="stylesheet" href="/styles/star-rating.css" type="text/css" />
+
   </head>
 
   <body>
@@ -19,53 +14,75 @@
       <%- include partials/_header.ejs%>
     </header>
 
-    <div class="container" id="urlshow">
+    <main class="container" id="urlshow">
       <header id="urlheader">
-        <h5 id="username"><p>USERname</p></h5>
         <h1 id="urlname"><p><%=url.Title %></p></h1>
+        <div>
         <h5 id="urlfull"><p><%=url.URL %></p></h5>
+               <div id="categoryofurl">
+            <% if (url.cat_id === 1){%>
+            <div>Food</div>
+          <% } %>
+            <% if (url.cat_id === 2){%>
+            <div>Sports</div>
+          <% } %>
+            <% if (url.cat_id === 3){%>
+            <div>Entertainment</div>
+          <% } %>
+            <% if (url.cat_id === 4){%>
+            <div>Art</div>
+          <% } %>
+            <% if (url.cat_id === 5){%>
+            <div>Buisness</div>
+          <% } %>
+          </div>
+        </div>
+        <div class="rating"><!--Want overallrating from URLs table-->
+            <%for (let i = 0; i < url.overallRating; i++) {%>
+              <span><i class="fa fa-2x fa-star" aria-hidden="true"></i></span>
+            <%}%>
+            <%for (let i = 0; i < 5 - url.overallRating; i++) {%>
+              <span><i class="fa fa-2x fa-star-o" aria-hidden="true"></i></span>
+            <%}%>
+          </div>
       </header>
         <p id="descriptions"><%=url.Desc %></p>
 
-      <main>
-      <div id="categoryofurl">
-        <% if (url.cat_id === 1){%>
-        <div>Food</div>
-      <% } %>
-        <% if (url.cat_id === 2){%>
-        <div>Sports</div>
-      <% } %>
-        <% if (url.cat_id === 3){%>
-        <div>Entertainment</div>
-      <% } %>
-        <% if (url.cat_id === 4){%>
-        <div>Art</div>
-      <% } %>
-        <% if (url.cat_id === 5){%>
-        <div>Buisness</div>
-      <% } %>
+      <section>
 
-      </div>
-          <!-- make it a tag -->
-        <button id="comments">
-          <i class="fa fa-comment" aria-hidden="true"></i>
-        </button>
-           <div class="rating"><!--Want overallrating from URLs table-->
-              <span>&#9733;</span>
-              <span>&#9734;</span>
-              <span>&#9734;</span>
-              <span>&#9734;</span>
-              <span>&#9734;</span>
-            </div>
-      </main>
-      <form id="newcomment" class="row justify-content-center">
-        <div class="container" id="addcomment">
-          <label for="exampleFormControlTextarea1">Comment:</label>
-          <textarea name="comment" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="....."></textarea>
+        <div>
+        <button id="likebutton" type='submit'><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Like</button>
+        <p id="counter">0</p>
         </div>
-      </form>
-    </div>
-    </div>
+          <!-- make it a tag -->
+      </section>
+
+      <section>
+        <form id="newcomment" class="row justify-content-center" URLid='<%=url.id%>'>
+          <div class="container" id="addcomment">
+            <label for="exampleFormControlTextarea1">Comment:</label>
+            <textarea maxlength="250" name="comment" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="....."></textarea>
+            <div class="rating">
+              <span class="star-cb-group">
+                <input type="radio" id="str5" name="rating" value="5" /><label for="rating-5">5</label>
+                <input type="radio" id="str4" name="rating" value="4" /><label for="rating-4">4</label>
+                <input type="radio" id="str3" name="rating" value="3" /><label for="rating-3">3</label>
+                <input type="radio" id="str2" name="rating" value="2" /><label for="rating-2">2</label>
+                <input type="radio" id="str1" name="rating" value="1" /><label for="rating-1">1</label>
+                <input type="radio" id="str0" name="rating" value="0" class="star-cb-clear" /><label for="rating-0">0</label>
+              </span>
+            </div>
+            <button id="comments" type='submit'><i class="fa fa-comment" aria-hidden="true"></i> Comment</button>
+
+          </div>
+        </form>
+      </section>
+
+      <!-- Comments will Be added here via AJAX -->
+      <section id="comments-container">
+      </section>
+
+    </main>
 
     <footer class="m-4 panel-footer">
       <%- include partials/_footer.ejs%>
