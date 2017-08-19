@@ -20,6 +20,7 @@
 
       <div id="nameloggout"><%= currentUser.email %> <a id="logoutbutton" href="/logout">Logout</a>
       </div>
+
       <form action="/logout" method="POST" style="margin:20px;">
       <div>
       </div>
@@ -28,11 +29,20 @@
       <div id="nameloggout"><%= currentUser.email %> <a id="logoutbutton" href="/logout">Logout</a>
       </div>
 
-      <form action="/logout" method="POST" style="margin:20px;">
-      <div>
-      </div>
 
-    </form>
+      <form action="/logout" method="POST" style="margin:20px;">
+      </form>
+
+       <div id="homebutton"> <a href="/urls"><i class="fa fa-home" aria-hidden="true"></i>Home</a>
+      </div>
+      <form action="/urls" method="POST">
+      </form>
+
+       <div id="profilebutton"> <a href="/users/:id"><i class="fa fa-user" aria-hidden="true"></i>Profile</a>
+      </div>
+      <form action="/users/:id" method="POST">
+      </form>
+
     </nav>
   <% }
   else{ %>
