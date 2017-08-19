@@ -5,14 +5,25 @@ module.exports = function makeURLDataHelpers(knex) {
   return {
 
     // GET A SINGLE URL
-    getURL: function(URL, callback) {
+    // getURL: function(URL, callback) {
+    //   knex
+    //     .select("*")
+    //     .from("URLs")
+    //     .where('Title', URL) //${'%' + URL + '%'}`)
+    //     .then((urls) => {
+    //       return callback(null, urls[0])
+    //     })
+    //     .catch((err) => {
+    //       return callback(err)
+    //     })
+    // },
+    getURL: function(id, callback) {
       knex
         .select("*")
         .from("URLs")
-        .where('Title', URL) //${'%' + URL + '%'}`)
+        .where('id', '=', id)
         .then((urls) => {
-
-          return callback(null, urls[0])
+          return callback(null, urls)
         })
         .catch((err) => {
           return callback(err)
