@@ -18,21 +18,29 @@
         </form>
       </div>
 
-      <div id="nameloggout"><%= currentUser.email %> <a id="logoutbutton" href="/logout">Logout</a>
-      </div>
-      <form action="/logout" method="POST" style="margin:20px;">
-      <div>
-      </div>
 
+      <!-- <div id="nameloggout"><%= currentUser.email %> <a id="logoutbutton" href="/logout">Logout</a>
+      </div> -->
 
-      <div id="nameloggout"><%= currentUser.email %> <a id="logoutbutton" href="/logout">Logout</a>
-      </div>
 
       <form action="/logout" method="POST" style="margin:20px;">
-      <div>
-      </div>
 
-    </form>
+      <div id="nameloggout"><%= currentUser.email %> <a id="logoutbutton" href="/logout">Logout</a>
+      </div>
+      </form>
+
+      <form action="/urls" method="POST">
+       <div id="homebutton"> <a href="/urls" id="homeanchor"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+      </form>
+
+
+
+      </div>
+      <form action="/users/<%=currentUser.id %>" method="POST">
+        <div id="profilebutton"> <a href="/users/<%=currentUser.id%>" id="profileanchor"><i class="fa fa-user" aria-hidden="true"></i> Profile</a>
+
+      </form>
+
     </nav>
   <% }
   else{ %>

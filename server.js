@@ -78,7 +78,7 @@ app.use((req, res, next) => {
 
 
 // Mount all resource routes
-// app.use("/api/users", usersRoutes(knex));
+//app.use("/api/users", usersRoutes(knex));
 app.use("/users", usersRoutes(userDataHelpers));
 app.use("/", logsRoutes(userDataHelpers))
 app.use("/urls", urlsRoutes(urlDataHelpers))
