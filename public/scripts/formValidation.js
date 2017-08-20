@@ -1,9 +1,16 @@
-function validateRegisteration(name, email, password) {
-  // to be added later
+function validateRegistration(name, email, password) {
   let error = ''
+  if (!name) {
+    error  = 'Please provide a name.'
+  }
+  else if (!email) {
+    error = 'Please provide an email address.'
+  }
+  else if (!password) {
+    error = 'Please provide a password.'
+  }
   return error
 }
-
 
 
 function validateLogin (email, password) {
@@ -21,13 +28,11 @@ function validateLogin (email, password) {
 
 
 
-
 function validateNewURL (data) {
   // to be added later
   let error = ''
   return error
 }
-
 
 
 function validateComment (commentText, rating) {
@@ -42,6 +47,7 @@ function validateComment (commentText, rating) {
   }
   return error
 }
+
 
 
 function validateSearch (text) {

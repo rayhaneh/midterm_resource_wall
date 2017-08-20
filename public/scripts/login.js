@@ -24,13 +24,18 @@ $(document).ready(function() {
           $('#login-form').append($('<div>').addClass('error').text(error))
         }
         else {
-          $(location).attr('href', '/')
+          $(location).attr('href', '/urls')
         }
       })
 
     }
     $(this).trigger('reset')
 
+  })
+
+
+  $('#login-form input').on('click', function (event) {
+    $('#login-form .error').remove()
   })
 
 })
