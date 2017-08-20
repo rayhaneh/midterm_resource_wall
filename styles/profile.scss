@@ -35,10 +35,6 @@ main.textbox{
   background-color: #FFF;
 
 }
-div.image-rendered{
-  max-width: 100px;
-  max-height:100px;
-}
 
 
 .jumbotron {
@@ -84,4 +80,10 @@ h5 a:hover {
   background-color: #146060;
   border: 1px solid #BE6876;
   color: #FFF;
+}
+
+
+p.description-rendered{
+  color: red;
+
 }
