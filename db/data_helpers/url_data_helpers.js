@@ -142,7 +142,6 @@ module.exports = function makeURLDataHelpers(knex) {
 
     // SEARCH A QUERY
     search: function(text, callback) {
-      console.log('I am in search function', `%${text}%`)
       knex
       .select('*')
       .from('URLs')

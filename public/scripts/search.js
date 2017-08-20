@@ -10,11 +10,11 @@ $( document ).ready(function(){
 
       $.ajax({
         url: '/urls/search/'+ searchInput,
-        method: 'GET'
+        method: 'GET',
       })
       .then(function (results) {
 
-        window.history.pushState('results','results',`/urls/${searchInput}`)
+        window.history.pushState('results','results',`/urls/search/${searchInput}`)
 
         let urls = results.urls
         if (urls.length !== 0) {
@@ -22,6 +22,7 @@ $( document ).ready(function(){
           for (let i = 0; i < urls.length; i++){
             $('main')
             .prepend($('<div>').attr('id','search-results').addClass('row')
+              .append($('<p>').text(urls[i].id))
               .append($('<p>').text(urls[i].URL))
               .append($('<p>').text(urls[i].Title))
               .append($('<p>').text(urls[i].Desc))
@@ -45,5 +46,6 @@ $( document ).ready(function(){
     }
 
   })
+
 
 })
