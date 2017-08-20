@@ -10,8 +10,15 @@ $(document).ready(function() {
 
     event.preventDefault()
 
+    let URL = $(this).serializeArray()[0].value
+    const http  = new RegExp("http://")
+    const https = new RegExp("https://")
+    if (!(URL.match(http)) && !(URL.match(https))) {
+      URL = `http://${URL}`
+    }
+
     let newURL = {
-      URL           : $(this).serializeArray()[0].value,
+      URL           : URL,
       Title         : $(this).serializeArray()[1].value,
       cat_id        : $(this).serializeArray()[2].value,
       Desc          : $(this).serializeArray()[3].value,
@@ -27,12 +34,7 @@ $(document).ready(function() {
         // Deal with this later
       }
       else {
-        // Deal with this later
-        // Reload the new URL
-
         loadURLs()
-        console.log(err)
-
       }
     })
     $(this).trigger('reset')
@@ -81,8 +83,6 @@ function loadURLs () {
   let id  = $('#urls-container').attr('userid')
   let url = `/users/${id}/urls`
 
-  console.log(url)
-
   $('#urls-container').html('')
   $('#urls-container').append($('<div>').addClass('row').addClass('justify-content-center'))
 
@@ -90,7 +90,6 @@ function loadURLs () {
       method: 'GET',
       url: url,
     }).then(function(response) {
-      console.log(response)
       renderURLS(response)
     })
 
