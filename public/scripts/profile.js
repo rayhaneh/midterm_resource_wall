@@ -127,9 +127,9 @@ function renderURLS(jSonResponse) {
           //console.log(response);
           // console.log(response)
           $($('.row .col-lg-3')[index])
-              .append($('<p>').text(response.url)).addClass('url-rendered')
-              .append(`<img src="${response.image}">`).addClass('image-rendered')
-              .append($('<p>').text(response.description)).addClass('description-rendered')
+              .append($('<p>').text(response.url).addClass('url-rendered'))
+              .append($(`<img src="${response.image}">`).addClass('image-rendered'))
+              .append($('<p>').text(response.description).addClass('description-rendered'))
         }
       });
 

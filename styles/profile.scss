@@ -17,9 +17,7 @@ div.col-lg-3:hover .head {
   background-color: #ED8C95;
   color: black;
   border-radius: 10px;
-
 }
-
 #profilepicture{
   height:250px;
   width:250px;
@@ -29,13 +27,10 @@ header.head {
   background-color: #9BD8D8;
   color: black;
   border-radius: 10px;
-
 }
 main.textbox{
   background-color: #FFF;
-
 }
-
 
 .jumbotron {
   margin-top: 20px;
@@ -81,9 +76,17 @@ h5 a:hover {
   border: 1px solid #BE6876;
   color: #FFF;
 }
-
-
+p.url-rendered{
+  padding:10px;
+}
 p.description-rendered{
-  color: red;
+
+}
+.image-rendered{
+  max-width: 200px;
+  max-height: 200px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto
 
 }
