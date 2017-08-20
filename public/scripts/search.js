@@ -10,18 +10,18 @@ $( document ).ready(function(){
 
       $.ajax({
         url: '/urls/search/'+ searchInput,
-        method: 'GET'
+        method: 'GET',
       })
       .then(function (results) {
 
-        window.history.pushState('results','results',`/urls/${searchInput}`)
+        window.history.pushState('results','results',`/urls/search/${searchInput}`)
 
         let urls = results.urls
         if (urls.length !== 0) {
           $('main').html('')
           for (let i = 0; i < urls.length; i++){
             $('main')
-            .prepend($('<div>')
+            .prepend($('<div>').attr('id','search-results').addClass('row')
               .append($('<p>').text(urls[i].id))
               .append($('<p>').text(urls[i].URL))
               .append($('<p>').text(urls[i].Title))
@@ -30,7 +30,15 @@ $( document ).ready(function(){
           }
         }
         else {
-        // So no results where found
+          window.history.pushState('results','results',`/urls`)
+          $('main').html('')
+          .prepend($('<div>').attr('id','search-results')
+              .append($('<p>').text('There are no matching results.'))
+              .append($('<p>').text('To see a list of all resources click ')
+                .append($('<a>').text('here.').attr('href','/urls')
+                  )
+                )
+            )
         }
 
       })
@@ -38,5 +46,6 @@ $( document ).ready(function(){
     }
 
   })
+
 
 })

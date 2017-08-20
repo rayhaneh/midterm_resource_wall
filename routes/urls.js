@@ -45,13 +45,11 @@ module.exports = (urlDataHelpers) => {
 
   // SEARCH IN THE DATABASE
   router.get('/search/:text', (req, res) => {
-    console.log(req.params.text)
     urlDataHelpers.search(req.params.text, (err, urls) => {
       if(err) {
         return res.send('Error while connecting to the database.')
       }
       else {
-        console.log(urls)
         res.send({'urls': urls})
       }
     })
@@ -124,6 +122,9 @@ module.exports = (urlDataHelpers) => {
 
   return router
 }
+
+
+
 
 
 

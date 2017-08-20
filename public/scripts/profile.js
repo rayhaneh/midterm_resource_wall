@@ -83,6 +83,8 @@ function loadURLs () {
   let id  = $('#urls-container').attr('userid')
   let url = `/users/${id}/urls`
 
+  console.log(url)
+
   //console.log(url)
 
   $('#urls-container').html('')
@@ -92,6 +94,7 @@ function loadURLs () {
       method: 'GET',
       url: url,
     }).then(function(response) {
+      console.log(response)
       renderURLS(response)
     })
 
@@ -122,7 +125,7 @@ function renderURLS(jSonResponse) {
         data: {q: url.URL, key: '5997560f6be6493a7f79074954ae858b60ed5be482161'},
         success: function (response) {
           //console.log(response);
-          console.log(response)
+          // console.log(response)
           $($('.row .col-lg-3')[index])
               .append($('<p>').text(response.url)).addClass('url-rendered')
               .append(`<img src="${response.image}">`).addClass('image-rendered')
