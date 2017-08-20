@@ -66,6 +66,19 @@ module.exports = function makeUserDataHelpers(knex) {
       .catch((err) => {
         return callback(err)
       })
+    },
+
+    getCategories: function(callback) {
+      knex
+      .select('*')
+      .from('categories')
+      .then((categories) => {
+        return callback(null,categories)
+      })
+      .catch((err) => {
+        return callback(err)
+      })
+
     }
 
   }
