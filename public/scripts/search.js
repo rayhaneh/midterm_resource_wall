@@ -30,7 +30,7 @@ $( document ).ready(function(){
           }
         }
         else {
-          // So no results where found
+        // So no results where found
         }
 
       })

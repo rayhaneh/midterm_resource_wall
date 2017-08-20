@@ -24,7 +24,7 @@ module.exports = (userDataHelpers) => {
 
 
   // GET ALL URLS OF ONE USER AS A JSON FILE (To be used in ajax call while loading all URLS)
-  router.get('/:id/', (req, res) => {
+  router.get('/:id/urls', (req, res) => {
     userDataHelpers.getUserURLs(req.params.id, (err, urls) => {
       if (err) {
         res.status(500).json({ error: err.message })
