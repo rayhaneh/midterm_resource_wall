@@ -14,7 +14,7 @@ module.exports = function makeURLDataHelpers(knex) {
           'URLs.overallRating',
           'URLs.user_id',
           'URLs.Desc',
-          'categories.name as category-name')
+          'categories.name as categoryname')
         .from('URLs')
         .innerJoin('categories', 'URLs.cat_id', 'categories.id')
         .where('URLs.id', '=', id)
