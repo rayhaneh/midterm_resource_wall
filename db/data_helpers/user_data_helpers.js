@@ -20,8 +20,17 @@ module.exports = function makeUserDataHelpers(knex) {
     // GET USERS INFO FROM DB. RETURN FULL
     getUserURLs: function(id, callback) {
       knex
-        .select("*")
-        .from("URLs")
+        .select(
+          'URLs.id',
+          'URLs.URL',
+          'URLs.cat_id',
+          'URLs.Title',
+          'URLs.overallRating',
+          'URLs.user_id',
+          'URLs.Desc',
+          'categories.name as category-name')
+        .from('URLs')
+        .innerJoin('categories', 'URLs.cat_id', 'categories.id')
         .where('user_id','=', id)
         .then((urls) => {
           return callback(null, urls)

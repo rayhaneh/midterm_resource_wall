@@ -25,12 +25,10 @@ $(document).ready(function() {
     }).then(function(err) {
       if(err) {
         // Deal with this later
-
       }
       else {
         // Deal with this later
         // Reload the new URL
-
 
         loadURLs()
         console.log(err)
@@ -84,8 +82,6 @@ function loadURLs () {
   let url = `/users/${id}/urls`
 
   console.log(url)
-
-  //console.log(url)
 
   $('#urls-container').html('')
   $('#urls-container').append($('<div>').addClass('row').addClass('justify-content-center'))
