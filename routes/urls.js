@@ -18,7 +18,7 @@ module.exports = (urlDataHelpers) => {
 
   // ADD A NEW URL
   router.post('/', (req, res) => {
-    if (!req.currentUser){
+    if (req.currentUser.email){
       let newURL     = req.body.newURL
       newURL.user_id = req.currentUser.id
       newURL.cat_id  = Number(newURL.cat_id)
