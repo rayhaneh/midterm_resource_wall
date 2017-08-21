@@ -48,6 +48,7 @@ module.exports = function makeURLDataHelpers(knex) {
       .returning('id')
       .insert(url)
       .then((id) => {
+        console.log('**********',url)
         return callback(null, id)
       })
       .catch((err) => {

@@ -6,14 +6,17 @@ module.exports = function makeUserDataHelpers(knex) {
 
     // GET USERS INFO FROM DB. RETURN FULL
     getUser: function(key, value, callback) {
+      console.log(key,value)
       knex
         .select("*")
         .from("users")
         .where(key,'=',value)
         .then((user) => {
+          console.log(user)
           return callback(null, user)
         })
         .catch((err) => {
+          console.log(err)
           return callback(err)
         })
     },
@@ -42,14 +45,16 @@ module.exports = function makeUserDataHelpers(knex) {
     },
     // SAVE A NEW USER
     saveUser: function(user, callback) {
-      //test for GIT
       knex("users")
       .returning('id')
       .insert(user)
+      console.log('*******',user)
       .then((id) => {
         return callback(null, id)
+        console.log('*******',id)
       })
       .catch((err) => {
+        console.log('*******',err)
         return callback(err)
       })
     },

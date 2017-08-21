@@ -58,7 +58,7 @@ module.exports = (userDataHelpers) => {
   router.post("/register", (req, res) => {
     // check if the user email is already in the database
 
-    userDataHelpers.getUser('email', req.body.email, (err, user) => {
+    userDataHelpers.getUser('email', String(req.body.email), (err, user) => {
       if (err) {
         // fix this one later
         return res.send('Error while connecting to the database.11')
@@ -78,7 +78,7 @@ module.exports = (userDataHelpers) => {
       userDataHelpers.saveUser(newUser, (err, id) => {
         if (err) {
           // Fix this later
-          return res.send('Error while connecting to the database. 222',err)
+          return res.status(500).send('Error while connecting to the database.',err)
         }
         else {
           req.session.user_id = id[0]

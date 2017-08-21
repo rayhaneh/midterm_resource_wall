@@ -16,7 +16,6 @@ const knex          = require("knex")(knexConfig[ENV]);
 const morgan        = require('morgan');
 const knexLogger    = require('knex-logger');
 
-console.log(knex)
 // Seperated Routes for each Resource
 const usersRoutes   = require("./routes/users");
 const logsRoutes    = require("./routes/logs");
@@ -92,5 +91,5 @@ app.get("/", (req, res) => {
 
 
 app.listen(PORT, () => {
-  console.log('Example app listening on port'  + PORT);
+  console.log('Example app listening on port '  + PORT);
 })
