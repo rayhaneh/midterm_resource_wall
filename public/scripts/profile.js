@@ -23,16 +23,8 @@ $(document).ready(function() {
       url   : '/urls',
       data  : {'newURL': newURL}
     }).then(function(err) {
-      if(err) {
-        // Deal with this later
-      }
-      else {
-        // Deal with this later
-        // Reload the new URL
-
+      if(!err) {
         loadURLs()
-        console.log(err)
-
       }
     })
     $(this).trigger('reset')
@@ -128,23 +120,15 @@ function createURLElement(url) {
                     .append($('<a>').attr('id','theTitle').attr('href',`/urls/${url.id}`).text(url.Title))
                     )
                   )
-                .append($('<main>').addClass('textbox'))
+                .append($('<main>').addClass('textbox')
+                  .append($('<div>')
+                    .append($('<img>').attr('src', url.image).attr('id', 'api-image'))
+                  )
+                  .append($('<p>').text(url.Desc))
+                  )
+                .append($('<footer>')
+                  .append($ratingStars))
 
-
-  $.ajax({
-    url: "http://api.linkpreview.net",
-    dataType: 'jsonp',
-    data: {q: url, key: '5999af0c8116d0cb15d2da6aeb47c10fee170ae37ec89'},
-    success: function (response) {
-      let imageURL = response.image
-      $url.append($('<div>')
-        .append($('<img>').attr('src', imageURL).attr('id', 'api-image'))
-        )
-        .append($('<p>').text(url.Desc))
-        .append($('<footer>')
-        .append($ratingStars))
-    }
-  })
 
 
   return $url

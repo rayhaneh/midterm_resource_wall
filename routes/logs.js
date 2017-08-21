@@ -61,7 +61,7 @@ module.exports = (userDataHelpers) => {
     userDataHelpers.getUser('email', req.body.email, (err, user) => {
       if (err) {
         // fix this one later
-        return res.send('Error while connecting to the database.')
+        return res.send('Error while connecting to the database.11')
       }
       if (user.length !== 0) {
         // fix this one later
@@ -78,7 +78,7 @@ module.exports = (userDataHelpers) => {
       userDataHelpers.saveUser(newUser, (err, id) => {
         if (err) {
           // Fix this later
-          return res.send('Error while connecting to the database.',err)
+          return res.send('Error while connecting to the database. 222',err)
         }
         else {
           req.session.user_id = id[0]

@@ -16,7 +16,7 @@ const knex          = require("knex")(knexConfig[ENV]);
 const morgan        = require('morgan');
 const knexLogger    = require('knex-logger');
 
-
+console.log(knex)
 // Seperated Routes for each Resource
 const usersRoutes   = require("./routes/users");
 const logsRoutes    = require("./routes/logs");
@@ -85,6 +85,7 @@ app.use("/urls", urlsRoutes(urlDataHelpers))
 
 // Redirect home page to /urls
 app.get("/", (req, res) => {
+  console.log('here')
   res.redirect("/urls")
 })
 

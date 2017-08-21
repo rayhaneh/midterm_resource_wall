@@ -28,6 +28,7 @@ module.exports = function makeUserDataHelpers(knex) {
           'URLs.overallRating',
           'URLs.user_id',
           'URLs.Desc',
+          'URLs.image',
           'categories.name as category-name')
         .from('URLs')
         .innerJoin('categories', 'URLs.cat_id', 'categories.id')

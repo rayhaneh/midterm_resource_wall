@@ -3,6 +3,7 @@
 
   <head>
      <% include partials/_head %>
+     <title>Learning Resources</title>
 
     <script type="text/javascript" src="/scripts/show_url.js"></script>
 
@@ -16,6 +17,9 @@
 
     <main class="container" id="urlshow">
       <header id="urlheader">
+        <div>
+          <img id="urlimage" src="<%=url.image%>">
+        </div>
         <h1 id="urlname"><p><%=url.Title %></p></h1>
         <div id="categoryofurl"><%=url.categoryname%></div>
         <div>
@@ -36,8 +40,9 @@
       <section>
 
         <div>
+        <span id="counter"></span>
           <button id="likebutton" type='submit' URLid="<%=url.id%>"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Like</button>
-          <p id="counter"></p>
+
         </div>
           <!-- make it a tag -->
       </section>

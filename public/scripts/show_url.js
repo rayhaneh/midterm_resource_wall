@@ -54,7 +54,6 @@ $(document).ready(function() {
   $('.star-cb-group label').on('click', function(event) {
     $('.star-cb-group input').removeAttr('checked')
     $(this).prev('input').attr('checked','checked')
-    console.log($(this).siblings('input'))
   })
 
 
@@ -99,7 +98,6 @@ function loadLikeCount() {
 function loadComments() {
   let urlid = $('#newcomment').attr('URLid')
   let url   = `/urls/${urlid}/comments`
-  console.log(url)
 
   $('#comments-container').html('')
   $('#comments-container').append($('<div>').addClass('row').addClass('justify-content-center'))
