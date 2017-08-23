@@ -28,17 +28,32 @@ module.exports = function makeURLDataHelpers(knex) {
     },
 
     // GET ALL THE URLS
-    getURLs: function(callback) {
-      knex
+    getURLs: function(searchText, callback) {
+      if (!searchText) {
+        knex
         .select("*")
         .from("URLs")
         .then((urls) => {
-          // foreach
           return callback(null, urls)
         })
         .catch((err) => {
           return callback(err)
         })
+      }
+      else {
+        knex
+        .select("*")
+        .from("URLs")
+        .where('URL', 'like', `%${searchText}%`)
+        .orWhere('Title', 'like', `%${searchText}%`)
+        .orWhere('Desc', 'like', `%${searchText}%`)
+        .then((urls) => {
+          return callback(null, urls)
+        })
+        .catch((err) => {
+          return callback(err)
+        })
+      }
     },
 
 
@@ -48,7 +63,6 @@ module.exports = function makeURLDataHelpers(knex) {
       .returning('id')
       .insert(url)
       .then((id) => {
-        console.log('**********',url)
         return callback(null, id)
       })
       .catch((err) => {
@@ -149,30 +163,6 @@ module.exports = function makeURLDataHelpers(knex) {
           callback(err)
         })
     },
-
-
-    // SEARCH A QUERY
-    search: function(text, callback) {
-      knex
-      .select('*')
-      .from('URLs')
-      .where('URL', 'like', `%${text}%`)
-      .then((urls) => {
-        return callback(null, urls)
-      })
-      .catch((err) => {
-        return callback(err)
-      })
-      // knex.raw
-      // ('select * from URLs where URL = ?', [text])
-      //   .then((url) => {
-      //     return callback(null, url)
-      //   })
-      //   .catch((err) => {
-      //     return callback(err)
-      //   })
-    }
-
 
 
   }

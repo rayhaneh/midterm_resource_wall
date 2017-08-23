@@ -10,7 +10,9 @@ module.exports = (urlDataHelpers) => {
 
   // SHOW ALL URLS (VISITORS CAN ACCESS THIS PAGE)
   router.get('/', (req, res) => {
-    urlDataHelpers.getURLs((err, urls) => {
+    console.log('the search text is: ',req.query.searchText)
+    urlDataHelpers.getURLs(req.query.searchText,(err, urls) => {
+      console.log('urls', urls)
       if (err) {
         return res.send('Error while connecting to the database.')
       }

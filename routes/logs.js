@@ -2,7 +2,6 @@
 
 const express = require('express')
 const router  = express.Router()
-const bcrypt  = require('bcrypt')
 const md5     = require('md5')
 
 
@@ -57,10 +56,11 @@ module.exports = (userDataHelpers) => {
 
   router.post("/register", (req, res) => {
     // check if the user email is already in the database
-
     userDataHelpers.getUser('email', String(req.body.email), (err, user) => {
+      console.log('err',err,'user',user)
       if (err) {
         // fix this one later
+        console.log('email', 'req.body.email')
         return res.send('Error while connecting to the database.11')
       }
       if (user.length !== 0) {
@@ -96,3 +96,10 @@ module.exports = (userDataHelpers) => {
 
   return router;
 }
+
+
+
+
+
+
+
