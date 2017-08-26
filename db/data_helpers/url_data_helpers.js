@@ -4,6 +4,7 @@
 module.exports = function makeURLDataHelpers(knex) {
   return {
 
+    // GET A SINGLE URL
     getURL: function(id, callback) {
       knex
         .select(
@@ -86,7 +87,7 @@ module.exports = function makeURLDataHelpers(knex) {
         })
     },
 
-    // SAVE A NEW USER
+    // SAVE A NEW COMMENT
     saveComment: function(comment, callback) {
       knex('comments')
       .insert(comment)
@@ -144,7 +145,7 @@ module.exports = function makeURLDataHelpers(knex) {
     },
 
 
-    // A new comment is saved in comments -> Update the overall rating in URLs table
+    // UPDATE OVERALLRATING (AFTER A NEW REVIEW IS SUBMITTED)
     updateOverallRating: function (urlid, callback) {
       knex('comments')
         .avg('rating as avg')

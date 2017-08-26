@@ -1,10 +1,10 @@
 'use strict'
 
-// Defines helper functions for saving and getting tweets, using the database `db`
+// Defines helper functions for saving and getting users,
 module.exports = function makeUserDataHelpers(knex) {
   return {
 
-    // GET USERS INFO FROM DB. RETURN FULL
+    // GET A SINGLE USER
     getUser: function(key, value, callback) {
       knex
         .select("*")
@@ -17,7 +17,8 @@ module.exports = function makeUserDataHelpers(knex) {
           return callback(err)
         })
     },
-    // GET USERS INFO FROM DB. RETURN FULL
+
+    // GET A SINGLE USERS URLS
     getUserURLs: function(id, callback) {
       knex
         .select(
@@ -40,6 +41,7 @@ module.exports = function makeUserDataHelpers(knex) {
           return callback(err)
         })
     },
+
     // SAVE A NEW USER
     saveUser: function(user, callback) {
       knex("users")
@@ -47,14 +49,13 @@ module.exports = function makeUserDataHelpers(knex) {
       .insert(user)
       .then((id) => {
         return callback(null, id)
-        console.log('******* id is',id)
       })
       .catch((err) => {
-        console.log('******* err is ',err)
         return callback(err)
       })
     },
-    // UPDATE USER
+
+    // UPDATE A USER
     updateUser: function(id, name, email, callback) {
       knex('users')
       .where('id', '=', id)
@@ -70,6 +71,7 @@ module.exports = function makeUserDataHelpers(knex) {
       })
     },
 
+    // GET CATEGORIES FOR THE NEW URL FORM IN THE PROFILE PAGE
     getCategories: function(callback) {
       knex
       .select('*')
