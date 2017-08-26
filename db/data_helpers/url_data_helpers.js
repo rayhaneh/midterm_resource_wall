@@ -75,7 +75,15 @@ module.exports = function makeURLDataHelpers(knex) {
     // GET ALL COMMENTS FOR ONE URL
     getComments: function(id , callback) {
       knex
-        .select("*")
+        .select(
+          'comments.id',
+          'comments.content',
+          'comments.user_id',
+          'comments.url_id',
+          'comments.rating',
+          'users.name',
+          'users.email',
+          'users.avatar')
         .from('comments')
         .innerJoin('users', 'comments.user_id', 'users.id')
         .where('url_id', '=', id)
