@@ -1,6 +1,6 @@
 # Learning Resources
 
-Learning Resources (LR) is an app that allows learners to save learning resources like tutorials, blogs and videos (along with a title, description and a category) in a central place (profile). These resources are publicly available to any user. Users are able to register, log in, log out and update their profile and comment, rate and like any of the resources. Users are able to search in already-saved resources created by any user.
+Learning Resources (LR) is an app that allows learners to save learning resources like tutorials, blogs and videos (along with a title, description and a category) in a central place (user profile). These resources are publicly available to any user. Users are able to register, log in, log out and update their profile and comment, rate and like any of the resources. Users are able to search in already-saved resources created by any user.
 
 
 
@@ -11,9 +11,7 @@ Learning Resources (LR) is an app that allows learners to save learning resource
 3. Install dependencies: `npm i`
 4. Fix to binaries for sass: `npm rebuild node-sass`
 5. Run migrations: `npm run knex migrate:latest`
-  - Check the migrations folder to see what gets created in the DB
 6. Run the seed: `npm run knex seed:run`
-  - Check the seeds file to see what gets seeded in the DB
 7. Run the server: `npm run local`
 8. Visit `http://localhost:8080/`
 
