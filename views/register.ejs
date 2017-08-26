@@ -16,7 +16,7 @@
 
     <main id="registercontainer" class="container">
       <header class="titleback">
-        <h2>Create an account</h2>
+        <h3>Registeration Form</h3>
       </header>
       <form id="registration-form" method="POST" action="/register">
 
@@ -35,15 +35,15 @@
           <input id="password" type="password" name="password" class="form-control">
         </div>
 
-        <button id="registerbut" type="submit"><i class="fa fa-user-plus" aria-hidden="true"></i> Register</button>
+        <button type="submit"><i class="fa fa-user-plus" aria-hidden="true"></i> Register</button>
+
+        <p>Have an account? <a href="/login">Login here</a></p>
 
       </form>
     </main>
 
     <footer class="m-4 panel-footer">
-      <div class="container">
-        <span class="text-muted">&copy; RAS 2017</span>
-      </div>
+      <%- include partials/_footer.ejs%>
     </footer>
 
     <%- include partials/_foot.ejs%>

@@ -6,51 +6,58 @@
 
   <% if (currentUser.id) { %>
 
-   <nav id="navbar" class="navbar justify-content-between" rows="3">
-      <img id="logo" src="/images/LR.png">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#"><img id="logo" src="/images/LR.png"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-
-      <div id="parentdiv">
-        <form id="search-form">
-        <input id="searchbox" name="searchText" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-        <button id = "searchURL" name="searchButton"><i class="fa fa-search" aria-hidden="true"
-        ></i></button>
-        </form>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/urls">Home</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/users/<%=currentUser.id%>">My Profile</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/" id="logoutlink">Logout</a>
+          </li>
+        </ul>
+        <div id="navbar-search">
+            <form id="search-form">
+            <input name="searchText" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            <button><i class="fa fa-search" aria-hidden="true"></i></button>
+            </form>
+        </div>
       </div>
-
-
-      <!-- <div id="nameloggout"><%= currentUser.email %> <a id="logoutbutton" href="/logout">Logout</a>
-      </div> -->
-
-
-      <form action="/logout" method="POST" style="margin:20px;">
-
-      <div id="nameloggout"><%= currentUser.email %> <a id="logoutbutton" href="/logout">Logout</a>
-      </div>
-      </form>
-
-      <form action="/urls" method="POST">
-       <div id="homebutton"> <a href="/urls" id="homeanchor"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
-      </form>
-
-
-
-      </div>
-      <form action="/users/<%=currentUser.id %>" method="POST">
-        <div id="profilebutton"> <a href="/users/<%=currentUser.id%>" id="profileanchor"><i class="fa fa-user" aria-hidden="true"></i> Profile</a>
-
-      </form>
-
     </nav>
-  <% }
-  else{ %>
 
-   <nav id="navbar" class="navbar  justify-content-between">
-      <img id="logo" src="/images/LR.png">
-      <div>
-      <a id="loginbutton" class="btn btn-primary btn-sm" href="/login" role="button">Login</a>
+  <% } else{ %>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#"><img id="logo" src="/images/LR.png"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-      <a id="registerbutton" class="btn btn-primary btn-sm" href="/register" role="button">Register</a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/urls">Home</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/register">Register</a>
+          </li>
+        </ul>
+        <div id="navbar-search">
+            <form id="search-form">
+            <input name="searchText" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            <button><i class="fa fa-search" aria-hidden="true"></i></button>
+            </form>
+        </div>
       </div>
     </nav>
   <% } %>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Name: <%= user.name %></title>
+    <title><%= user.name %></title>
     <% include partials/_head %>
     <script type="text/javascript" src="/scripts/profile.js"></script>
   </head>
@@ -12,52 +12,53 @@
     </header>
 
     <main>
-    <section id="profileconatiner" class="container">
-      <div class="jumbotron">
-         <img id="profilepicture" src="<%= user.avatar%>" class="rounded float-right">
-           <h1 class="display-5">
-             <p><%= user.name %></p>
-           </h1>
-           <p class="lead"><%= user.email %></p>
-           <button id="plus"><i class="fa fa-plus" aria-hidden="true"></i></button>
-           <button id="editprofile"><i class="fa fa-cog" aria-hidden="true"></i></button>
-      </div>
-    </section>
+      <section id="profileconatiner" class="container">
+        <div>
+           <img src="<%=user.avatar%>" class="float-right">
+           <h1><%= user.name %></h1>
+           <p><%= user.email %></p>
+           <button id="new-url-form-toggle"><i class="fa fa-plus" aria-hidden="true"></i>Add New</button>
+           <button id="edit-profile-form-toggle"><i class="fa fa-cog" aria-hidden="true"></i>Edit Profile</button>
+        </div>
+      </section>
 
 
     <!-- ADD NEW  URL -->
     <section class="container">
-      <form id="newForm">
+      <form id="new-url-form">
         <div class="form-group">
-
-          <label for="exampleFormControlTextarea1">URL</label>
-          <textarea name="url" class="form-control" id="exampleFormControlTextarea1" rows="1" placeholder="https://"></textarea>
-          <label for="exampleFormControlTextarea2">Title</label>
-          <textarea name="title" class="form-control" id="exampleFormControlTextarea1" rows="1" placeholder="Title"></textarea>
+          <h3>Add New URL:</h3>
           <div class="form-group">
-          <label for="exampleFormControlSelect1">Category</label>
-          <select name="selectvcategory" class="form-control" id="exampleFormControlSelect1">
-            <%for (let i = 0; i < categories.length; i++) {%>
-              <option value="<%= categories[i].id%>"><%= categories[i].name%></option>
-            <%}%>
-          </select>
+            <label>URL</label>
+            <input name="url" class="form-control" rows="1" placeholder="https://">
           </div>
-          <label for="exampleFormControlTextarea2">Add New</label>
-          <textarea name="text" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="What's interesting?"></textarea>
-
-
-        </div>
-        <button id="addnew" type="submit" class="btn btn-info">Add New</button>
-
+          <div class="form-group">
+            <label>Title</label>
+            <input name="title" class="form-control" rows="1" placeholder="Title">
+          </div>
+          <div class="form-group">
+            <label>Category</label>
+            <select name="category" class="form-control">
+              <%for (let i = 0; i < categories.length; i++) {%>
+                <option value="<%= categories[i].id%>"><%= categories[i].name%></option>
+              <%}%>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Add New</label>
+            <textarea name="text" class="form-control" rows="3" placeholder="What's interesting?"></textarea>
+          </div>
+          <button id="addnew" type="submit">Add New</button>
        </form>
     </section>
 
     <!-- EDIT USER PROFILE -->
     <section class="container">
-      <form id="editinfo" userid="<%=user.id%>">
+      <form id="edit-profile-form" userid="<%=user.id%>">
+        <h3>Edit Your Profile:</h3>
         <div class="form-group">
 
-          <label for="exampleFormControlTextarea2">Name:</label>
+          <label>Name:</label>
           <input type="text" name="text" class="form-control" id="exampleFormControlTextarea1" rows="1" value= "<%- user.name %>">
 
           <label for="exampleFormControlTextarea1">E-mail:</label>
@@ -67,8 +68,6 @@
         <button id="edit" type="submit" class="btn btn-info">Edit</button>
       </form>
     </section>
-
-
 
     <!-- URLs container. All URLs will be added to this section via AJAX -->
     <section id="urls-container" class="container" userid="<%=user.id%>">

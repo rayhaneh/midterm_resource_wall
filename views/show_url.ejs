@@ -3,7 +3,7 @@
 
   <head>
      <% include partials/_head %>
-     <title>Learning Resources</title>
+     <title><%=url.Title%></title>
 
     <script type="text/javascript" src="/scripts/show_url.js"></script>
 
@@ -15,42 +15,29 @@
       <%- include partials/_header.ejs%>
     </header>
 
-    <main class="container" id="urlshow">
-      <header id="urlheader">
-        <div>
-          <img id="urlimage" src="<%=url.image%>">
+    <main>
+      <section class="container" id="oneurlcontainer">
+        <header>
+          <img src="<%=url.image%>">
+          <h2><%=url.Title%></h2>
+          <div class="categories">Categories: <%=url.categoryname%></div>
+          <div class="rating"></div>
+        </header>
+        <main>
+          <p id="descriptions"><%=url.Desc %></p>
+          <a href="<%=url.URL%>"><i class="fa fa-link" aria-hidden="true"></i> Visit Now </a>
+          <div class="float-right">
+            <span id="counter"></span>
+            <button id="likebutton" type='submit' URLid="<%=url.id%>"><i class="fa fa-heart" aria-hidden="true"></i></button>
         </div>
-        <h1 id="urlname"><p><%=url.Title %></p></h1>
-        <div id="categoryofurl"><%=url.categoryname%></div>
-        <div>
-        <h5 id="urlfull"><p><%=url.URL %></p></h5>
-
-        </div>
-        <div class="rating"><!--Want overallrating from URLs table-->
-            <%for (let i = 0; i < url.overallRating; i++) {%>
-              <span><i class="fa fa-2x fa-star" aria-hidden="true"></i></span>
-            <%}%>
-            <%for (let i = 0; i < 5 - url.overallRating; i++) {%>
-              <span><i class="fa fa-2x fa-star-o" aria-hidden="true"></i></span>
-            <%}%>
-          </div>
-      </header>
-        <p id="descriptions"><%=url.Desc %></p>
-
-      <section>
-
-        <div>
-        <span id="counter"></span>
-          <button id="likebutton" type='submit' URLid="<%=url.id%>"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Like</button>
-
-        </div>
-          <!-- make it a tag -->
+        </main>
       </section>
 
-      <section>
-        <form id="newcomment" class="row justify-content-center" URLid='<%=url.id%>'>
-          <div class="container" id="addcomment">
-            <label for="exampleFormControlTextarea1">Comment:</label>
+
+      <section id="comments-section">
+        <form id="new-comment-form" class="row justify-content-center" URLid='<%=url.id%>'>
+          <div class="container">
+            <h4>Comment:</h4>
             <textarea maxlength="250" name="comment" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="....."></textarea>
             <div class="rating">
               <span class="star-cb-group">
@@ -66,11 +53,11 @@
 
           </div>
         </form>
+        <!-- Comments will Be added here via AJAX -->
+        <div id="comments-container">
+        </div>
       </section>
 
-      <!-- Comments will Be added here via AJAX -->
-      <section id="comments-container">
-      </section>
 
     </main>
 
