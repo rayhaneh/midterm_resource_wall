@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>URLs</title>
+  <title>Home</title>
   <%- include partials/_head.ejs%>
 </head>
 
@@ -11,33 +11,28 @@
 <header>
 <%- include partials/_header.ejs%>
 </header>
-<main class="container" id="border">
-<h2 id="title">What everyone's talking about</h2>
+<main class="container">
   <div class="row justify-content-center">
     <%for (let row = 0; row<urls.length; row++){ %>
-        <div class="col-md-4">
-          <a id="theTitle" href="/urls/<%= urls[row].id %>">
-            <header class="head">
-            <h5>
-            <p><%= urls[row].Title%></p>
-            </h5>
-            </header>
-            <div>
-              <img id="api-image" src="<%=urls[row].image%>">
+        <div class="col-lg-3 col-sm-10 urlcontainer">
+          <a href="/urls/<%= urls[row].id %>">
+            <div class="url-image">
+              <img  src="<%=urls[row].image%>">
             </div>
-            <div class='textbox'>
-               <p><%= urls[row].Desc%></p>
-            </div>
-            <footer>
+            <div class="url-content">
+              <h4><%= urls[row].Title%></h4>
+              <div>
+                 <p><%= urls[row].Desc.substring(0,200)%> ...</p>
+              </div>
               <div class="rating">
                 <% for (let i = 0; i < urls[row].overallRating; i++) {%>
-                 <span>&#9733;</span>
+                 <span><i class="fa fa-star" aria-hidden="true"></i></span>
                 <%}%>
                 <% for (let i = 0; i < 5-urls[row].overallRating; i++) {%>
-                  <span>&#9734;</span>
+                  <span><i class="fa fa-star-o" aria-hidden="true"></i></span>
                 <%}%>
               </div>
-            </footer>
+            </div>
            </a>
         </div>
     <%}%>
