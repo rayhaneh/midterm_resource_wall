@@ -25,8 +25,8 @@ $(document).ready(function() {
 
     let error = validateComment(commentText, rating)
     if (error) {
-      $('#new-comment-form .error').remove()
-      $('#new-comment-form').append($('<div>').addClass('error').text(error))
+      $('#new-comment-form .container .commenterror').remove()
+      $('#new-comment-form .container').append($('<div>').addClass('commenterror').text(error))
     }
     else{
       $.ajax({
@@ -35,8 +35,8 @@ $(document).ready(function() {
         data  : {'content': commentText, 'rating': rating}
       }).then(function(error) {
         if (error) {
-          $('#new-comment-form .error').remove()
-          $('#new-comment-form').append($('<div>').addClass('error').text(error))
+          $('#new-comment-form .container .commenterror').remove()
+          $('#new-comment-form .container').append($('<div>').addClass('commenterror').text(error))
         }
         else {
           loadComments()
