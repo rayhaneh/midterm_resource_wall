@@ -6,9 +6,8 @@ $(document).ready(function() {
   // Load all existing comments first
   loadComments()
 
-
   // Add a new listener to new comment form and wait for new comment submission
-  $('#newcomment').on('submit', function(event) {
+  $('#new-comment-form').on('submit', function(event) {
     event.preventDefault()
 
     let commentText = ''
@@ -21,13 +20,13 @@ $(document).ready(function() {
       rating = $(this).serializeArray()[1].value
     }
 
-    let urlid = $('#newcomment').attr('URLid')
+    let urlid = $('#new-comment-form').attr('URLid')
     let url   = `/urls/${urlid}/comments`
 
     let error = validateComment(commentText, rating)
     if (error) {
-      $('#newcomment .error').remove()
-      $('#newcomment').append($('<div>').addClass('error').text(error))
+      $('#new-comment-form .error').remove()
+      $('#new-comment-form').append($('<div>').addClass('error').text(error))
     }
     else{
       $.ajax({
@@ -36,15 +35,15 @@ $(document).ready(function() {
         data  : {'content': commentText, 'rating': rating}
       }).then(function(error) {
         if (error) {
-          $('#newcomment .error').remove()
-          $('#newcomment').append($('<div>').addClass('error').text(error))
+          $('#new-comment-form .error').remove()
+          $('#new-comment-form').append($('<div>').addClass('error').text(error))
         }
         else {
           loadComments()
         }
       })
       $(this).trigger('reset')
-      $('#newcomment .error').remove()
+      $('#new-comment-form .error').remove()
       $('.star-cb-group input').removeAttr('checked')
     }
   })
@@ -96,7 +95,7 @@ function loadLikeCount() {
 
 // Load all comments by calling the render comments function
 function loadComments() {
-  let urlid = $('#newcomment').attr('URLid')
+  let urlid = $('#new-comment-form').attr('URLid')
   let url   = `/urls/${urlid}/comments`
 
   $('#comments-container').html('')
@@ -108,6 +107,7 @@ function loadComments() {
     url: url,
   }).then(function(response) {
     renderComments(response)
+    updateOverallRating(response)
   })
 }
 
@@ -126,7 +126,7 @@ function renderComments(comments) {
 
 // Create a URL element (to be added to the DOM by renderURLS)
 function createCommentElement(comment) {
-  let $ratingStars = $('<div>').addClass('rating')
+  let $ratingStars = $('<div>')
   for (let i = 0; i < comment.rating; i++) {
     $ratingStars.append($('<span>').html('<i class="fa fa-star" aria-hidden="true"></i>'))
   }
@@ -136,15 +136,39 @@ function createCommentElement(comment) {
 
 
   let $comment = $('<div>').addClass('container').addClass('comment-box')
-                    .append($('<div>').append($('<img>').addClass('avatar-img').attr('src',comment.avatar)))
-                    .append($('<div>').addClass('comment-name').append($('<p>').text(comment.name)))
-                    .append($('<div>').addClass('comment-text').text(comment.content))
-                    .append($ratingStars)
+                    .append($('<header>')
+                      .append($('<img>').attr('src',comment.avatar))
+                      .append($('<div>').append($('<p>').text(comment.name)))
+                      )
+                    .append($('<main>')
+                      .append($('<p>').text(comment.content))
+                      .append($ratingStars)
+                      )
   return $comment
 }
 
 
 
+
+function updateOverallRating(comments) {
+  let $ratingContainer = $('#oneurlcontainer .rating')
+  let overallRating = 0
+  comments.forEach(function(comment) {
+    overallRating += comment.rating
+  })
+  overallRating = Math.round(overallRating/comments.length)
+
+  $ratingContainer.html('')
+  for (let i = 0; i < overallRating; i++) {
+    $ratingContainer.append('<span><i class="fa fa-star" aria-hidden="true"></i></span>')
+  }
+  for (let i = 0; i < 5 - overallRating; i++) {
+    $ratingContainer.append('<span><i class="fa fa-star-o" aria-hidden="true"></i></span>')
+  }
+
+
+
+}
 
 
 
