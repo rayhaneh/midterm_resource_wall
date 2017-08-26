@@ -1,6 +1,4 @@
-# Node Skeleton
-
-## Project Setup
+# Learning Resources
 
 Learning Resources (LR) is an app that allows learners to save learning resources like tutorials, blogs and videos (along with a title, description and a category) in a central place (profile). These resources are publicly available to any user. Users are able to register, log in, log out and update their profile and comment, rate and like any of the resources. Users are able to search in already-saved resources created by any user.
 
