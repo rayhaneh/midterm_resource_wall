@@ -1,3 +1,4 @@
+// VALIDATE REGISTRATION FORM
 function validateRegistration(name, email, password) {
   let error = ''
   if (!name) {
@@ -12,7 +13,7 @@ function validateRegistration(name, email, password) {
   return error
 }
 
-
+// VALIDATE LOGIN FORM
 function validateLogin (email, password) {
   let error = ''
   if (!email) {
@@ -27,14 +28,17 @@ function validateLogin (email, password) {
 }
 
 
-
-function validateNewURL (data) {
-  // to be added later
+// VALIDATE A NEW URL
+function validateNewURL (newURL) {
   let error = ''
+  if (!newURL.Desc)  {error = 'Please provide a description.'}
+  if (!newURL.Title) {error = 'Please provide a valid title.'}
+  if (!newURL.URL)   {error = 'Please provide a valid URL.'}
   return error
 }
 
 
+// VALIDATE A NEW COMMENT
 function validateComment (commentText, rating) {
   let error = ''
   if (!commentText) {
@@ -49,7 +53,7 @@ function validateComment (commentText, rating) {
 }
 
 
-
+// VALIDATE SEARCH FORM
 function validateSearch (text) {
   text = text.replace('searchText=','')
   if (text) {
@@ -59,15 +63,5 @@ function validateSearch (text) {
     return false
   }
 }
-
-
-
-
-
-
-
-
-
-
 
 
