@@ -9,13 +9,14 @@
 #navbar-search {
   min-width: 300px;
   position: relative;
+
+   input{
+    width:100%;
+    border-radius: 50px;
+  }
 }
 
-#navbar-search input{
-  width:100%;
-  border-radius: 50px;
 
-}
 #navbar-search button{
   border-radius:50%;
   border: none;
