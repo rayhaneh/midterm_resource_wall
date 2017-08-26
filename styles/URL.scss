@@ -86,9 +86,15 @@
     color: $white;
     outline-color: $pink;
     padding: 10px 20px;
+
+    i {
+      padding-right: 10px;
+    }
   }
-  button i {
-    padding-right: 10px;
+
+  .commenterror {
+    color: $pink;
+    padding: 20px 0;
   }
 }
 
