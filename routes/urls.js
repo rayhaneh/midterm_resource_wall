@@ -1,14 +1,14 @@
 'use strict'
 
-const express        = require('express')
-const router         = express.Router()
-var request = require('request');
-var fs      = require('fs');
+const express  = require('express')
+const router   = express.Router()
+var request    = require('request');
+var fs         = require('fs');
 
 
 module.exports = (urlDataHelpers) => {
 
-  // SHOW ALL URLS (VISITORS CAN ACCESS THIS PAGE)
+  // SHOW ALL URLS (VISITORS CAN ACCESS THIS ROUTE)
   router.get('/', (req, res) => {
     console.log('the search text is: ',req.query.searchText)
     urlDataHelpers.getURLs(req.query.searchText,(err, urls) => {
@@ -20,7 +20,7 @@ module.exports = (urlDataHelpers) => {
     })
   })
 
-  // ADD A NEW URL
+  // ADD A NEW URL (VISITORS CANNOT ACCESS THIS ROUTE)
   router.post('/', (req, res) => {
     if (req.currentUser.email){
       let newURL            = req.body.newURL
@@ -33,32 +33,34 @@ module.exports = (urlDataHelpers) => {
       let apiLink = `http://api.linkpreview.net/?key=${key}&q=${newURL.URL}`
       console.log(apiLink)
 
+      // GET THE URL'S IMAGE USING THE API
       request(apiLink, function (error, response, body) {
         let parsedBody = JSON.parse(body)
         if (parsedBody){
           newURL.image = parsedBody.image
         }
+        // IF NO IMAGE USE A PLACEHOLDER
         else {
           newURL.image = '/images/LR.png'
         }
         urlDataHelpers.saveURL(newURL, (err, id) => {
           if (err) {
-            return res.status(500).send('Error while connecting to the database.')
+            return res.status(500).send('Database connection error.')
           }
-            else {
-              return res.status(201).send()
+          else {
+            return res.status(201).send()
           }
         })
       })
     }
   })
 
-  // SHOW ONE SPECIFIC URL
+  // SHOW ONE SPECIFIC URL (VISITORS CANNOT ACCESS THIS PAGE)
   router.get('/:id', (req, res) => {
     if (req.currentUser.id) {
       urlDataHelpers.getURL(req.params.id, (err, url) => {
         if (err) {
-          return res.send('Error while connecting to the database.1')
+          return res.send('Database connection error.')
         }
         res.render('show_url',{'url': url[0], 'currentUser': req.currentUser})
       })
@@ -69,17 +71,17 @@ module.exports = (urlDataHelpers) => {
   }),
 
 
-
+  // GET COMMENTS OF A SPECIFIC URL
   router.get('/:id/comments', (req, res) => {
     urlDataHelpers.getComments(req.params.id, (err, comments) => {
       if (err) {
-        return res.status(500).send('Error while connecting to the database.3')
+        return res.status(500).send('Database connection error.')
       }
       return res.json(comments)
     })
   }),
 
-
+  // POST COMMENTS FOR A SPECIFIC URL
   router.post('/:id/comments', (req, res) => {
     let comment = {
       content : req.body.content,
@@ -90,12 +92,12 @@ module.exports = (urlDataHelpers) => {
 
     urlDataHelpers.saveComment(comment, (err, id) => {
       if (err) {
-        return res.status(500).send('Error while connecting to the database.4')
+        return res.status(500).send('Database connection error.')
       }
+      // update the overallrating in URLs table after each comment submission
       urlDataHelpers.updateOverallRating(Number(req.params.id), (err) => {
-
         if (err) {
-          return res.status(500).send('Error while connecting to the database.77')
+          return res.status(500).send('Database connection error.')
         }
         return res.status(200).send()
       })
@@ -103,7 +105,7 @@ module.exports = (urlDataHelpers) => {
 
   })
 
-
+  // GET LIKES FOR A SPECIFIC URL
   router.get('/:id/likes', (req, res) => {
     urlDataHelpers.countLikes(Number(req.params.id), (err, count) => {
       if (err) {
@@ -116,7 +118,7 @@ module.exports = (urlDataHelpers) => {
   })
 
 
-
+  // POST LIKES TO A SPECIFIC URL
   router.post('/:id/likes', (req, res) => {
     let like = {
       user_id : req.currentUser.id,
@@ -124,15 +126,13 @@ module.exports = (urlDataHelpers) => {
     }
     urlDataHelpers.updateLikes(like, (err, count) => {
       if (err) {
-        return res.status(500).send({'error':'Error while connecting to the database.6'})
+        return res.status(500).send({'error':'Database connection error.'})
       }
       else {
         return res.status(200).send({'likecount': count})
       }
     })
   })
-
-
 
   return router
 }

@@ -13,6 +13,7 @@ module.exports = (userDataHelpers) => {
           return res.send('Error while connecting to the database.7')
         }
         else {
+          // Get categories for the add new URL form on the profile page
           userDataHelpers.getCategories((err, categories) => {
             if (err) {
               return res.send('Error while connecting to the database.8')
@@ -46,7 +47,7 @@ module.exports = (userDataHelpers) => {
   }),
 
 
-
+  // GET ONE USER PROFILE
   router.put('/:id', (req, res) => {
     userDataHelpers.updateUser(req.body.id, req.body.name, req.body.email, (err) => {
       if (err) {
