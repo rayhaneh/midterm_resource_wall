@@ -51,26 +51,19 @@ module.exports = (urlDataHelpers) => {
 
   // SHOW ONE SPECIFIC URL
   router.get('/:id', (req, res) => {
-    urlDataHelpers.getURL(req.params.id, (err, url) => {
-      if (err) {
-        return res.send('Error while connecting to the database.1')
-      }
-      res.render('show_url',{'url': url[0], 'currentUser': req.currentUser})
-    })
+    if (req.currentUser.id) {
+      urlDataHelpers.getURL(req.params.id, (err, url) => {
+        if (err) {
+          return res.send('Error while connecting to the database.1')
+        }
+        res.render('show_url',{'url': url[0], 'currentUser': req.currentUser})
+      })
+    }
+    else {
+      res.redirect('/login')
+    }
   }),
 
-
-  // SEARCH IN THE DATABASE
-  router.get('/search/:text', (req, res) => {
-    urlDataHelpers.search(req.params.text, (err, urls) => {
-      if(err) {
-        return res.send('Error while connecting to the database.2')
-      }
-      else {
-        res.send({'urls': urls})
-      }
-    })
-  }),
 
 
   router.get('/:id/comments', (req, res) => {
