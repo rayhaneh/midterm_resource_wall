@@ -31,11 +31,15 @@ module.exports = (urlDataHelpers) => {
 
       let key = '5999af0c8116d0cb15d2da6aeb47c10fee170ae37ec89'
       let apiLink = `http://api.linkpreview.net/?key=${key}&q=${newURL.URL}`
+      console.log(apiLink)
 
       request(apiLink, function (error, response, body) {
         let parsedBody = JSON.parse(body)
         if (parsedBody){
           newURL.image = parsedBody.image
+        }
+        else {
+          newURL.image = '/images/LR.png'
         }
         urlDataHelpers.saveURL(newURL, (err, id) => {
           if (err) {

@@ -23,8 +23,9 @@ $(document).ready(function() {
     const http  = new RegExp("http://")
     const https = new RegExp("https://")
     if (!(newURL.URL.match(http)) && !(newURL.URL.match(https))) {
-      newURL.URL = `http://${URL}`
+      newURL.URL = `http://${newURL.URL}`
     }
+
 
     if (error) {
       $('#new-url-form .error').remove()
