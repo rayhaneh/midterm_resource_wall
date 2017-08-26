@@ -6,7 +6,7 @@ $(document).ready(function() {
   loadURLs()
 
   // Make an ajax call to the server to save the new URL
-  $('#newForm').on('submit', function(event) {
+  $('#new-url-form').on('submit', function(event) {
 
     event.preventDefault()
 
@@ -18,24 +18,44 @@ $(document).ready(function() {
       overallRating : 0
     }
 
-    $.ajax({
-      method: 'POST',
-      url   : '/urls',
-      data  : {'newURL': newURL}
-    }).then(function(err) {
-      if(!err) {
-        loadURLs()
-      }
-    })
-    $(this).trigger('reset')
+    let error = validateNewURL(newURL)
+
+    const http  = new RegExp("http://")
+    const https = new RegExp("https://")
+    if (!(newURL.URL.match(http)) && !(newURL.URL.match(https))) {
+      newURL.URL = `http://${URL}`
+    }
+
+    if (error) {
+      $('#new-url-form .error').remove()
+      $('#new-url-form').append($('<div>').addClass('error').text(error))
+    }
+    else {
+      $.ajax({
+        method: 'POST',
+        url   : '/urls',
+        data  : {'newURL': newURL}
+      }).then(function(err) {
+        if(err) {
+          $('#new-url-form .error').remove()
+          $('#new-url-form').append($('<div>').addClass('error').text(error))
+        }
+        else {
+          loadURLs()
+        }
+      })
+      $(this).trigger('reset')
+    }
+
   })
 
 
+
   // Make an ajax call to the server when user edits their profile
-  $('#editinfo').on('submit', function(event) {
+  $('#edit-profile-form').on('submit', function(event) {
     event.preventDefault()
 
-    let id    = $('#editinfo').attr('userid')
+    let id    = $('#edit-profile-form').attr('userid')
     let url   = `/users/${id}`
     let name  = $(this).serializeArray()[0].value
     let email = $(this).serializeArray()[1].value
@@ -53,17 +73,17 @@ $(document).ready(function() {
 
 
   // Add listener to the new form button and slide it up and down (initially form wil be hidden)
-  $('#newForm, #editinfo').hide();
+  $('#new-url-form, #edit-profile-form').hide();
 
-  $('#plus').click(function() {
-    $('#newForm').toggle();
-     $('#editinfo').hide();
+  $('#new-url-form-toggle').click(function() {
+    $('#new-url-form').toggle();
+     $('#edit-profile-form').hide();
   })
 
   // Add listener to the edit form button and slide it up and down (initially form wil be hidden)
-  $('#editprofile').click(function() {
-    $('#editinfo').toggle();
-      $('#newForm').hide();
+  $('#edit-profile-form-toggle').click(function() {
+    $('#edit-profile-form').toggle();
+      $('#new-url-form').hide();
   })
 
 })
@@ -114,22 +134,19 @@ function createURLElement(url) {
 
 
 
-  let $url = $('<div>').addClass('col-lg-3')
-                .append($('<header>').addClass('head')
-                  .append($('<h5>')
-                    .append($('<a>').attr('id','theTitle').attr('href',`/urls/${url.id}`).text(url.Title))
-                    )
-                  )
-                .append($('<main>').addClass('textbox')
-                  .append($('<div>')
-                    .append($('<img>').attr('src', url.image).attr('id', 'api-image'))
-                  )
-                  .append($('<p>').text(url.Desc))
-                  )
-                .append($('<footer>')
-                  .append($ratingStars))
-
-
+  let $url = $('<div>').addClass('col-lg-4').addClass('urlcontainer')
+                  .append($('<a>').attr('href',`/urls/${url.id}`)
+                      .append($('<div>').addClass('url-image')
+                        .append($('<img>').attr('src', url.image))
+                        )
+                      .append($('<div>').addClass('url-content')
+                        .append($('<h4>').text(url.Title))
+                        .append($('<div>')
+                          .append($('<p>').text(`${url.Desc.substring(0,200)} ...`))
+                          )
+                        .append($ratingStars)
+                        )
+                      )
 
   return $url
 }

@@ -15,8 +15,8 @@ $(document).ready(function() {
     let error = validateRegistration(name, email, password)
 
     if (error) {
-      $('#registration-form .error').remove()
-      $('#registration-form').append($('<div>').addClass('error').text(error))
+      $('#registration-form .registererror').remove()
+      $('#registration-form').append($('<div>').addClass('registererror').text(error))
     }
     else {
       $.ajax({
@@ -25,8 +25,8 @@ $(document).ready(function() {
         data: $('#registration-form').serialize()
       }).then(function(error) {
         if (error) {
-          $('#registration-form .error').remove()
-          $('#registration-form').append($('<div>').addClass('error').text(error))
+          $('#registration-form .registererror').remove()
+          $('#registration-form').append($('<div>').addClass('registererror').text(error))
         }
         else {
           $(location).attr('href', '/urls')

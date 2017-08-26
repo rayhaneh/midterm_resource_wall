@@ -10,8 +10,8 @@ $(document).ready(function() {
 
     let error = validateLogin(email, password)
     if (error) {
-        $('#login-form .error').remove()
-        $('#login-form').append($('<div>').addClass('error').text(error))
+        $('#login-form .loginerror').remove()
+        $('#login-form').append($('<div>').addClass('loginerror').text(error))
     }
     else {
       $.ajax({
@@ -20,8 +20,8 @@ $(document).ready(function() {
         data: $('#login-form').serialize()
       }).then(function(error) {
         if (error) {
-          $('#login-form .error').remove()
-          $('#login-form').append($('<div>').addClass('error').text(error))
+          $('#login-form .loginerror').remove()
+          $('#login-form').append($('<div>').addClass('loginerror').text(error))
         }
         else {
           $(location).attr('href', '/urls')
@@ -35,7 +35,7 @@ $(document).ready(function() {
 
 
   $('#login-form input').on('click', function (event) {
-    $('#login-form .error').remove()
+    $('#login-form .loginerror').remove()
   })
 
 })
