@@ -22,16 +22,18 @@ module.exports = (userDataHelpers) => {
 
   // LOGIN POST ROUTE
   router.post("/login", (req, res) => {
+    // Get the user by email from the database
     userDataHelpers.getUser('email',req.body.email,(err, user)=>{
       if (err){
-        return res.send('Database connection error.')
+        return res.status(500).send('Database connection error.')
       }
       if (user.length === 0){
-        return res.send('Email is not registered.')
+        return res.send('This email address is not registered.')
       }
       else if (user[0].password !== req.body.password) {
-        return res.send('invalid password')
+        return res.send('Email and password do not match.')
       } else {
+        // If email and password match set a cookie
         req.session.user_id = user[0].id
         return res.status(200).send()
       }
@@ -54,16 +56,13 @@ module.exports = (userDataHelpers) => {
 
 
   router.post("/register", (req, res) => {
-    // check if the user email is already in the database
+    // Check if the email is already in the database
     userDataHelpers.getUser('email', String(req.body.email), (err, user) => {
       console.log('err',err,'user',user)
       if (err) {
-        // fix this one later
-        console.log('email', 'req.body.email')
-        return res.send('Error while connecting to the database.11')
+        return res.status(500).send('Database connection error.')
       }
       if (user.length !== 0) {
-        // fix this one later
         return res.send('This email address is already in use by another.')
       }
       let handle = req.body.email.split('@')[0]
@@ -76,8 +75,7 @@ module.exports = (userDataHelpers) => {
       }
       userDataHelpers.saveUser(newUser, (err, id) => {
         if (err) {
-          // Fix this later
-          return res.status(500).send('Error while connecting to the database.',err)
+          return res.status(500).send('Database connection error.')
         }
         else {
           req.session.user_id = id[0]
@@ -89,6 +87,7 @@ module.exports = (userDataHelpers) => {
 
   // Logout
   router.post("/logout", (req, res) => {
+    // Remove cookie
     req.session = null
     res.redirect("/login")
   })
