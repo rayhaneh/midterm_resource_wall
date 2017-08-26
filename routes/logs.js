@@ -22,7 +22,6 @@ module.exports = (userDataHelpers) => {
 
   // LOGIN POST ROUTE
   router.post("/login", (req, res) => {
-
     userDataHelpers.getUser('email',req.body.email,(err, user)=>{
       if (err){
         return res.send('Database connection error.')
