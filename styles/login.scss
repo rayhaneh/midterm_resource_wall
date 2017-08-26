@@ -1,12 +1,50 @@
-#logincontainer{
+@import "variables";
 
-  padding: 10px;
-  border: 2px solid #94CACC;
-  border-radius: 10px;
+#logincontainer{
+  padding: 30px;
+  background-color: $dgrey;
+  max-width: 500px;
+  color: $white;
+  border-radius: 3px;
+
+  h3 {
+    padding-bottom: 40px;
+    font-family: 'Pacifico', cursive;
+  }
+  #login-form {
+    input{
+      outline-color: $pink;
+      background-color: $dgrey;
+      border: none;
+      border-radius: 0;
+      border-bottom: 2px solid $pink;
+      color: $white;
+      margin-bottom: 40px;
+    }
+    label {
+      margin: 0px;
+    }
+    button{
+      border: none;
+      border-radius: 3px;
+      background-color: $pink;
+      color: $white;
+      width: 100%;
+      outline-color: $pink;
+      padding: 10px 0;
+    }
+    p{
+      margin-top: 20px;
+      text-align: center;
+      font-size: 0.9em;
+    }
+    a {
+      color: $pink;
+    }
+    .loginerror {
+      color: $pink;
+      font-size: 0.9em;
+    }
+  }
 }
-#loginbut{
-  border: 1px solid #BE6876;
-  border-radius: 5px;
-  background-color: #ED8C95;
-  color: #FCF3F4;
-}
+

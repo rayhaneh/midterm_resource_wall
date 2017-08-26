@@ -1,86 +1,30 @@
-
+@import "variables";
 
 #logo {
-  height: 80px;
-  width: 80px;
-  border-radius: 10px
-}
-#navbar {
-  background-color: #9BD8D8;
-  border:1px solid #9BD8D8;
-  margin-bottom: 20px;
-  height: 120px;
-}
-#loginbutton{
-  float: right;
-  padding: 5px;
-  margin:5px;
-  background:#ED8C95;
-  border:1px solid #BE6876;
-  color:#FCF3F4;
-}
-#registerbutton{
-  float: right;
-  padding: 5px;
-  margin:5px;
-  background:#ED8C95;
-  border: 1px solid #BE6876;
-  color:#FCF3F4;
+  height: 30px;
+  width: 30px;
+  border-radius: 20px
 }
 
-#searchbox{
+#navbar-search {
+  min-width: 300px;
+  position: relative;
+}
+
+#navbar-search input{
   width:100%;
   border-radius: 50px;
 
 }
-#searchURL{
+#navbar-search button{
   border-radius:50%;
-  border: 1px solid #BE6876;
-  background:#ED8C95;
+  border: none;
+  background: $pink;
   color:#FCF3F4;
   position: absolute;
   top: 4px;
   right: 4px;
 }
-#nameloggout{
-  font-size: 15px;
 
-}
-#logoutbutton{
-  color:#BE6876;
-  font-size: 15px;
 
-}
-#parentdiv {
-  width: 40%;
-  position: relative;
-}
-#profilebutton{
-  border-radius:5px;
-  border: 1px solid #BE6876;
-  background:#ED8C95;
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  margin-top: 20px;
-  margin-right: 10px;
 
-}
-#homebutton{
-  border-radius:5px;
-  border: 1px solid #BE6876;
-  background:#ED8C95;
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  margin-top: 60px;
-  margin-right: 10px;
-}
-#profileanchor{
-  color:#FCF3F4;
-  padding:5px;
-}
-#homeanchor{
-  color:#FCF3F4;
-  padding:5px;
-}

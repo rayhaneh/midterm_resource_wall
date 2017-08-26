@@ -1,114 +1,156 @@
+@import "variables";
 
-#urlshow{
-  padding: 10px;
-  border: 1px solid #94CACC;
-  border-radius: 10px;
-  margin: 0 auto;
-  margin-top: 10px;
-}
-#urlshow:hover{
-  padding: 10px;
-  box-shadow: 2px 2px 2px 2px #444;
-}
-#urlshow:hover #urlheader {
+#oneurlcontainer {
 
-  color: black;
-  border-radius: 10px;
-}
-#urlheader {
-  background-color: #9BD8D8;
-  color: black;
-  padding: 10px;
-  margin: 10px;
-  border-radius: 10px;
-}
-#username{
-  float: right;
-}
-#comments {
-  border-radius: 10px;
-  background-color: #328F8F;
-  border: 1px solid #146060;
-  color: #FFF;
-  float: right;
-  margin-top:-55px;
+  background-color: $vlgrey;
+  box-shadow: 2px 2px 2px $lgrey;
+  padding: 0;
 
-}
-#comments:hover {
-  background-color: #BE6876;
-  border: 1px solid #BE6876;
-  color: #FFF;
-}
-#descriptions {
-  color: black;
-  padding: 10px;
-  margin: 10px;
-}
-#newcomment {
-  margin:10px;
-}
-#categoryofurl{
-  background-color: #BE6876;
-  height: 25px;
-  width: 40px;
-  border-radius: 5px;
-  margin-top:-30px;
-  text-align: center;
-  min-width: 60px;
-  float: right;
-}
+  header:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
 
-div.comment-name{
-  font-size: 20px;
-   border-bottom: 2px solid #9BD8D8;
-   height:40px;
-}
-div.comment-text{
-  font-size: 15px;
-}
-div.comment-box{
-  border: 1px solid #9BD8D8;
-  border-radius: 10px;
-  margin:10px 10px;
-  padding: 10px;
+  header {
+    padding: 30px;
+    background-color: $dgrey;
+    color: $white;
+
+    img {
+      object-fit: cover;
+      width:150px;
+      height:150px;
+      float: left;
+      margin-right: 30px;
+    }
+
+    a {
+      color: $pink;
+    }
+
+    .categories {
+      padding: 10px 0;
+      font-size: 1.1em;
+    }
+
+    .rating {
+      color: $pink;
+      font-size: 1.5em;
+      padding: 10px 0;
+    }
+  }
+
+  main {
+    padding: 30px;
+  }
+
+  #counter{
+    font-size: 1.5em;
+    color: $pink;
+  }
+
+
+  button{
+    border: none;
+    background: none;
+    color: $pink;
+    font-size: 1.5em;
+  }
+
+  main a {
+    color: $pink;
+  }
 
 }
 
-.avatar-img {
-  border-radius: 10px;
-  float:right;
-  margin:5px;
-  height:40px;
-  width:40px;
-  margin-top:-5px;
-  margin-right: -5px;
 
-}
-#urlfull{
-  float:right;
-}
 
-#likebutton {
-  border-radius: 10px;
-  background-color: #328F8F;
-  border: 1px solid #146060;
-  color: #FFF;
-  margin: 15px;
+#new-comment-form {
+  margin-bottom: 50px;
 
-}
-#likebutton:hover {
-  background-color: #BE6876;
-  border: 1px solid #BE6876;
-  color: #FFF;
-}
+  h4 {
+    font-family: 'Pacifico', cursive;
+    color: $pink;
+    padding-bottom: 20px;
+  }
 
-#urlimage{
-  max-width: 70px;
+  textarea {
+    outline-color: $pink;
+  }
+
+  button{
+    border: none;
+    border-radius: 3px;
+    background-color: $pink;
+    color: $white;
+    outline-color: $pink;
+    padding: 10px 20px;
+  }
+  button i {
+    padding-right: 10px;
+  }
 }
 
-#counter{
-  margin-left: 20px;
+
+#comments-section {
+    background-color: $vlgrey;
+    box-shadow: 2px 2px 2px $lgrey;
+    margin: 20px;
+    padding: 50px;
+
+  .comment-box {
+
+    border: 3px solid $dgrey;
+    padding: 0px;
+    margin: 20px 0;
+    border-radius: 5px;
+
+    header {
+      background-color: $dgrey;
+      height: 60px;
+      img:after {
+        content: '';
+        display: block;
+        clear: both;
+      }
+
+      img {
+        height: 40px;
+        border-radius: 20px;
+        float: left;
+        margin: 10px
+      }
+
+      div {
+        margin: 15px;
+        float: left;
+      }
+      p {
+        color: $white;
+        font-family: 'Pacifico', cursive;
+      }
+    }
+
+    main {
+      margin: 10px;
+      p {
+        padding: 10px;
+      }
+      div {
+        color: $pink;
+      }
+    }
+
+
+
+  }
+
 }
+
+
+
+
 
 
 
