@@ -33,7 +33,7 @@ module.exports = function makeURLDataHelpers(knex) {
       if (!searchText) {
         knex
         .select("*")
-        .from("urls")
+        .from("URLs")
         .then((urls) => {
           console.log('1*****', urls)
           return callback(null, urls)
