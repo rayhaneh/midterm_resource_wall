@@ -10,11 +10,10 @@ module.exports = (urlDataHelpers) => {
 
   // SHOW ALL URLS (VISITORS CAN ACCESS THIS ROUTE)
   router.get('/', (req, res) => {
-    console.log('the search text is: ',req.query.searchText)
     urlDataHelpers.getURLs(req.query.searchText,(err, urls) => {
       console.log('urls', urls)
       if (err) {
-        return res.send('Error while connecting to the database.')
+        return res.send('Error while connecting to the database.', err)
       }
       res.render('show_urls', {'urls': urls, 'currentUser': req.currentUser})
     })
