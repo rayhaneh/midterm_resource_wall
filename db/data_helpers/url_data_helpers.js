@@ -35,9 +35,11 @@ module.exports = function makeURLDataHelpers(knex) {
         .select("*")
         .from("URLs")
         .then((urls) => {
+          condole.log('1*****', urls)
           return callback(null, urls)
         })
         .catch((err) => {
+          condole.log('2*****', err)
           return callback(err)
         })
       }
@@ -49,9 +51,11 @@ module.exports = function makeURLDataHelpers(knex) {
         .orWhere('Title', 'like', `%${searchText}%`)
         .orWhere('Desc', 'like', `%${searchText}%`)
         .then((urls) => {
+          condole.log('3*****', urls)
           return callback(null, urls)
         })
         .catch((err) => {
+          condole.log('4*****', err)
           return callback(err)
         })
       }
