@@ -13,7 +13,7 @@ module.exports = (urlDataHelpers) => {
     urlDataHelpers.getURLs(req.query.searchText,(err, urls) => {
       console.log('urls', urls)
       if (err) {
-        return res.send('Error while connecting to the database.', err)
+        return res.send('Error while connecting to the database.')
       }
       res.render('show_urls', {'urls': urls, 'currentUser': req.currentUser})
     })
