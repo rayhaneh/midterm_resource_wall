@@ -14,7 +14,7 @@ module.exports = function makeURLDataHelpers(knex) {
           'URLs.Title',
           'URLs.overallRating',
           'URLs.user_id',
-          'URLs.des',
+          'URLs.Desc',
           'URLs.image',
           'categories.name as categoryname')
         .from('URLs')
