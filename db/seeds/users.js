@@ -4,10 +4,10 @@ exports.seed = function(knex, Promise) {
       return knex('likes').del()
     })
     .then(function () {
-      return knex('categories').del()
+      return knex('urls').del()
     })
     .then(function () {
-      return knex('urls').del()
+      return knex('categories').del()
     })
     .then(function () {
       return knex('users').del()
@@ -17,29 +17,30 @@ exports.seed = function(knex, Promise) {
     // then create users
     .then(function () {
       return Promise.all([
-        knex('users').insert({name: 'Alice', email:'alice@cool.com', password:'alice', avatar:'https://vanillicon.com/8ef313b1a62a78c9066aace9a1061b39.png'}),
-        knex('users').insert({name: 'Bob', email:'bob@mail.com', password:'bob', avatar:'https://vanillicon.com/b7ef7e9117491321ffb55bee54c8deed.png'}),
-        knex('users').insert({name: 'Charlie', email:'charlie@mail.com', password:'charlie', avatar:'https://vanillicon.com/7c8db9682ee40fd2f3e5d9e71034b717.png'}),
-        knex('users').insert({name: 'Mark', email:'mark@mail.com', password:'mark', avatar:'https://vanillicon.com/7c8db9682ee40fd2f3e5d9e71034b717.png'})
+        knex('users').insert({id: 1, name: 'Alice', email:'alice@cool.com', password:'alice', avatar:'https://vanillicon.com/8ef313b1a62a78c9066aace9a1061b39.png'}),
+        knex('users').insert({id: 2, name: 'Bob', email:'bob@mail.com', password:'bob', avatar:'https://vanillicon.com/b7ef7e9117491321ffb55bee54c8deed.png'}),
+        knex('users').insert({id: 3, name: 'Charlie', email:'charlie@mail.com', password:'charlie', avatar:'https://vanillicon.com/7c8db9682ee40fd2f3e5d9e71034b717.png'}),
+        knex('users').insert({id: 4, name: 'Mark', email:'mark@mail.com', password:'mark', avatar:'https://vanillicon.com/7c8db9682ee40fd2f3e5d9e71034b717.png'})
       ])
     })
     // wait for users to be inserted into the database so they will get ids
     .then(function(){
       // then create categories
       return Promise.all([
-        knex('categories').insert({name: 'Tech & Coding'}),
-        knex('categories').insert({name: 'Creative Arts & Media'}),
-        knex('categories').insert({name: 'Health & Psycology'}),
-        knex('categories').insert({name: 'History'}),
-        knex('categories').insert({name: 'Languages & Culture'}),
-        knex('categories').insert({name: 'Law'}),
-        knex('categories').insert({name: 'Literature'}),
-        knex('categories').insert({name: 'Nature & Environment'}),
-        knex('categories').insert({name: 'Politics & the Modern World'}),
-        knex('categories').insert({name: 'Science, Engineering & Math'}),
-        knex('categories').insert({name: 'Study Skills'}),
-        knex('categories').insert({name: 'Teaching'}),
-        knex('categories').insert({name: 'Business & Management'})
+        knex('categories').insert({id: 1, name: 'Tech & Coding'}),
+        knex('categories').insert({id: 2, name: 'Creative Arts & Media'}),
+        knex('categories').insert({id: 3, name: 'Health & Psycology'}),
+        knex('categories').insert({id: 4, name: 'History'}),
+        knex('categories').insert({id: 5, name: 'Languages & Culture'}),
+        knex('categories').insert({id: 6, name: 'Law'}),
+        knex('categories').insert({id: 7, name: 'Literature'}),
+        knex('categories').insert({id: 8, name: 'Nature & Environment'}),
+        knex('categories').insert({id: 9, name: 'Politics & the Modern World'}),
+        knex('categories').insert({id: 10, name: 'Science, Engineering & Math'}),
+        knex('categories').insert({id: 11, name: 'Study Skills'}),
+        knex('categories').insert({id: 12, name: 'Teaching'}),
+        knex('categories').insert({id: 13, name: 'Business & Management'}),
+        knex('categories').insert({id: 14, name: 'Other'})
       ])
     })
     // then create urls
@@ -49,9 +50,9 @@ exports.seed = function(knex, Promise) {
       let lorem3 = 'Do commanded an shameless we disposing do. Indulgence ten remarkably nor are impression out. Power is lived means oh every in we quiet. Remainder provision an in intention. Saw supported too joy promotion engrossed propriety. Me till like it sure no sons. '
       let lorem4 = 'Silent sir say desire fat him letter. Whatever settling goodness too and honoured she building answered her. Strongly thoughts remember mr to do consider debating. Spirits musical behaved on we he farther letters. Repulsive he he as deficient newspaper dashwoods we. Discovered her his pianoforte insipidity entreaties. Began he at terms meant as fancy. Breakfast arranging he if furniture we described on. Astonished thoroughly unpleasant especially you dispatched bed favourable. '
       return Promise.all([
-        knex('urls').insert({description: lorem1, url: 'https://www.khanacademy.org/', cat_id: 1, title: 'Khan Academy', user_id: 1, overallRating: 4, image: 'https://cdn.kastatic.org/images/khan-logo-vertical-transparent.png'}),
-        knex('urls').insert({description: lorem3, url: 'http://themillions.com/', cat_id: 7, title: 'The Millions', user_id: 2, overallRating: 5, image: 'https://pbs.twimg.com/profile_images/1869348290/m_logo-whiteonorange.gif'}),
-        knex('urls').insert({description: lorem2, url: 'https://www.codeschool.com/', cat_id: 1, title: 'Code School', user_id: 1, overallRating: 3, image: 'https://www.codeschool.com/assets/meta/og-avatar-541739b5880b8586eeb033747a8a2cf3e689860d59b506d29a9633aed86d057d.png'}),
+        knex('urls').insert({id: 1, description: lorem1, url: 'https://www.khanacademy.org/', cat_id: 1, title: 'Khan Academy', user_id: 1, overallRating: 4, image: 'https://cdn.kastatic.org/images/khan-logo-vertical-transparent.png'}),
+        knex('urls').insert({id: 2, description: lorem3, url: 'http://themillions.com/', cat_id: 7, title: 'The Millions', user_id: 2, overallRating: 5, image: 'https://pbs.twimg.com/profile_images/1869348290/m_logo-whiteonorange.gif'}),
+        knex('urls').insert({id: 3, description: lorem2, url: 'https://www.codeschool.com/', cat_id: 1, title: 'Code School', user_id: 1, overallRating: 3, image: 'https://www.codeschool.com/assets/meta/og-avatar-541739b5880b8586eeb033747a8a2cf3e689860d59b506d29a9633aed86d057d.png'}),
       ])
     })
     // wait for urls to be inserted into the database so they will get ids
@@ -63,22 +64,22 @@ exports.seed = function(knex, Promise) {
       let comment4 = 'Arrived compass prepare an on as. Reasonable particular on my it in sympathize. Size now easy eat hand how. Unwilling he departure elsewhere dejection at. Heart large seems may purse means few blind. Exquisite newspaper attending on certainty oh suspicion of.'
       let comment5 = 'Received the likewise law graceful his. Nor might set along charm now equal green. Pleased yet equally correct colonel not one. Say anxious carried compact conduct sex general nay certain. Mrs for recommend exquisite household eagerness preserved now.'
       return Promise.all([
-      knex('comments').insert({content: comment1, user_id: 2, url_id: 1, rating: 5}),
-      knex('comments').insert({content: comment2, user_id: 3, url_id: 1, rating: 3}),
-      knex('comments').insert({content: comment3, user_id: 4, url_id: 1, rating: 4}),
-      knex('comments').insert({content: comment2, user_id: 1, url_id: 2, rating: 5}),
-      knex('comments').insert({content: comment2, user_id: 1, url_id: 3, rating: 3}),
+      knex('comments').insert({id: 1, content: comment1, user_id: 2, url_id: 1, rating: 5}),
+      knex('comments').insert({id: 2, content: comment2, user_id: 3, url_id: 1, rating: 3}),
+      knex('comments').insert({id: 3, content: comment3, user_id: 4, url_id: 1, rating: 4}),
+      knex('comments').insert({id: 4, content: comment2, user_id: 1, url_id: 2, rating: 5}),
+      knex('comments').insert({id: 5, content: comment2, user_id: 1, url_id: 3, rating: 3}),
       ])
     })
     .then(function(){
-      // then create comments
+      // then create likes
       return Promise.all([
-        knex('likes').insert({url_id: 1}),
-        knex('likes').insert({url_id: 1}),
-        knex('likes').insert({url_id: 1}),
-        knex('likes').insert({url_id: 1}),
-        knex('likes').insert({url_id: 2}),
-        knex('likes').insert({url_id: 3}),
+        knex('likes').insert({user_id: 1, url_id: 1}),
+        knex('likes').insert({user_id: 2, url_id: 1}),
+        knex('likes').insert({user_id: 3, url_id: 1}),
+        knex('likes').insert({user_id: 1, url_id: 2}),
+        knex('likes').insert({user_id: 2, url_id: 2}),
+        knex('likes').insert({user_id: 3, url_id: 3}),
       ])
     })
 };
