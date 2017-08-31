@@ -57,8 +57,8 @@ module.exports = (userDataHelpers) => {
 
   router.post("/register", (req, res) => {
     // Check if the email is already in the database
+      console.log('*************************')
     userDataHelpers.getUser('email', String(req.body.email), (err, user) => {
-      console.log('user',user)
       console.log('err',err,'user',user)
       if (err) {
         return res.status(500).send('Database connection error.')
