@@ -30,7 +30,7 @@ module.exports = (urlDataHelpers) => {
 
       let key = '5999af0c8116d0cb15d2da6aeb47c10fee170ae37ec89'
       let apiLink = `http://api.linkpreview.net/?key=${key}&q=${newURL.URL}`
-      console.log(apiLink)
+
 
       // GET THE URL'S IMAGE USING THE API
       request(apiLink, function (error, response, body) {
@@ -42,6 +42,7 @@ module.exports = (urlDataHelpers) => {
         else {
           newURL.image = '/images/LR.png'
         }
+        console.log(newURL)
         urlDataHelpers.saveURL(newURL, (err, id) => {
           if (err) {
             return res.status(500).send('Database connection error.')

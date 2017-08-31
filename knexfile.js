@@ -22,19 +22,19 @@ module.exports = {
     }
   },
 
-  production: {
-    connection: process.env.DB_URL + '?ssl=true',
-    migrations: {
-      directory: './db/migrations',
-      tableName: 'migrations'
-    },
-      pool: {
-      min: 2,
-      max: 10
-    },
-    seeds: {
-      directory: './db/seeds'
-    }
-  }
+  // production: {
+  //   connection: process.env.DB_URL + '?ssl=true',
+  //   migrations: {
+  //     directory: './db/migrations',
+  //     tableName: 'migrations'
+  //   },
+  //     pool: {
+  //     min: 2,
+  //     max: 10
+  //   },
+  //   seeds: {
+  //     directory: './db/seeds'
+  //   }
+  // }
 
 };
