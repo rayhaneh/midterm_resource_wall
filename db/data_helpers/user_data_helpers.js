@@ -6,17 +6,14 @@ module.exports = function makeUserDataHelpers(knex) {
 
     // GET A SINGLE USER
     getUser: function(key, value, callback) {
-      console.log('*********', 'key: ', key, 'value: ', value)
       knex
         .select("*")
         .from("users")
         .where(key, '=', value)
         .then((user) => {
-          console.log('*********user: ', user)
           return callback(null, user)
         })
         .catch((err) => {
-          console.log('********* error: ',err)
           return callback(err)
         })
     },
