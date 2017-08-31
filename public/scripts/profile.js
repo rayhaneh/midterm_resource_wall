@@ -23,7 +23,7 @@ $(document).ready(function() {
     const http  = new RegExp("http://")
     const https = new RegExp("https://")
     if (!(newURL.url.match(http)) && !(newURL.url.match(https))) {
-      newURL.url = `http://${newURL.URL}`
+      newURL.url = `http://${newURL.url}`
     }
 
 

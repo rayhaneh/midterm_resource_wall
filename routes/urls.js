@@ -38,8 +38,7 @@ module.exports = (urlDataHelpers) => {
         if (parsedBody){
           newURL.image = parsedBody.image
         }
-        // IF NO IMAGE USE A PLACEHOLDER
-        else {
+        if (!newURL.image) {
           newURL.image = '/images/LR.png'
         }
         console.log(newURL)
