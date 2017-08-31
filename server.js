@@ -55,6 +55,7 @@ app.use((req, res, next) => {
   if (req.session.user_id) {
     userDataHelpers.getUser('id', req.session.user_id, (err, user) => {
       if (err) {
+        req.session = null
         return res.send('Error while connecting to the database.')
         next()
       }
