@@ -64,13 +64,16 @@ module.exports = function makeURLDataHelpers(knex) {
 
     // ADD A NEW URL
     saveURL: function(url, callback) {
+      console.log('****url', url)
       knex("URLs")
       .returning('id')
       .insert(url)
       .then((id) => {
+        console.log('****url', id)
         return callback(null, id)
       })
       .catch((err) => {
+        console.log('****url', err)
         return callback(err)
       })
     },
