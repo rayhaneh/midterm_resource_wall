@@ -8,18 +8,18 @@ module.exports = function makeURLDataHelpers(knex) {
     getURL: function(id, callback) {
       knex
         .select(
-          'URLs.id',
-          'URLs.URL',
-          'URLs.cat_id',
-          'URLs.Title',
-          'URLs.overallRating',
-          'URLs.user_id',
-          'URLs.Desc',
-          'URLs.image',
+          'urls.id',
+          'urls.url',
+          'urls.cat_id',
+          'urls.title',
+          'urls.overallRating',
+          'urls.user_id',
+          'urls.description',
+          'urls.image',
           'categories.name as categoryname')
-        .from('URLs')
-        .innerJoin('categories', 'URLs.cat_id', 'categories.id')
-        .where('URLs.id', '=', id)
+        .from('urls')
+        .innerJoin('categories', 'urls.cat_id', 'categories.id')
+        .where('urls.id', '=', id)
         .then((urls) => {
           return callback(null, urls)
         })
@@ -33,7 +33,7 @@ module.exports = function makeURLDataHelpers(knex) {
       if (!searchText) {
         knex
         .select("*")
-        .from("URLs")
+        .from("urls")
         .then((urls) => {
           console.log('1*****', urls)
           return callback(null, urls)
@@ -46,10 +46,10 @@ module.exports = function makeURLDataHelpers(knex) {
       else {
         knex
         .select("*")
-        .from("URLs")
-        .where('URL', 'like', `%${searchText}%`)
-        .orWhere('Title', 'like', `%${searchText}%`)
-        .orWhere('Desc', 'like', `%${searchText}%`)
+        .from("urls")
+        .where('url', 'like', `%${searchText}%`)
+        .orWhere('title', 'like', `%${searchText}%`)
+        .orWhere('description', 'like', `%${searchText}%`)
         .then((urls) => {
           console.log('3*****', urls)
           return callback(null, urls)
@@ -65,7 +65,7 @@ module.exports = function makeURLDataHelpers(knex) {
     // ADD A NEW URL
     saveURL: function(url, callback) {
       console.log('****url', url)
-      knex("URLs")
+      knex("urls")
       .returning('id')
       .insert(url)
       .then((id) => {
@@ -104,13 +104,16 @@ module.exports = function makeURLDataHelpers(knex) {
 
     // SAVE A NEW COMMENT
     saveComment: function(comment, callback) {
+      console.log(comment)
       knex('comments')
       .insert(comment)
       .returning('id')
       .then((id) => {
+        console.log(id)
         return callback(null, id)
       })
       .catch((err) => {
+        console.log(err)
         return callback(err)
       })
     },
@@ -166,7 +169,7 @@ module.exports = function makeURLDataHelpers(knex) {
         .avg('rating as avg')
         .where('url_id', '=', urlid)
         .then((result) => {
-          return knex('URLs')
+          return knex('urls')
             .where('id', '=', urlid)
             .update({
               overallRating  : Math.round(result[0].avg)

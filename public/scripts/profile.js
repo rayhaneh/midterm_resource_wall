@@ -11,10 +11,10 @@ $(document).ready(function() {
     event.preventDefault()
 
     let newURL = {
-      URL           : $(this).serializeArray()[0].value,
-      Title         : $(this).serializeArray()[1].value,
+      url           : $(this).serializeArray()[0].value,
+      title         : $(this).serializeArray()[1].value,
       cat_id        : $(this).serializeArray()[2].value,
-      Desc          : $(this).serializeArray()[3].value,
+      description   : $(this).serializeArray()[3].value,
       overallRating : 0
     }
 
@@ -22,8 +22,8 @@ $(document).ready(function() {
 
     const http  = new RegExp("http://")
     const https = new RegExp("https://")
-    if (!(newURL.URL.match(http)) && !(newURL.URL.match(https))) {
-      newURL.URL = `http://${newURL.URL}`
+    if (!(newURL.url.match(http)) && !(newURL.url.match(https))) {
+      newURL.url = `http://${newURL.URL}`
     }
 
 
@@ -141,9 +141,9 @@ function createURLElement(url) {
                         .append($('<img>').attr('src', url.image))
                         )
                       .append($('<div>').addClass('url-content')
-                        .append($('<h4>').text(url.Title))
+                        .append($('<h4>').text(url.title))
                         .append($('<div>')
-                          .append($('<p>').text(`${url.Desc.substring(0,200)} ...`))
+                          .append($('<p>').text(`${url.description.substring(0,200)} ...`))
                           )
                         .append($ratingStars)
                         )

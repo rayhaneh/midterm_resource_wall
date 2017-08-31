@@ -31,9 +31,9 @@ function validateLogin (email, password) {
 // VALIDATE A NEW URL
 function validateNewURL (newURL) {
   let error = ''
-  if (!newURL.Desc)  {error = 'Please provide a description.'}
-  if (!newURL.Title) {error = 'Please provide a valid title.'}
-  if (!newURL.URL)   {error = 'Please provide a valid URL.'}
+  if (!newURL.description)  {error = 'Please provide a description.'}
+  if (!newURL.title) {error = 'Please provide a valid title.'}
+  if (!newURL.url)   {error = 'Please provide a valid URL.'}
   return error
 }
 

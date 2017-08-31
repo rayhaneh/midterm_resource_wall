@@ -3,7 +3,7 @@
 
   <head>
      <% include partials/_head %>
-     <title><%=url.Title%></title>
+     <title><%=url.title%></title>
 
     <script type="text/javascript" src="/scripts/show_url.js"></script>
 
@@ -19,12 +19,12 @@
       <section class="container" id="oneurlcontainer">
         <header>
           <img src="<%=url.image%>">
-          <h2><%=url.Title%></h2>
+          <h2><%=url.title%></h2>
           <div class="categories">Categories: <%=url.categoryname%></div>
           <div class="rating"></div>
         </header>
         <main>
-          <p id="descriptions"><%=url.Desc %></p>
+          <p id="descriptions"><%=url.description %></p>
           <a href="<%=url.URL%>"><i class="fa fa-link" aria-hidden="true"></i> Visit Now </a>
           <div class="float-right">
             <span id="counter"></span>

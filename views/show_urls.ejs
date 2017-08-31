@@ -20,9 +20,9 @@
               <img  src="<%=urls[row].image%>">
             </div>
             <div class="url-content">
-              <h4><%= urls[row].Title%></h4>
+              <h4><%= urls[row].title%></h4>
               <div>
-                 <p><%= urls[row].Desc.substring(0,200)%> ...</p>
+                 <p><%= urls[row].description.substring(0,200)%> ...</p>
               </div>
               <div class="rating">
                 <% for (let i = 0; i < urls[row].overallRating; i++) {%>

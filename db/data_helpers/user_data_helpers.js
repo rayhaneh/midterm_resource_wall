@@ -22,17 +22,17 @@ module.exports = function makeUserDataHelpers(knex) {
     getUserURLs: function(id, callback) {
       knex
         .select(
-          'URLs.id',
-          'URLs.URL',
-          'URLs.cat_id',
-          'URLs.Title',
-          'URLs.overallRating',
-          'URLs.user_id',
-          'URLs.Desc',
-          'URLs.image',
+          'urls.id',
+          'urls.url',
+          'urls.cat_id',
+          'urls.title',
+          'urls.overallRating',
+          'urls.user_id',
+          'urls.description',
+          'urls.image',
           'categories.name as category-name')
-        .from('URLs')
-        .innerJoin('categories', 'URLs.cat_id', 'categories.id')
+        .from('urls')
+        .innerJoin('categories', 'urls.cat_id', 'categories.id')
         .where('user_id','=', id)
         .then((urls) => {
           return callback(null, urls)
